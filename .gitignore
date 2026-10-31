@@ -1,7 +1,6 @@
 .venv/
 __pycache__/
 .pytest_cache/
-data/cache/
 *.pyc
 
 # Notebook/editor/OS state
@@ -18,8 +17,7 @@ Thumbs.db
 *.pem
 *.key
 
-# Rebuildable row-level exports and temporary smoke/failure diagnostics
-results/**/processed.csv.gz
+# Temporary smoke/failure diagnostics (full study data is shared)
 results/smoke_*
 results/last_failure.json
 results/sensitivity_exclusions.json

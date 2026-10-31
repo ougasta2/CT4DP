@@ -12,29 +12,35 @@ deployable forecasting model. Technical deliverables are in English.
 - [Pilot findings](results/pilot_findings.md): concise conclusions and limitations.
 - [Figures](results/figures/) and [execution record](results/validation.md).
 
-The repository contains reusable code, tests, the executed notebook, summary
-tables, fitted-model parameters and figures. Local virtual environments, raw API
-caches, temporary smoke outputs and rebuildable row-level exports are excluded
-by `.gitignore`; they remain on the original computer.
+The repository includes **all downloaded inputs used in this 2023–2024 pilot**:
+the original API response cache and metadata, convenient raw CSV exports, and
+the full processed primary/sensitivity tables. See [data inventory](data/README.md).
+Local virtual environments and temporary smoke/failure outputs remain excluded.
 
-**A fresh clone has no data cache.** Follow the setup below and run the live full
-pilot once before executing the notebook. The notebook intentionally uses
-`--offline` and will report a cache miss until that download has completed.
-The API can require several minutes of rate-limit waiting. To reproduce without
-API access, obtain the original `data/cache/` directory separately and place it
-at that same repository-relative path; then use `--offline`.
+**A fresh clone or GitHub ZIP download includes the data cache.** After installing
+the dependencies, the full pilot and notebook run with `--offline`; no Energinet
+API requests or separate data transfer are needed. This shares the complete
+study inputs for DK1/DK2 in 2023/2024, not every year or every column offered by
+the upstream datasets. GitHub's **Code → Download ZIP** downloads code and data
+together; the same files are included by `git clone`.
 
 ## Run (PowerShell, Python 3.10+)
 
 ```powershell
 python -m venv .venv
 .venv/Scripts/python -m pip install -r requirements.txt
-.venv/Scripts/python scripts/run_pilot.py --smoke-test
-.venv/Scripts/python scripts/run_pilot.py --train-year 2023 --test-year 2024
 .venv/Scripts/python scripts/run_pilot.py --offline
 .venv/Scripts/python -m pytest -q
 .venv/Scripts/python scripts/execute_notebook.py
 ```
+
+The optional smoke command is
+`.venv/Scripts/python scripts/run_pilot.py --smoke-test --offline`.
+For live acquisition into an empty cache, use
+`.venv/Scripts/python scripts/run_pilot.py --train-year 2023 --test-year 2024 --cache data/new-cache`;
+the API may require several minutes of rate-limit waiting. To regenerate the
+convenient raw CSV exports and checksums from the bundled cache, use
+`.venv/Scripts/python scripts/export_data.py`.
 
 `scripts/build_notebook.py` is a maintainer tool that rebuilds the notebook
 structure and clears saved outputs. It is not needed to read or rerun the
@@ -75,7 +81,8 @@ Only the historical hourly price dataset is used (no post-2025 substitution).
 The full source grids should contain 17,520 area-hours in 2023 and 17,568 in 2024.
 `results/coverage.csv` checks these by source, month and area. Merge audits include
 unmatched counts, per-column missingness, invalid exclusions and retention.
-Raw cache is ignored by Git; retain it locally for reproducibility. Installed
+Raw cache is versioned with this study snapshot. `data/manifest.json` records
+file checksums, sizes, schemas, source URLs and download timestamps. Installed
 versions are recorded in `requirements-lock.txt`; use it for the exact environment.
 
 ## Methods and scientific choices

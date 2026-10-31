@@ -58,3 +58,22 @@ bootstrap intervals include lift 1. The negative-price shortlist does not
 retain point-estimate enrichment in 2024; one primary rule has only 17 validation
 events. Calendar+cluster improves negative-event Brier score but worsens the
 high-price score. See pilot_findings.md for exact numerators and denominators.
+
+## Data-sharing update
+
+The repository now includes all downloaded study inputs and metadata (nine
+original cached responses), two consolidated raw exports with 35,088 rows each,
+and the complete primary/sensitivity processed tables. The source attribution,
+schema and SHA-256 inventory are in data/README.md and data/manifest.json.
+All eleven raw-export/cache file checksums were verified, and both consolidated
+exports have unique `(HourUTC, PriceArea)` keys and the expected record counts.
+
+The 72 staged repository files were exported into a fresh temporary directory,
+without the original working directory's ignored files or virtual environment.
+Using the installed Python dependencies, `scripts/run_pilot.py --offline` ran
+successfully from that exported project. Event rates, selected rules (including
+bootstrap intervals), calendar comparison and solar-sensitivity comparison
+matched the original outputs within floating-point tolerance (rtol=1e-10,
+atol=1e-12). Original workspace analysis outputs were not changed by the check.
+Thus a fresh clone/ZIP contains the inputs needed for an offline rerun; installing
+Python dependencies still requires an appropriate environment.
