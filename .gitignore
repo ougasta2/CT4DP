@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/cache/
+*.pyc
+
+# Notebook/editor/OS state
+.ipynb_checkpoints/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Rebuildable row-level exports and temporary smoke/failure diagnostics
+results/**/processed.csv.gz
+results/smoke_*
+results/last_failure.json
+results/sensitivity_exclusions.json

@@ -1,0 +1,5 @@
+event,model,n,fallback_rows,brier
+negative_price,calendar,17568,0,0.03382374890689176
+negative_price,calendar_plus_cluster,17568,1,0.03235059069185195
+high_price,calendar,17568,0,0.027933876035774633
+high_price,calendar_plus_cluster,17568,1,0.02860928709755466

@@ -1,0 +1,62 @@
+{
+  "created_utc": "2026-10-31T18:52:52.767546+00:00",
+  "rules": [
+    {
+      "event": "negative_price",
+      "antecedent": [
+        "area=DK1",
+        "cluster=C0",
+        "season=summer"
+      ]
+    },
+    {
+      "event": "negative_price",
+      "antecedent": [
+        "area=DK2",
+        "cluster=C1",
+        "season=autumn"
+      ]
+    },
+    {
+      "event": "high_price",
+      "antecedent": [
+        "area=DK1",
+        "cluster=C3",
+        "season=winter"
+      ]
+    },
+    {
+      "event": "high_price",
+      "antecedent": [
+        "area=DK2",
+        "cluster=C3",
+        "season=winter"
+      ]
+    }
+  ],
+  "centers": {
+    "wind_to_load": {
+      "0": 1.0186408597548695,
+      "1": 0.29833229883755275,
+      "2": 0.31309991706012075,
+      "3": 0.37374160105815923
+    },
+    "solar_to_load": {
+      "0": 0.027675816333638886,
+      "1": 0.017953284045022916,
+      "2": 0.3756746204517968,
+      "3": 0.04376470977842549
+    },
+    "load_index": {
+      "0": 1.0142048450647803,
+      "1": 0.8091100575518231,
+      "2": 1.0158059221300368,
+      "3": 1.1739090208796081
+    }
+  },
+  "thresholds": {
+    "DK1": 161.78149894999999,
+    "DK2": 163.06049845
+  },
+  "itemset_count": 329
+}

@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "smoke_test": false,
+    "offline": true,
+    "train_year": 2023,
+    "test_year": 2024,
+    "cache": "data/cache",
+    "output": "results",
+    "min_support": 0.02,
+    "bootstrap": 400
+  },
+  "python": "3.10.11",
+  "completed_utc": "2026-10-31T18:59:54.210862+00:00",
+  "complete_coverage": true
+}
