@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "offline": true,
+    "cache": "data/cache",
+    "output": "results/decade",
+    "min_support": 0.02,
+    "bootstrap": 400
+  },
+  "python": "3.10.11",
+  "completed_utc": "2026-11-01T14:18:05.801758+00:00",
+  "train_rows": 140256,
+  "test_rows": 35088,
+  "protocol_sha256": "c50af1d6cca4a8dc0091d7b0a7d3dcd94a5a1fba926a2734f3b8d7fa3ac4f6fd",
+  "complete_timestamp_coverage": true
+}

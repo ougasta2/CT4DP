@@ -1,5 +1,11 @@
 # Shared study data
 
+The newer **2016–2025 study** is indexed in [decade/README.md](decade/README.md),
+with eight training years, two test years, explicit historical bridges, full
+raw/processed exports and an additional SHA-256 manifest. The files described
+below retain the original 2023/2024 pilot snapshot for comparison. The shared
+cache now contains inputs for both studies.
+
 All inputs used for the DK1/DK2 calendar-year 2023/2024 pilot are included in this
 repository. Clone it or use GitHub **Code → Download ZIP** to obtain them together
 with the code. No API account or credentials are required.

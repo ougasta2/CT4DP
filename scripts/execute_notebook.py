@@ -6,9 +6,13 @@ from nbclient import NotebookClient
 from jupyter_client.kernelspec import KernelSpecManager
 import json
 import tempfile
+import argparse
 
 root=Path(__file__).resolve().parents[1]
-path=root/'notebooks/energy_price_pilot.ipynb'
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('notebook',nargs='?',default='notebooks/energy_price_pilot.ipynb')
+args=parser.parse_args()
+path=(root/args.notebook).resolve()
 with tempfile.TemporaryDirectory() as temp:
     kernel=Path(temp)/'pilot'; kernel.mkdir()
     (kernel/'kernel.json').write_text(json.dumps({'argv':[sys.executable,'-m','ipykernel_launcher','-f','{connection_file}'],

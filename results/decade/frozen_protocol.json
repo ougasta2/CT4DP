@@ -1,0 +1,179 @@
+{
+  "training_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "test_years": [
+    2024,
+    2025
+  ],
+  "frozen_before_scoring_utc": "2026-11-01T14:17:45.874826+00:00",
+  "medians": {
+    "DK1": 2452.458735,
+    "DK2": 1536.822199
+  },
+  "demand_quantiles": {
+    "DK1": [
+      2199.2335686666665,
+      2719.9195146666666
+    ],
+    "DK2": [
+      1381.644768333333,
+      1677.8174459999998
+    ]
+  },
+  "high_price_thresholds_eur_mwh": {
+    "DK1": 234.54050144999903,
+    "DK2": 232.68599944999977
+  },
+  "features": [
+    "wind_to_load",
+    "solar_to_load",
+    "load_index"
+  ],
+  "solar_feature": "harmonized total solar proxy; pre-2020 layout bridge; negative estimated self-use floored per metadata",
+  "training_solar_repairs": 1747,
+  "price_feature": "hourly EUR/MWh; mean of four quarters after 2025-10-01",
+  "scaler_mean": [
+    0.4237531404865306,
+    0.039312682334983855,
+    1.0027002494824624
+  ],
+  "scaler_scale": [
+    0.3641598676540066,
+    0.08035163598502831,
+    0.19982560105893937
+  ],
+  "kmeans_k": 4,
+  "gmm_components": 7,
+  "dbscan_eps": 0.15769616424841648,
+  "dbscan_sample_rows": 20000,
+  "rf_config": {
+    "n_estimators": 120,
+    "max_depth": 12,
+    "min_samples_leaf": 80,
+    "max_features": 1.0,
+    "n_jobs": 2,
+    "random_state": 42
+  },
+  "regression_config": {
+    "max_iter": 200,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 100,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "random_state": 42
+  },
+  "random_seed": 42,
+  "min_support": 0.02,
+  "rules": {
+    "kmeans": [
+      {
+        "event": "negative_price",
+        "antecedent": [
+          "area=DK1",
+          "cluster=C2",
+          "time_of_day=afternoon"
+        ]
+      },
+      {
+        "event": "negative_price",
+        "antecedent": [
+          "area=DK2",
+          "cluster=C2",
+          "time_of_day=afternoon"
+        ]
+      },
+      {
+        "event": "high_price",
+        "antecedent": [
+          "area=DK1",
+          "cluster=C2",
+          "season=summer"
+        ]
+      },
+      {
+        "event": "high_price",
+        "antecedent": [
+          "area=DK2",
+          "cluster=C2"
+        ]
+      }
+    ],
+    "gmm": [
+      {
+        "event": "negative_price",
+        "antecedent": [
+          "area=DK1",
+          "cluster=C5",
+          "time_of_day=afternoon"
+        ]
+      },
+      {
+        "event": "negative_price",
+        "antecedent": [
+          "area=DK2",
+          "cluster=C0",
+          "demand=low"
+        ]
+      },
+      {
+        "event": "high_price",
+        "antecedent": [
+          "area=DK1",
+          "cluster=C5"
+        ]
+      },
+      {
+        "event": "high_price",
+        "antecedent": [
+          "area=DK2",
+          "cluster=C6",
+          "season=summer"
+        ]
+      }
+    ],
+    "dbscan": [
+      {
+        "event": "negative_price",
+        "antecedent": [
+          "area=DK1",
+          "cluster=C-1",
+          "demand=mid"
+        ]
+      },
+      {
+        "event": "negative_price",
+        "antecedent": [
+          "area=DK2",
+          "cluster=C-1",
+          "demand=mid"
+        ]
+      },
+      {
+        "event": "high_price",
+        "antecedent": [
+          "area=DK1",
+          "cluster=C-1",
+          "season=summer"
+        ]
+      },
+      {
+        "event": "high_price",
+        "antecedent": [
+          "area=DK2",
+          "cluster=C-1",
+          "season=summer"
+        ]
+      }
+    ]
+  },
+  "prior_holdout_exposure": "2024 was examined in the original pilot; exploratory temporal evaluation"
+}

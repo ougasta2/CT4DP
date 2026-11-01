@@ -11,13 +11,15 @@ import requests
 BASE = 'https://api.energidataservice.dk'
 PRODUCTION = 'ProductionConsumptionSettlement'
 PRICES = 'Elspotprices'
+QUARTER_PRICES = 'DayAheadPrices'
 KEYS = ['HourUTC', 'PriceArea']
 WIND = ['OffshoreWindLt100MW_MWh', 'OffshoreWindGe100MW_MWh',
         'OnshoreWindLt50kW_MWh', 'OnshoreWindGe50kW_MWh']
 SOLAR = ['SolarPowerLt10kW_MWh', 'SolarPowerGe10Lt40kW_MWh', 'SolarPowerGe40kW_MWh']
 SELF = 'SolarPowerSelfConMWh'
 COLUMNS = {PRODUCTION: KEYS + WIND + SOLAR + [SELF, 'GrossConsumptionMWh'],
-           PRICES: KEYS + ['SpotPriceEUR']}
+           PRICES: KEYS + ['SpotPriceEUR'],
+           QUARTER_PRICES: ['TimeUTC', 'PriceArea', 'DayAheadPriceEUR']}
 
 
 class Client:
@@ -75,14 +77,15 @@ class Client:
         print(f'{dataset} metadata schema: {fields}', flush=True)
         return meta
 
-    def window(self, dataset, start, end):
+    def window(self, dataset, start, end, limit=50000):
+        time_column='TimeUTC' if dataset==QUARTER_PRICES else 'HourUTC'
         params = dict(start=start, end=end, filter=json.dumps({'PriceArea': ['DK1', 'DK2']}),
-                      columns=','.join(COLUMNS[dataset]), sort='HourUTC ASC,PriceArea ASC', limit=50000)
+                      columns=','.join(COLUMNS[dataset]), sort=f'{time_column} ASC,PriceArea ASC', limit=limit)
         payload = self.get(f'dataset/{dataset}', params)
         records = payload.get('records')
         if not records:
             raise ValueError(f'{dataset}: no records for {start} to {end}')
-        if len(records) >= 50000 or payload.get('total', len(records)) != len(records):
+        if len(records) >= limit or payload.get('total', len(records)) != len(records):
             raise ValueError('Window truncated; use shorter intervals rather than partial data')
         frame = pd.DataFrame(records)
         if set(COLUMNS[dataset]) - set(frame):

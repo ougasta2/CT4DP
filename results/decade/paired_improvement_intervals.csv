@@ -1,0 +1,4 @@
+method,target,loss,improvement,ci_low,ci_high,repeats,block_days
+random_forest,negative_price,Brier,0.003373544062016439,0.001884880374602148,0.005135822119477739,400,7
+random_forest,high_price,Brier,-0.01068639153596188,-0.012918510068462067,-0.008790060519359134,400,7
+gradient_boosting,SpotPriceEUR,MAE EUR/MWh,-5.469263285156015,-8.429448088017601,-2.223807506745256,400,7

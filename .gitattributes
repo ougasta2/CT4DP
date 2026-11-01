@@ -1,0 +1,6 @@
+# Keep reproducibility hashes stable across Windows, Linux and GitHub ZIPs.
+* text=auto eol=lf
+data/cache/*.json -text
+*.csv.gz -text
+*.joblib -text
+*.png -text

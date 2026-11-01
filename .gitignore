@@ -21,3 +21,4 @@ Thumbs.db
 results/smoke_*
 results/last_failure.json
 results/sensitivity_exclusions.json
+results/**/failure.json

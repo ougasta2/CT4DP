@@ -1,0 +1,290 @@
+{
+  "scope": "2016-2025 completed Copenhagen calendar years, DK1 and DK2; all original selected-field study inputs",
+  "train_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "test_years": [
+    2024,
+    2025
+  ],
+  "data_source": "Energinet Energi Data Service",
+  "source_data_license": "CC BY 4.0",
+  "attribution": "Source: Energinet (www.energidataservice.dk). Derived tables and models are transformations; no endorsement implied.",
+  "source_data_license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "cached_responses": [
+    {
+      "path": "data/cache/01779cd213595d365c290571.json",
+      "bytes": 17127,
+      "sha256": "286fceba9b4ed6450a667846d7787398fa547272fd70855d1eef04de4a10ce23",
+      "source_url": "https://api.energidataservice.dk/meta/dataset/ProductionConsumptionSettlement",
+      "parameters": {},
+      "downloaded_utc": "2026-10-31T18:45:22.880528+00:00",
+      "rows": null
+    },
+    {
+      "path": "data/cache/14a267979c5f63aeccb9f7c9.json",
+      "bytes": 10006488,
+      "sha256": "2d80afdc7d522395cca34e2dbb6c799eff76827f80d5a788773d1d4945004ea8",
+      "source_url": "https://api.energidataservice.dk/dataset/Elspotprices?start=2016-01-01&end=2023-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2CSpotPriceEUR&sort=HourUTC+ASC%2CPriceArea+ASC&limit=150000",
+      "parameters": {
+        "start": "2016-01-01",
+        "end": "2023-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,SpotPriceEUR",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 150000
+      },
+      "downloaded_utc": "2026-11-01T14:04:23.042068+00:00",
+      "rows": 122736
+    },
+    {
+      "path": "data/cache/2779d92db8ca3ef126629f51.json",
+      "bytes": 44760948,
+      "sha256": "b1b5fc1cd7873ad347706d0f1b382a0e9328a9a9421912dbe4aff0f3ab24ed09",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2016-01-01&end=2023-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=150000",
+      "parameters": {
+        "start": "2016-01-01",
+        "end": "2023-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 150000
+      },
+      "downloaded_utc": "2026-11-01T14:04:15.603391+00:00",
+      "rows": 122736
+    },
+    {
+      "path": "data/cache/2e85cacc7b9122a2fdc9753d.json",
+      "bytes": 1074142,
+      "sha256": "0636b9c789dca40bd0429506022bec7130ba82671188e96eb083a1fefd4e48da",
+      "source_url": "https://api.energidataservice.dk/dataset/Elspotprices?start=2025-01-01&end=2025-10-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2CSpotPriceEUR&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2025-01-01",
+        "end": "2025-10-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,SpotPriceEUR",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-11-01T14:09:20.134719+00:00",
+      "rows": 13102
+    },
+    {
+      "path": "data/cache/48e1b0d7f4dc7b34a44167eb.json",
+      "bytes": 28250,
+      "sha256": "5658ab70140dbf4e08d0fd9e215d26b27e8b059c22ce391ce7b1159d83e6ac13",
+      "source_url": "https://api.energidataservice.dk/dataset/Elspotprices?start=2024-01-01&end=2024-01-08&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2CSpotPriceEUR&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2024-01-01",
+        "end": "2024-01-08",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,SpotPriceEUR",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-10-31T18:47:11.579316+00:00",
+      "rows": 336
+    },
+    {
+      "path": "data/cache/7f9962eb4c0eec08b7dfbca2.json",
+      "bytes": 5921,
+      "sha256": "ad47fe4c909744b43d3f1c2136cdc2dc560383ca14be6fef176c4bbcc575884f",
+      "source_url": "https://api.energidataservice.dk/meta/dataset/DayAheadPrices",
+      "parameters": {},
+      "downloaded_utc": "2026-11-01T14:03:39.511512+00:00",
+      "rows": null
+    },
+    {
+      "path": "data/cache/8a1f9cf0b57a57ac3e5742d1.json",
+      "bytes": 127407,
+      "sha256": "9c34a74ac55dbb49e037cc05ef4c8b0ab4220070f3f559aeb4d766a37864c456",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2024-01-01&end=2024-01-08&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=10000",
+      "parameters": {
+        "start": "2024-01-01",
+        "end": "2024-01-08",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 10000
+      },
+      "downloaded_utc": "2026-10-31T18:45:23.675567+00:00",
+      "rows": 336
+    },
+    {
+      "path": "data/cache/a48bd1653b06c97684e29698.json",
+      "bytes": 127407,
+      "sha256": "a898dc2902b408ef13d37625955298fc003dd1513b07f1fedbe1666cd5efbe10",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2024-01-01&end=2024-01-08&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2024-01-01",
+        "end": "2024-01-08",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-10-31T18:45:53.072796+00:00",
+      "rows": 336
+    },
+    {
+      "path": "data/cache/a8ba0d2e2c1b787d10801b6b.json",
+      "bytes": 6641480,
+      "sha256": "3715b27a860dbdd2a7254f6b90b8d7509a98008d773cb157c4c4ce242d1d571a",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2024-01-01&end=2025-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2024-01-01",
+        "end": "2025-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-10-31T18:50:20.039379+00:00",
+      "rows": 17568
+    },
+    {
+      "path": "data/cache/bc7c84a2f47beed53a5048f6.json",
+      "bytes": 1438732,
+      "sha256": "7dc59ab17214f90eb105efeebb038c1f3839dcef6dae2f642b50aad6867499d3",
+      "source_url": "https://api.energidataservice.dk/dataset/Elspotprices?start=2024-01-01&end=2025-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2CSpotPriceEUR&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2024-01-01",
+        "end": "2025-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,SpotPriceEUR",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-10-31T18:57:12.732149+00:00",
+      "rows": 17568
+    },
+    {
+      "path": "data/cache/bc86d1418c4751815b84fb43.json",
+      "bytes": 1525676,
+      "sha256": "883f3c16e774ee407a4c94fedac4da95b31bf1e995529f43ca6771662fbf7081",
+      "source_url": "https://api.energidataservice.dk/dataset/DayAheadPrices?start=2025-10-01&end=2026-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=TimeUTC%2CPriceArea%2CDayAheadPriceEUR&sort=TimeUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2025-10-01",
+        "end": "2026-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "TimeUTC,PriceArea,DayAheadPriceEUR",
+        "sort": "TimeUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-11-01T14:04:24.022453+00:00",
+      "rows": 17672
+    },
+    {
+      "path": "data/cache/d5a074bd0314e1216ef67fe7.json",
+      "bytes": 35589,
+      "sha256": "f6c348b8e817e9726e88f3299b32143647b5f270c9165ba4fc745bdb21696409",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2016-01-01&end=2016-01-03&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2016-01-01",
+        "end": "2016-01-03",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-11-01T14:02:50.496035+00:00",
+      "rows": 96
+    },
+    {
+      "path": "data/cache/d851434d30529244557b4177.json",
+      "bytes": 1439068,
+      "sha256": "2302f616b5b3d0fa762ac5488be2562b81f41ab1fee8e1952542198c26ddab19",
+      "source_url": "https://api.energidataservice.dk/dataset/Elspotprices?start=2023-01-01&end=2024-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2CSpotPriceEUR&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2023-01-01",
+        "end": "2024-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,SpotPriceEUR",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-10-31T18:52:12.282201+00:00",
+      "rows": 17520
+    },
+    {
+      "path": "data/cache/e7a42914c6f8b7315af01b0a.json",
+      "bytes": 6158,
+      "sha256": "324276a25f046fa9285583cb3db64475815215dd23bc89e27ee5ba3d1f36c9e7",
+      "source_url": "https://api.energidataservice.dk/meta/dataset/Elspotprices",
+      "parameters": {},
+      "downloaded_utc": "2026-10-31T18:45:23.231278+00:00",
+      "rows": null
+    },
+    {
+      "path": "data/cache/fc6e94d0baf6822ff9966ee5.json",
+      "bytes": 6636878,
+      "sha256": "f06c8485301dc49e174ece87fd50bc9ae469307874af0510f392de534bbfb2a5",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2025-01-01&end=2026-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2025-01-01",
+        "end": "2026-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-11-01T14:04:18.799190+00:00",
+      "rows": 17520
+    },
+    {
+      "path": "data/cache/ff44fbd9ce34676b3fe3ca95.json",
+      "bytes": 6617903,
+      "sha256": "2efef1bc5090659595b3954818a8df411460d0bc6afc22f43131f713d4e79a24",
+      "source_url": "https://api.energidataservice.dk/dataset/ProductionConsumptionSettlement?start=2023-01-01&end=2024-01-01&filter=%7B%22PriceArea%22%3A+%5B%22DK1%22%2C+%22DK2%22%5D%7D&columns=HourUTC%2CPriceArea%2COffshoreWindLt100MW_MWh%2COffshoreWindGe100MW_MWh%2COnshoreWindLt50kW_MWh%2COnshoreWindGe50kW_MWh%2CSolarPowerLt10kW_MWh%2CSolarPowerGe10Lt40kW_MWh%2CSolarPowerGe40kW_MWh%2CSolarPowerSelfConMWh%2CGrossConsumptionMWh&sort=HourUTC+ASC%2CPriceArea+ASC&limit=50000",
+      "parameters": {
+        "start": "2023-01-01",
+        "end": "2024-01-01",
+        "filter": "{\"PriceArea\": [\"DK1\", \"DK2\"]}",
+        "columns": "HourUTC,PriceArea,OffshoreWindLt100MW_MWh,OffshoreWindGe100MW_MWh,OnshoreWindLt50kW_MWh,OnshoreWindGe50kW_MWh,SolarPowerLt10kW_MWh,SolarPowerGe10Lt40kW_MWh,SolarPowerGe40kW_MWh,SolarPowerSelfConMWh,GrossConsumptionMWh",
+        "sort": "HourUTC ASC,PriceArea ASC",
+        "limit": 50000
+      },
+      "downloaded_utc": "2026-10-31T18:47:34.367889+00:00",
+      "rows": 17520
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "path": "data/decade/prices_hourly_2016_2025.csv.gz",
+      "bytes": 893003,
+      "sha256": "59f28adfe9bda5b3fc8967f7d05d6ed6abc7e5463ad1677bf990d2c7c2f181d5"
+    },
+    {
+      "path": "data/decade/production_2016_2025.csv.gz",
+      "bytes": 6707794,
+      "sha256": "16b4e2c9d77475eda861e043fbc7bf8c028f3ee975c51331c9beee20082c5bfb"
+    },
+    {
+      "path": "results/decade/processed.csv.gz",
+      "bytes": 17077471,
+      "sha256": "a6d04bf6517faa372d0c9c67e55c08edb12452c0efb8db92f41f426e4875c39b"
+    },
+    {
+      "path": "results/decade/holdout_predictions.csv.gz",
+      "bytes": 2304420,
+      "sha256": "e225e7a3344df87ea034df5ae42ef46bbf24563bd578fa605c0158703bed2f57"
+    },
+    {
+      "path": "results/decade/fitted_models.joblib",
+      "bytes": 11630005,
+      "sha256": "94b0ee7be0a310002c2447649cea99822e74d5c236a136e04c371099e3168064"
+    },
+    {
+      "path": "results/decade/frozen_protocol.json",
+      "bytes": 3615,
+      "sha256": "c50af1d6cca4a8dc0091d7b0a7d3dcd94a5a1fba926a2734f3b8d7fa3ac4f6fd"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ from .plots import figures
 
 
 def save_json(path, value):
-    Path(path).write_text(json.dumps(value,indent=2,default=str),encoding='utf-8')
+    Path(path).write_text(json.dumps(value,indent=2,default=str),encoding='utf-8',newline='\n')
 
 
 def markdown_table(frame):

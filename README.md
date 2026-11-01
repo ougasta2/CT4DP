@@ -5,9 +5,47 @@ negative or high day-ahead prices in DK1 and DK2, and do 2023 discoveries transf
 to 2024? This is exploratory association analysis, not causal analysis or a
 deployable forecasting model. Technical deliverables are in English.
 
+## Latest experiment: eight training years and two test years
+
+The extended study uses **2016–2023 for training and 2024–2025 for testing**.
+All ten completed calendar years have complete selected-field/time coverage in
+DK1 and DK2: 140,256 training area-hours and 35,088 test area-hours.
+The earlier 2023/2024 pilot is retained for comparison.
+
+- [Executed ten-year notebook](notebooks/energy_price_decade.ipynb)
+- [Ten-year findings](results/decade/pilot_findings.md)
+- [Ten-year data and historical bridges](data/decade/README.md)
+- [Frozen protocol and method definitions](docs/DECADE_PROTOCOL.md)
+
+Four additional methods supplement K-means + custom Apriori: **Gaussian mixture
+models (GMM), DBSCAN, Random Forest classification and histogram gradient boosting
+price regression**. Classification covers negative/high hourly price events;
+regression estimates the realized price. These use realized generation and are
+retrospective associations, not operational day-ahead forecasts.
+
+```powershell
+.venv/Scripts/python scripts/run_decade.py --offline
+.venv/Scripts/python scripts/execute_notebook.py notebooks/energy_price_decade.ipynb
+```
+
+The notebook loads executed results by default for quick inspection; set its
+`RERUN_ANALYSIS=True` to repeat full model fitting from cached official inputs.
+Hyperparameters and selection are fixed on training only. Results include yearly
+and area scores, calendar-only model-family ablations, paired day-block intervals,
+frozen Apriori rules, and solar-definition/correction sensitivities. Since 2024 was
+already examined in the original pilot, this remains exploratory temporal testing.
+
+The ten-year extension explicitly bridges the pre-2020 solar layout and averages
+four complete quarter-hour prices after October 1, 2025. It preserves and flags
+1,747 negative estimated self-use values repaired under the metadata's zero-floor
+definition. A strict no-repair clustering sensitivity excludes those training
+rows. See the protocol before interpreting solar-dependent findings. No missing
+observations are imputed as zero. All original downloaded selected-field inputs
+are included, including quarter prices and raw signed estimates.
+
 ## Read the shared results
 
-- [Executed notebook](notebooks/energy_price_pilot.ipynb): saved tables and figures;
+- [Original two-year notebook](notebooks/energy_price_pilot.ipynb): saved tables and figures;
   viewing it on GitHub does not require Python or API access.
 - [Pilot findings](results/pilot_findings.md): concise conclusions and limitations.
 - [Figures](results/figures/) and [execution record](results/validation.md).

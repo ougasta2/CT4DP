@@ -1,0 +1,29 @@
+{
+  "production_rows": 175344,
+  "price_rows": 175344,
+  "merge_counts": {
+    "both": 175344,
+    "left_only": 0,
+    "right_only": 0
+  },
+  "missing_fraction_by_column": {
+    "HourUTC": 0.0,
+    "PriceArea": 0.0,
+    "OffshoreWindLt100MW_MWh": 0.0,
+    "OffshoreWindGe100MW_MWh": 0.0,
+    "OnshoreWindLt50kW_MWh": 0.0,
+    "OnshoreWindGe50kW_MWh": 0.0,
+    "SolarPowerLt10kW_MWh": 0.0,
+    "SolarPowerGe10Lt40kW_MWh": 0.0,
+    "SolarPowerGe40kW_MWh": 0.0,
+    "SolarPowerSelfConMWh": 0.0,
+    "GrossConsumptionMWh": 0.0,
+    "SpotPriceEUR": 0.0,
+    "price_resolution": 0.0,
+    "quarter_negative_fraction": 0.9748038142166257
+  },
+  "negative_physical_cells": 1747,
+  "excluded_incomplete_or_invalid_rows": 0,
+  "usable_rows": 175344,
+  "join_retention_fraction": 1.0
+}
