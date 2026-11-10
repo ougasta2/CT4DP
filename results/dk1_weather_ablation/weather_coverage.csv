@@ -1,0 +1,16 @@
+zone,variable,hours,missing_hours,complete_days
+DK1,temperature_2m,68880,0,2870
+DK1,wind_speed_10m,68880,0,2870
+DK1,cloud_cover,68880,0,2870
+DK2,temperature_2m,68880,0,2870
+DK2,wind_speed_10m,68880,0,2870
+DK2,cloud_cover,68880,0,2870
+DE-LU,temperature_2m,68880,0,2870
+DE-LU,wind_speed_10m,68880,0,2870
+DE-LU,cloud_cover,68880,0,2870
+NL,temperature_2m,68880,0,2870
+NL,wind_speed_10m,68880,0,2870
+NL,cloud_cover,68880,0,2870
+SE4,temperature_2m,68880,0,2870
+SE4,wind_speed_10m,68880,0,2870
+SE4,cloud_cover,68880,0,2870

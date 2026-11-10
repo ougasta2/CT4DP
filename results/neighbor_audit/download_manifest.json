@@ -1,0 +1,90 @@
+[
+  {
+    "endpoint": "price",
+    "label": "DK1",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DK1&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+    "path": "data\\neighbor_sample\\price_DK1_2024.json",
+    "sha256": "0fc7b431c14bfad16820a636b596ec3af1daa6923753860f3770688b224d4a66"
+  },
+  {
+    "endpoint": "price",
+    "label": "DK2",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DK2&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+    "path": "data\\neighbor_sample\\price_DK2_2024.json",
+    "sha256": "defd59c85652607fe2856a5d7218b7e7f02c8b4c2204327e3e54321e699ab639"
+  },
+  {
+    "endpoint": "price",
+    "label": "DE-LU",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+    "path": "data\\neighbor_sample\\price_DE-LU_2024.json",
+    "sha256": "9432fd9e34213d532d390ca171a7a448fc26bba4f32df09e57b15ce1d665db45"
+  },
+  {
+    "endpoint": "price",
+    "label": "NL",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+    "path": "data\\neighbor_sample\\price_NL_2024.json",
+    "sha256": "5a14462c7aef22f96dd7e23785062249bff7a13cb2537fda28350ec7f65d4ca0"
+  },
+  {
+    "endpoint": "price",
+    "label": "SE4",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+    "path": "data\\neighbor_sample\\price_SE4_2024.json",
+    "sha256": "1caa74c356f01f9af7c3826d6a4793246de4db880740a68103ffcd003ba1058c"
+  },
+  {
+    "endpoint": "price",
+    "label": "NO2",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NO2&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+    "path": "data\\neighbor_sample\\price_NO2_2024.json",
+    "sha256": "dd1c4aedb54f8584bcf07610d9eddd27dcfcb0f2959dad6e41f1cb345ccdf87c"
+  },
+  {
+    "endpoint": "public_power",
+    "label": "dk",
+    "url": "https://api.energy-charts.info/v2/public_power?country=dk&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",
+    "path": "data\\neighbor_sample\\public_power_dk_2024.json",
+    "sha256": "a88add3b007074158448b0566c63c6bda29119703b9e46de00c2ec7c29608b2d"
+  },
+  {
+    "endpoint": "public_power",
+    "label": "de",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",
+    "path": "data\\neighbor_sample\\public_power_de_2024.json",
+    "sha256": "09c86fe281b7a1522ae0180cabb29fa360767526a8cebcc875267b056003cf98"
+  },
+  {
+    "endpoint": "public_power",
+    "label": "nl",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",
+    "path": "data\\neighbor_sample\\public_power_nl_2024.json",
+    "sha256": "854f320835330251a05eaf7587cbd7218bb3d127a3f4154b95a308a36859323e"
+  },
+  {
+    "endpoint": "public_power",
+    "label": "se",
+    "url": "https://api.energy-charts.info/v2/public_power?country=se&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",
+    "path": "data\\neighbor_sample\\public_power_se_2024.json",
+    "sha256": "a7513c9f4cd17537b3a8a16aee9fde74bf3c6cb4c76d77a15a3792f29699e6fb"
+  },
+  {
+    "endpoint": "public_power",
+    "label": "no",
+    "url": "https://api.energy-charts.info/v2/public_power?country=no&start=2024-01-01&end=2024-12-31",
+    "license": "CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",
+    "path": "data\\neighbor_sample\\public_power_no_2024.json",
+    "sha256": "17d808c518ce275ae24364b2f4167a374502d73b382e1ab7a7960834584db3a8"
+  }
+]

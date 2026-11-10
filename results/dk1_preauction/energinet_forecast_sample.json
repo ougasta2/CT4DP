@@ -1,0 +1,39 @@
+{
+  "url": "https://api.energidataservice.dk/dataset/Forecasts_Hour?start=2025-11-01&end=2025-11-02&limit=2",
+  "retrieved_utc": "2026-11-10T13:40:57.799452+00:00",
+  "sha256": "b0b37a9d2e5911651777acae9569e33d00f17f713381efe080b7b732ea26bf5f",
+  "body": {
+    "total": 2,
+    "filters": "",
+    "limit": 2,
+    "dataset": "Forecasts_Hour",
+    "records": [
+      {
+        "HourUTC": "2025-11-01T22:00:00",
+        "HourDK": "2025-11-01T23:00:00",
+        "PriceArea": "DK1",
+        "ForecastType": "Offshore Wind",
+        "ForecastDayAhead": 710.5,
+        "ForecastIntraday": 766.708313,
+        "Forecast5Hour": 785.625,
+        "Forecast1Hour": 783.166687,
+        "ForecastCurrent": 775.0,
+        "TimestampUTC": "2025-11-01T22:00:28",
+        "TimestampDK": "2025-11-01T23:00:28"
+      },
+      {
+        "HourUTC": "2025-11-01T22:00:00",
+        "HourDK": "2025-11-01T23:00:00",
+        "PriceArea": "DK1",
+        "ForecastType": "Onshore Wind",
+        "ForecastDayAhead": 1013.916687,
+        "ForecastIntraday": 1137.5,
+        "Forecast5Hour": 1186.208374,
+        "Forecast1Hour": 1285.416626,
+        "ForecastCurrent": 1211.125,
+        "TimestampUTC": "2025-11-01T22:00:32",
+        "TimestampDK": "2025-11-01T23:00:32"
+      }
+    ]
+  }
+}

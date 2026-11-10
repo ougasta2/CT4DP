@@ -1,0 +1,17 @@
+{
+  "training_last_local_day": "2026-11-09",
+  "models": {
+    "ridge": {
+      "first_day": "2019-01-08",
+      "last_day": "2026-11-09",
+      "training_days": 2863
+    },
+    "lear_raw_3y": {
+      "first_day": "2023-11-11",
+      "last_day": "2026-11-09",
+      "training_days": 1095
+    }
+  },
+  "note": "Fit artifacts only: no fresh forecast issued. Inputs require new price/weather/fuel data and historic release/vintage verification.",
+  "calibration": "No online median-bias adjustment stored; requires recent rolling out-of-sample residual history."
+}

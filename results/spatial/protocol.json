@@ -1,0 +1,22 @@
+{
+  "train": "2016-2023",
+  "test": [
+    2024,
+    2025
+  ],
+  "target": "exactly one negative conditional on at least one negative",
+  "train_n": 975,
+  "train_events": 432,
+  "cluster_fit": "all training hours, no prices",
+  "k": 4,
+  "logistic_C": 1,
+  "selected_rule": [
+    1.5882201646090535,
+    54,
+    [
+      "cluster=C1",
+      "season=spring"
+    ]
+  ],
+  "note": "exploratory; test years previously inspected"
+}

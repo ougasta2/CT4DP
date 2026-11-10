@@ -1,0 +1,107 @@
+{
+  "data_through": "2026-11-09",
+  "train_start": "2019-01-08",
+  "train_end": "2025-11-09",
+  "training_hours_by_pair": {
+    "DK1--DE-LU": 59952,
+    "DK1--NL": 59952,
+    "DK2--SE4": 59952
+  },
+  "development": "2024-01-01 through 2025-11-09 (fit through 2023)",
+  "test_start": "2025-11-10",
+  "test_end": "2026-11-09",
+  "test_days": 365,
+  "cutoff": "previous local day 10:00",
+  "targets": [
+    "any_negative",
+    "discordant"
+  ],
+  "selections": {
+    "any_negative": {
+      "model": "boosting_weather",
+      "development_mean_brier": 0.04792381763059098
+    },
+    "discordant": {
+      "model": "logistic_weather",
+      "development_mean_brier": 0.020775387079808767
+    }
+  },
+  "features": {
+    "calendar": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se"
+    ],
+    "price_history": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se",
+      "dk_price_48h",
+      "dk_price_168h",
+      "neighbor_price_48h",
+      "neighbor_price_168h"
+    ],
+    "weather": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se",
+      "dk_price_48h",
+      "dk_price_168h",
+      "neighbor_price_48h",
+      "neighbor_price_168h",
+      "dk_temperature_2m",
+      "dk_wind_speed_10m",
+      "dk_cloud_cover",
+      "neighbor_temperature_2m",
+      "neighbor_wind_speed_10m",
+      "neighbor_cloud_cover"
+    ],
+    "weather_oil": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se",
+      "dk_price_48h",
+      "dk_price_168h",
+      "neighbor_price_48h",
+      "neighbor_price_168h",
+      "dk_temperature_2m",
+      "dk_wind_speed_10m",
+      "dk_cloud_cover",
+      "neighbor_temperature_2m",
+      "neighbor_wind_speed_10m",
+      "neighbor_cloud_cover",
+      "brent_14d",
+      "brent_change_7d"
+    ]
+  },
+  "assumptions": [
+    "weather 48-hour lead; run publication time not individually verified",
+    "Brent 14-day observation lag; historical publication/vintage unverified",
+    "previous study inspected 2024 and 2025, including the first 52 days of test"
+  ],
+  "seed": 42
+}

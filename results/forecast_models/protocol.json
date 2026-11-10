@@ -1,0 +1,97 @@
+{
+  "train": "2019-2023",
+  "development": "2024",
+  "test": "2025",
+  "cutoff": "10:00 Europe/Copenhagen on day before delivery",
+  "weather": "JMA GSM previous_day2, fixed 48h lead; issuance metadata not individually audited",
+  "oil": "FRED/EIA Brent observation <= delivery date minus 14 days; historical publication vintage unverified",
+  "targets": [
+    "any_negative",
+    "discordant"
+  ],
+  "eligibility": "all complete hours",
+  "features": {
+    "calendar": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se"
+    ],
+    "price_history": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se",
+      "dk_price_48h",
+      "dk_price_168h",
+      "neighbor_price_48h",
+      "neighbor_price_168h"
+    ],
+    "weather": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se",
+      "dk_price_48h",
+      "dk_price_168h",
+      "neighbor_price_48h",
+      "neighbor_price_168h",
+      "dk_temperature_2m",
+      "dk_wind_speed_10m",
+      "dk_cloud_cover",
+      "neighbor_temperature_2m",
+      "neighbor_wind_speed_10m",
+      "neighbor_cloud_cover"
+    ],
+    "weather_oil": [
+      "hour_sin",
+      "hour_cos",
+      "month_sin",
+      "month_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "pair_de",
+      "pair_nl",
+      "pair_se",
+      "dk_price_48h",
+      "dk_price_168h",
+      "neighbor_price_48h",
+      "neighbor_price_168h",
+      "dk_temperature_2m",
+      "dk_wind_speed_10m",
+      "dk_cloud_cover",
+      "neighbor_temperature_2m",
+      "neighbor_wind_speed_10m",
+      "neighbor_cloud_cover",
+      "brent_14d",
+      "brent_change_7d"
+    ]
+  },
+  "development_selection": {
+    "any_negative": {
+      "model": "boosting_weather_oil",
+      "mean_brier": 0.04468571297994317
+    },
+    "discordant": {
+      "model": "logistic_price_history",
+      "mean_brier": 0.022786728756893294
+    }
+  },
+  "prior_exposure": "2024 and 2025 examined previously; exploratory evaluation",
+  "seed": 42
+}

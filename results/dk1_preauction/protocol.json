@@ -1,0 +1,19 @@
+{
+  "target": "DK1 hourly mean day-ahead EUR/MWh",
+  "cutoff": "10:00 Europe/Copenhagen on delivery day minus one",
+  "inputs": "previous-day and previous-week full price curves for DK1, DK2, DE-LU, NL, SE4; calendar",
+  "forecast_file": null,
+  "development": "2024-01-01 to 2025-11-09; train before 2024",
+  "exploratory_test": "2025-11-10 to 2026-11-09; train before test",
+  "selection": "highest development \u00b15% hit rate for abs(actual)>=20 EUR/MWh; MAE tie-breaker",
+  "selected": "ridge_curve",
+  "caveats": [
+    "All periods previously explored; no independent confirmatory test.",
+    "Prior-day prices assume day-ahead results were published before next-day 10:00; historical exceptional delays not audited.",
+    "Current price archives may include revisions.",
+    "DST repeated clock hour averaged and missing clock hour interpolated for curve training; actual hours evaluated separately.",
+    "15-minute market prices averaged hourly; not a quarter-hour forecast.",
+    "Timestamp filtering alone does not prove the forecast archive is immutable or that availability timestamps are accurate.",
+    "No weather, fuel or TSO forecasts included unless an explicit forecast file is supplied."
+  ]
+}

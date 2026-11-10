@@ -1,0 +1,13 @@
+area,season,kind,start,end_exclusive,status,rows,expected_15min,unique_in_window,duplicates,missing_timestamps,returned_mba,wind_nonnull,solar_nonnull,total_nonnull
+SE3,winter,production,2024-01-01,2024-01-08,ok,672,672,672,0,0,SE3,672.0,672.0,672
+SE3,winter,consumption,2024-01-01,2024-01-08,ok,672,672,672,0,0,SE3,,,672
+SE3,summer,production,2024-07-01,2024-07-08,ok,672,672,672,0,0,SE3,672.0,672.0,672
+SE3,summer,consumption,2024-07-01,2024-07-08,ok,672,672,672,0,0,SE3,,,672
+SE4,winter,production,2024-01-01,2024-01-08,ok,672,672,672,0,0,SE4,672.0,672.0,672
+SE4,winter,consumption,2024-01-01,2024-01-08,ok,672,672,672,0,0,SE4,,,672
+SE4,summer,production,2024-07-01,2024-07-08,ok,672,672,672,0,0,SE4,672.0,672.0,672
+SE4,summer,consumption,2024-07-01,2024-07-08,ok,672,672,672,0,0,SE4,,,672
+NO2,winter,production,2024-01-01,2024-01-08,ok,672,672,672,0,0,NO2,672.0,672.0,672
+NO2,winter,consumption,2024-01-01,2024-01-08,ok,672,672,672,0,0,NO2,,,672
+NO2,summer,production,2024-07-01,2024-07-08,ok,672,672,672,0,0,NO2,672.0,672.0,672
+NO2,summer,consumption,2024-07-01,2024-07-08,ok,672,672,672,0,0,NO2,,,672

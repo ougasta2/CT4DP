@@ -1,0 +1,34 @@
+{
+  "train": "2019-2023",
+  "development": "2024",
+  "test": "2025",
+  "backtest_train": "2019-2022",
+  "backtest_test": "2023",
+  "target": "exactly one negative, conditional on at least one negative",
+  "feature_names": [
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos",
+    "weekend",
+    "common_wind",
+    "common_solar",
+    "common_load",
+    "diff_wind",
+    "diff_solar",
+    "diff_load"
+  ],
+  "weight": "equal total weight per pair",
+  "C": 1,
+  "partial_pool": "L2 regularized pair effects scaled 0.5",
+  "chosen_model": "pooled",
+  "development_mean_brier": {
+    "pooled": 0.1855048531850596,
+    "partial_pool": 0.19014579510874474,
+    "local": 0.19910661127385879,
+    "calendar": 0.20221485537571493,
+    "rate": 0.23987511972842301
+  },
+  "prior_exposure": "2024 and 2025 previously explored; all evaluation is exploratory",
+  "seed": 42
+}

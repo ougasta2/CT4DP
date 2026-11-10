@@ -1,0 +1,9 @@
+{
+  "test": "2023 and 2024 calendar years, evaluated on common complete days",
+  "inputs": "same extended price/weather and lagged gas/Brent on common training days, +/- DK1/DK2 wind/solar forecasts",
+  "tso": "Energinet Forecasts_Hour ForecastDayAhead; official metadata says published 18:00 D-1, after the 10:00 cutoff",
+  "limitation": "Hindsight-only diagnostic: with_post_cutoff_tso models leak post-cutoff information and are not valid pre-auction predictors. No load forecast; no pre-auction capacity or EUA input.",
+  "retraining": "monthly; ridge all common days, Lasso trailing 1095 calendar days; same samples for each paired comparison",
+  "delivery": "hourly means; DST repeated hour averaged and spring hour interpolated",
+  "price_weather_fuel": "JMA 48h archive; lagged gas proxy and Brent; publication and revisions unverified"
+}

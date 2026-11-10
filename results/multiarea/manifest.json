@@ -1,0 +1,410 @@
+[
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2019.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2019-01-01&end=2019-12-31",
+    "retrieved_utc": "2026-11-10T09:06:56.868815+00:00",
+    "response_sha256": "d2398d8ff6a872f6b3f7ed5d4d4eebdc58aab732af74fc294acef46bd279e21f",
+    "gzip_sha256": "7dccdbe59e018411219935f8146d07cdbc1f87840945166f90b90aa494765de6",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2020.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2020-01-01&end=2020-12-31",
+    "retrieved_utc": "2026-11-10T09:07:53.514637+00:00",
+    "response_sha256": "b39c4ef672bba434a1b5761c1c84a78f3ecfe23badf8b7fecf1bed31cc51b674",
+    "gzip_sha256": "05acd9f337aad4bc43436b9c309610ad0bf154a12e1e93a03a0b87b02555de41",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2021.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2021-01-01&end=2021-12-31",
+    "retrieved_utc": "2026-11-10T09:08:27.044090+00:00",
+    "response_sha256": "7daeaf900e38fd84d232fcd26d58f2d1d33583e338935328c690bf7aee43b451",
+    "gzip_sha256": "df6061205e9e7a7fe9be8b114a91dcdd839ea7caf658eeb2faefe26ee5dc840e",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2022.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2022-01-01&end=2022-12-31",
+    "retrieved_utc": "2026-11-10T09:08:54.805544+00:00",
+    "response_sha256": "cc5d2f8cabe3c3e3c6b7eff4ed6932fc387c84423d309057323c5bb8d37eda82",
+    "gzip_sha256": "4f688a4d4981e11abdff40e2239ae7633a9601af8ff6b35070a012b4438e13ac",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2023.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2023-01-01&end=2023-12-31",
+    "retrieved_utc": "2026-11-10T09:09:48.804965+00:00",
+    "response_sha256": "060f4a43d994a330cca6d74a7de8ddf0e4925890898c53c6511cdd80e4adc00d",
+    "gzip_sha256": "52218e6ac672c34fe184cb098ba8eff19429ebba5c60c432376f7b16e54737be",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2024.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2024-01-01&end=2024-12-31",
+    "retrieved_utc": "2026-11-10T09:10:21.942852+00:00",
+    "response_sha256": "dca08c691b59a3acc092f20990d6846b29f81a9dcb15bf560c1602c71dc2d4c6",
+    "gzip_sha256": "59279c341c171af7b914a9bf88c6b4db83e99e4984307bbdb22f24ff5af2c6ae",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_DE-LU_2025.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=DE-LU&start=2025-01-01&end=2025-12-31",
+    "retrieved_utc": "2026-11-10T09:11:17.987411+00:00",
+    "response_sha256": "a05c24171436e1ee24c0d8d11272f735518a3bcbff2f061070ca97e455e1cfce",
+    "gzip_sha256": "1ca4e9703c4fe3dda238d43971e572c336f64e2adcc2c2a5899333f6712733ed",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2019.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2019-01-01&end=2019-12-31",
+    "retrieved_utc": "2026-11-10T09:06:59.258894+00:00",
+    "response_sha256": "3a07d965aadaf8d439eb2c8579870412a03c22e07ed0f40ff7c1c879b6516ad6",
+    "gzip_sha256": "8e803c78d2cc09d754e6d1ce2f0c1fd0d72a8954bb21a4e41a8dde31d62caa37",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2020.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2020-01-01&end=2020-12-31",
+    "retrieved_utc": "2026-11-10T09:07:56.036906+00:00",
+    "response_sha256": "402191807f8ee252e5c88f55bad6d583d4119b08f453e34a994e71fb72d72197",
+    "gzip_sha256": "48a41e68647dd366d95e3f370fcc306552e295b1f433241ad13f13e0f5f70e80",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2021.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2021-01-01&end=2021-12-31",
+    "retrieved_utc": "2026-11-10T09:08:29.282282+00:00",
+    "response_sha256": "47764b63b645262eb0dd906df5fc5413f9644a228f2cecd978af2d991e5a3fe7",
+    "gzip_sha256": "07a5af728ecc2958fae70e23b759ce5b5787fb64af021afd226f69d470972ac4",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2022.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2022-01-01&end=2022-12-31",
+    "retrieved_utc": "2026-11-10T09:08:57.705935+00:00",
+    "response_sha256": "5e7f20b9636dcc0636d6857e237d348345165253bd74a3b6e5ecf5c9c76ccfc4",
+    "gzip_sha256": "baa32b9516c43568993f2ddfbd256f8ebe53c62406509990c0f24c3ba863ea01",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2023.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2023-01-01&end=2023-12-31",
+    "retrieved_utc": "2026-11-10T09:09:51.158431+00:00",
+    "response_sha256": "00f9ecf633a1976c49737646b9f12f9d63a630f1f83cce0cf0a9b55f2327b629",
+    "gzip_sha256": "4b45abc239fd0a491441d806c74a2ccf6ed445c74fb065eeadeebd6687f6767a",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2024.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2024-01-01&end=2024-12-31",
+    "retrieved_utc": "2026-11-10T09:10:23.521060+00:00",
+    "response_sha256": "832a3cf87be49c68ed460e829a8e08cc25ec3b52f4cc3f75a3f7e90d415f39ed",
+    "gzip_sha256": "98e2875ed2b12d362d54f1bdb1b4d61d6c3464a774941b0f023740662863d4ac",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_NL_2025.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=NL&start=2025-01-01&end=2025-12-31",
+    "retrieved_utc": "2026-11-10T09:11:20.501403+00:00",
+    "response_sha256": "c623731593219d674e3f872572aa5278b5faf2c6dae780e9e17cda61cc6c0300",
+    "gzip_sha256": "15e2f222225231a537a1e4e8cffc9ffca5f823517e9d72500ac35a9c3965a788",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2019.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2019-01-01&end=2019-12-31",
+    "retrieved_utc": "2026-11-10T09:07:03.240373+00:00",
+    "response_sha256": "ce45f7a7ce4827007a952b7d7dc8ae966ddb0f98cc8b0493972f4cd13a5810cc",
+    "gzip_sha256": "40b72794738a539b2a60b4af599e9ea564bbfda28e67ea080eeb652e8e32611e",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2020.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2020-01-01&end=2020-12-31",
+    "retrieved_utc": "2026-11-10T09:08:00.553747+00:00",
+    "response_sha256": "c6416b0a10e87546d75060475dbb0c6afc92f0f4a2fe776fb3d170a15bfb1c15",
+    "gzip_sha256": "a704c38fc41445ece293df5b1cde72a5c3726401033fc59fbd1ccf2fc336e05e",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2021.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2021-01-01&end=2021-12-31",
+    "retrieved_utc": "2026-11-10T09:08:30.978872+00:00",
+    "response_sha256": "b9604880919698378a712b816b89504e10ebff07fea95246e9b0d8214d0104f4",
+    "gzip_sha256": "ebf00448cd86e67f1d82a341ac77c2e1f450ed8db1db92ba41bf897e9616fd72",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2022.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2022-01-01&end=2022-12-31",
+    "retrieved_utc": "2026-11-10T09:09:19.624110+00:00",
+    "response_sha256": "e3e91f37c3b76a882e9f337a276979dbfcb0f213d51f982ffdd8458f8396c4bf",
+    "gzip_sha256": "f2a06c50f0ab5fe7f17d786b3766bbba88663e346095ca8110a549f3e89cccb9",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2023.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2023-01-01&end=2023-12-31",
+    "retrieved_utc": "2026-11-10T09:09:55.315750+00:00",
+    "response_sha256": "0ac2f1a0bb91f72df4a22f71f6d847362814cd4b3e1424533f2c35e74e4d3f82",
+    "gzip_sha256": "fedb2887ffe6c6471366382ee76480d3d1140910e368f07a56640f778dca75f5",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2024.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2024-01-01&end=2024-12-31",
+    "retrieved_utc": "2026-11-10T09:10:26.064959+00:00",
+    "response_sha256": "ae6ea749a159f3a6d2af6d4ac6ed1a9bf93337a49526789ad0ab602a6c6c4e51",
+    "gzip_sha256": "9318b38959ba086eeceda6526a9c63e66ce23c32d65ac264d1d890be4bc3b69d",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/price_SE4_2025.json.gz",
+    "url": "https://api.energy-charts.info/v2/price?bzn=SE4&start=2025-01-01&end=2025-12-31",
+    "retrieved_utc": "2026-11-10T09:11:22.871026+00:00",
+    "response_sha256": "7c4e7d4b7334a88dbbd432980c5f0910108c5daf81c1167b4618ed51bcd65923",
+    "gzip_sha256": "b465c13ba1cd856c9b89270cd48b858473058848d3cfbd49683b5928f69a53d4",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2019.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2019-01-01&end=2019-12-31",
+    "retrieved_utc": "2026-11-10T09:07:15.472528+00:00",
+    "response_sha256": "7229789dff74c2f2615b9cbb27c04049d098501785bdc066faa990829a8f43c4",
+    "gzip_sha256": "ce6bee6d7e38cf044369d97953cbac45759b4aab00cf32f45ee313e7ed2472ac",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2020.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2020-01-01&end=2020-12-31",
+    "retrieved_utc": "2026-11-10T09:08:09.856093+00:00",
+    "response_sha256": "43107e74c44608c499b0b2306d18cd0d6500511c290d39987af518272f66f8b2",
+    "gzip_sha256": "b2fc5c0d5f2af8b77fae5ed5d07e4311c147b93331ef85fb66eb0f4a13d2bf4e",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2021.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2021-01-01&end=2021-12-31",
+    "retrieved_utc": "2026-11-10T09:08:37.181550+00:00",
+    "response_sha256": "4474715cbfdaa278d8b00e9457c7c66e6e1d444a24a8dfb966f9a85665b7e9d3",
+    "gzip_sha256": "273ee2a213df2ae9705648869de40389c77af89cba0ba3482b0a3bae1918a99e",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2022.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2022-01-01&end=2022-12-31",
+    "retrieved_utc": "2026-11-10T09:09:25.172491+00:00",
+    "response_sha256": "c95ba2a8f70258d6e428e833b8151f7b2b6b06ce508086d7fe63df0273ab4ddb",
+    "gzip_sha256": "20d74ad80945978a1942f319e6bba410c81329ed43c70a7bd9d3c685129a75f7",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2023.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2023-01-01&end=2023-12-31",
+    "retrieved_utc": "2026-11-10T09:10:03.853459+00:00",
+    "response_sha256": "41a1548b133099bb212af606c27690ee7a8d3248f8e03c2ccb538e51053e5c6a",
+    "gzip_sha256": "149775ab1bfd7a36ff74c3c839d4e0dc642283e9ddd6a0b69e22b53ff679a5e7",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2024.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2024-01-01&end=2024-12-31",
+    "retrieved_utc": "2026-11-10T09:10:48.933795+00:00",
+    "response_sha256": "10358582281e065d414e1e3aad22b31c89b81958a88e4ec635dc6938d9bdd149",
+    "gzip_sha256": "dcffcee618480b707229c25154ae5d1ee045facd50af93f636016f378154c059",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_de_2025.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=de&start=2025-01-01&end=2025-12-31",
+    "retrieved_utc": "2026-11-10T09:11:31.137921+00:00",
+    "response_sha256": "92efc62504d8d2f43752cd5725731232ce684f86279e8cab422579ded7527f54",
+    "gzip_sha256": "3c82007e212ebf0dcbd578a7ad3b76fb6f194e02c6049a2c61bf61596a0cef64",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2019.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2019-01-01&end=2019-12-31",
+    "retrieved_utc": "2026-11-10T09:07:31.508332+00:00",
+    "response_sha256": "95e1c0f74e63106442acb1af55c9e16e1624fc36c3b0c27d653ce8e3bd0c1503",
+    "gzip_sha256": "bb0908bfbb074dfa1e33db5e637d06f987d016456909bba004c7a75cc07babc5",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2020.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2020-01-01&end=2020-12-31",
+    "retrieved_utc": "2026-11-10T09:08:18.518286+00:00",
+    "response_sha256": "71aa8a8b61b63b7222b3b3ff4f75a535b6d710b89aabf6cefa05da3e801e639c",
+    "gzip_sha256": "81e666fca1af094b6f62f3f3ccd2b2271edcc5c84f8d8a0762dad951999837df",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2021.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2021-01-01&end=2021-12-31",
+    "retrieved_utc": "2026-11-10T09:08:47.589577+00:00",
+    "response_sha256": "b97b03ce23ccb70b003b43114e534305ca2a0c127a6b5647dd7fa43d72a58bfe",
+    "gzip_sha256": "9da3979700452b9a0981047a33066b3951411614660d2f62e4f0325c1c18cf47",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2022.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2022-01-01&end=2022-12-31",
+    "retrieved_utc": "2026-11-10T09:09:40.217336+00:00",
+    "response_sha256": "1f7b1f94037650752e79e9c759e3728b86c8bf69d87c844b48bfe6ad963bb2d8",
+    "gzip_sha256": "6b3ee78078eeaebd2cb090c420e755f75b57aed3a0c75748b81efbbe55722952",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2023.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2023-01-01&end=2023-12-31",
+    "retrieved_utc": "2026-11-10T09:10:10.581393+00:00",
+    "response_sha256": "7bd75fd5c0c62c9247b5a8dbe032cabc01604dc3cab26d7a7dbbc676197a070d",
+    "gzip_sha256": "663bfc69fc1fde286ca1355112217cae169f17f8113841b2bde042a050575173",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2024.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2024-01-01&end=2024-12-31",
+    "retrieved_utc": "2026-11-10T09:11:03.877620+00:00",
+    "response_sha256": "574297baf25d70e27ff6530b6c78d298d4c14e3f2fb51875d2cacb77c1e113e2",
+    "gzip_sha256": "5d9ec568e10dc4949b72250a8182f2e128d8d5582fd41ab00cfa156875542659",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/energycharts/public_power_nl_2025.json.gz",
+    "url": "https://api.energy-charts.info/v2/public_power?country=nl&start=2025-01-01&end=2025-12-31",
+    "retrieved_utc": "2026-11-10T09:11:39.626736+00:00",
+    "response_sha256": "fc4182e9fa432425fc6d38e1994b8dbaa87b7346441bd54c34f2cb31c4b4b81b",
+    "gzip_sha256": "3a28f59de2d61aeb01b069d9ad921f86f4491927c068010df2541aa8bda28a19",
+    "scope": "cc_by_4.0"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2019.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2019-01-01T00%3A00%3A00.000Z&end=2020-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:07:45.894855+00:00",
+    "response_sha256": "5e7f8033d625f3486c913041c4be5fadd9819cfa1b61fce28f7e1ba9c673c7d9",
+    "gzip_sha256": "7f9c941305c205fa9e7827c8bd2bd12bb853f1a4557f689fa0643e00bbfa0efc",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2020.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2020-01-01T00%3A00%3A00.000Z&end=2021-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:08:23.914962+00:00",
+    "response_sha256": "ba10d2f2801432131d1f56a9e381b1c6f33182e0baff3326b0da12b47dfc48bc",
+    "gzip_sha256": "c7ba228f94c32060677a596a25f6b2dbe5fa07bd2a8c495e1438909a9ee12886",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2021.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2021-01-01T00%3A00%3A00.000Z&end=2022-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:08:52.387779+00:00",
+    "response_sha256": "9e124bdbb79aa3b1ecdc5e7fd0508951523f4852a17ca030f633cc60d25d6348",
+    "gzip_sha256": "0521da15be5683e008786c6d8166a5f6a8490bc00a78412135bb5db42907f8f8",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2022.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2022-01-01T00%3A00%3A00.000Z&end=2023-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:09:45.395653+00:00",
+    "response_sha256": "060e587b3bc0d3fdd9fa735c4503e3f1b67a1d3605269cc6243b2633ed0fe35a",
+    "gzip_sha256": "4984cb7da2fd100d629edcb454ad88da303c4b9865688b70e6c3547bd592238f",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2023.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2023-01-01T00%3A00%3A00.000Z&end=2024-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:10:17.168206+00:00",
+    "response_sha256": "8a64db3bcddd1c9934ade3de68dbb1093d0aa30ff949036cb036c1832f18df77",
+    "gzip_sha256": "ccf0a8d8050a7f62294423ad3a284736563f56d2752483a269953a7b616a936d",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2024.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2024-01-01T00%3A00%3A00.000Z&end=2025-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:11:13.285887+00:00",
+    "response_sha256": "6553351fd04501e12dcbcd41ed4be5f8da775a691a5c5458a495240a8e803a4c",
+    "gzip_sha256": "883ec7d432cf5a87c706be4adc0e673d1141f62c6249c80ead71ca90ca7ada50",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_2025.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2025-01-01T00%3A00%3A00.000Z&end=2026-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:11:49.055772+00:00",
+    "response_sha256": "c5253c199921c83221025cedad388993f8da8459ddfbf07f2708bfb4f5d79953",
+    "gzip_sha256": "48c5afe0ae853569856eca393755544d04dcdec181bb15fef6370bf1b77a8b1d",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_consumption_boundary_2018.json.gz",
+    "url": "https://api.opendata.esett.com/EXP15/Consumption?mba=10Y1001A1001A47J&start=2018-12-31T23%3A00%3A00.000Z&end=2019-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:12:04.251282+00:00",
+    "response_sha256": "e669e72f31c907296b64f44444c5a001b5631f0ad53be1c32c4883378b16252f",
+    "gzip_sha256": "6768b87f591efcd41e235ea5b9917f477432f2871233a3690b925ffa55030158",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2019.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2019-01-01T00%3A00%3A00.000Z&end=2020-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:07:41.307146+00:00",
+    "response_sha256": "7798fc7fbd702ca9a6722c120b45ab59daa4ceb222b47ca2fef59e2fd31df7dc",
+    "gzip_sha256": "cd0eecea48c14d3ae835e13bd1d1b39f4ba8dd6f234c9807b3853cc52509b9db",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2020.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2020-01-01T00%3A00%3A00.000Z&end=2021-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:08:22.081404+00:00",
+    "response_sha256": "49e80016aaaae3d602ba05da4541acc5ef19a49d8f506465f484ae2f7dba3020",
+    "gzip_sha256": "d5bed9b9c1fb5ea6818b049597facf0b73cbe0a1ee5ebfd79e8d9d6977d997d5",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2021.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2021-01-01T00%3A00%3A00.000Z&end=2022-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:08:50.618928+00:00",
+    "response_sha256": "5780746bfadc216e2c3909f3d54881e2b382288a7f34a117f690035196417ba8",
+    "gzip_sha256": "db121176d1dc3073b4a5037efe006841076ce8882be5ec6e0fdcf0e4122735d9",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2022.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2022-01-01T00%3A00%3A00.000Z&end=2023-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:09:43.606717+00:00",
+    "response_sha256": "6a1d253f888ea9f2518845be4b9b46d6c0be6c5362fe91466b13aeda950aa8b3",
+    "gzip_sha256": "7705eb19f29b0d55608ac134b8dac74cf4a314f10cafdae7b75e709745bbe48d",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2023.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2023-01-01T00%3A00%3A00.000Z&end=2024-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:10:14.579628+00:00",
+    "response_sha256": "3beb69c3f201179edae03b8079407ce0a06d9783bc7f4b2ec6b815ca23e93ced",
+    "gzip_sha256": "0726cc7a39395b82af09a0b8cb3bd0e1a552a50185da77d1011860359242f358",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2024.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2024-01-01T00%3A00%3A00.000Z&end=2025-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:11:09.424196+00:00",
+    "response_sha256": "78758731ad9a27fd1fb45be8fde84bf41c14e8714ab63148eab2c56716410d7e",
+    "gzip_sha256": "2f5554317b9dc8e876e3f9162d0c76adec603e6e74fe86b29a6025e06ccf908b",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_2025.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2025-01-01T00%3A00%3A00.000Z&end=2026-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:11:44.959244+00:00",
+    "response_sha256": "d9eb6a9644b518a2b8546d7bea5fef4e37e1f0a355f786c7670bb364364c6d6a",
+    "gzip_sha256": "0b3a54e857d254cc0d96041383b296d7e0620571e8862e77dc7bac348abbadb4",
+    "scope": "local_only"
+  },
+  {
+    "path": "data/multiarea/esett/SE4_production_boundary_2018.json.gz",
+    "url": "https://api.opendata.esett.com/EXP16/Volumes?mba=10Y1001A1001A47J&start=2018-12-31T23%3A00%3A00.000Z&end=2019-01-01T00%3A00%3A00.000Z",
+    "retrieved_utc": "2026-11-10T09:12:03.156396+00:00",
+    "response_sha256": "bf5219ae7992e001c08ff8e492ae858e8bcef330b1829adecafeebf7d763d035",
+    "gzip_sha256": "548cf8a68ab2155b0b61f48a7a7a6f06b5f6edbdd3e3e396d0c0d56f97f3197c",
+    "scope": "local_only"
+  }
+]

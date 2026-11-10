@@ -1,0 +1,28 @@
+{
+  "target": "DK1 hourly averaged day-ahead price EUR/MWh",
+  "forecast_cutoff": "D-1 10:00 Europe/Copenhagen",
+  "weather": "Open-Meteo JMA GSM previous_day2 48h lead at one city per zone; temperature, wind speed and cloud cover",
+  "warning": "Individual publication times and historical revisions not verified. Nominal lead is not proof of availability.",
+  "train_development": "2019-01-08 to 2023-12-31 on common complete days",
+  "development": "2024-01-01 to 2025-11-09",
+  "train_test": "all common complete days before 2025-11-10",
+  "test": "2025-11-10 to 2026-11-09; already explored, not independent",
+  "train_days_by_split": {
+    "development": 1819,
+    "exploratory_test": 2498
+  },
+  "evaluation_days_by_split": {
+    "development": 679,
+    "exploratory_test": 365
+  },
+  "selection": "highest development +/-5% rate for abs(actual)>=20, MAE tie-breaker",
+  "selected": "ridge_curve_price_weather",
+  "comparison": "same training dates, test hours, model configuration and price features within each family",
+  "caveats": [
+    "No validated TSO pre-auction forecast vintages included.",
+    "Prior-day price publication assumed; revisions not audited.",
+    "15-minute auction prices aggregated to hourly average.",
+    "DST repeated hour averaged and spring missing hour interpolated for curves.",
+    "Bootstrap conditional on fitted models; no adjustment for selection or past explorations."
+  ]
+}

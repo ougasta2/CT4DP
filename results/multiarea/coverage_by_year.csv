@@ -1,0 +1,50 @@
+source,year,expected,timestamps_present,complete,missing_by_field,invalid_resolution
+price_DE-LU,2019,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_DE-LU,2020,8784,8784,8784,"{""day_ahead_price"": 0}",0
+price_DE-LU,2021,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_DE-LU,2022,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_DE-LU,2023,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_DE-LU,2024,8784,8784,8784,"{""day_ahead_price"": 0}",0
+price_DE-LU,2025,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_NL,2019,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_NL,2020,8784,8784,8784,"{""day_ahead_price"": 0}",0
+price_NL,2021,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_NL,2022,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_NL,2023,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_NL,2024,8784,8784,8784,"{""day_ahead_price"": 0}",0
+price_NL,2025,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_SE4,2019,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_SE4,2020,8784,8784,8784,"{""day_ahead_price"": 0}",0
+price_SE4,2021,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_SE4,2022,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_SE4,2023,8760,8760,8760,"{""day_ahead_price"": 0}",0
+price_SE4,2024,8784,8784,8784,"{""day_ahead_price"": 0}",0
+price_SE4,2025,8760,8760,8760,"{""day_ahead_price"": 0}",0
+power_de,2019,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_de,2020,8784,8784,8784,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_de,2021,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_de,2022,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_de,2023,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_de,2024,8784,8784,8784,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_de,2025,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2019,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2020,8784,8784,8784,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2021,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2022,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2023,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2024,8784,8784,8784,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+power_nl,2025,8760,8760,8760,"{""load"": 0, ""solar"": 0, ""wind_offshore"": 0, ""wind_onshore"": 0}",0
+esett_production,2019,8760,8760,8760,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_production,2020,8784,8784,8784,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_production,2021,8760,8760,8760,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_production,2022,8760,8760,8760,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_production,2023,8760,8760,8760,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_production,2024,8784,8784,8784,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_production,2025,8760,8760,8760,"{""solar"": 0, ""total"": 0, ""wind"": 0}",0
+esett_consumption,2019,8760,8760,8760,"{""total"": 0}",0
+esett_consumption,2020,8784,8784,8784,"{""total"": 0}",0
+esett_consumption,2021,8760,8760,8760,"{""total"": 0}",0
+esett_consumption,2022,8760,8760,8760,"{""total"": 0}",0
+esett_consumption,2023,8760,8760,8760,"{""total"": 0}",0
+esett_consumption,2024,8784,8784,8784,"{""total"": 0}",0
+esett_consumption,2025,8760,8760,8760,"{""total"": 0}",0

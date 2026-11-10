@@ -1,0 +1,19 @@
+{
+  "evaluation": "2023 and 2024 calendar years; all model exploration",
+  "calibration_predictions": "2022, chronological monthly fits",
+  "cutoff": "10:00 Copenhagen on D-1",
+  "recalibration": "monthly; 4 rolling-window Lasso variants; annual MLP",
+  "LEAR": "independent per-hour Lasso, fixed alpha 0.03 after standardization, asinh unless raw variant; inspired by LEAR, not exact epftoolbox",
+  "probabilistic": "last 365 days of past same-hour ensemble errors, minimum 30, empirical samples; not guaranteed calibrated",
+  "fuels": "Gasradar EnergyZero gas-day proxy lag 3d, FRED Brent lag 14d; not audited point-in-time",
+  "weather": "Open-Meteo JMA previous_day2 48h archive; release and revision timestamps not verified",
+  "limitations": [
+    "Forecasts/inputs not validated as published by cutoff; results exploratory.",
+    "10:00 prior-day power-price publication assumed; delay/revisions unverified.",
+    "2023 and 2024 are used for benchmarking and selection.",
+    "Hourly averages; repeated DST hour averaged and spring hour interpolated.",
+    "monthly recalibration differs from daily literature and equal-weight ensemble is fixed.",
+    "No validated load/renewable forecast vintages."
+  ],
+  "sampling": "all models use identical complete days for weather and fuel even price baseline"
+}

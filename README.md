@@ -1,9 +1,69 @@
 # Danish electricity price association pilot
 
+For the current DK1 forecasting results, limitations, and next steps, see
+[project status (Japanese)](docs/PROJECT_STATUS_JA.md).
+
 Reproducible DTU 02807 pilot: which realized wind/solar/load regimes accompany
 negative or high day-ahead prices in DK1 and DK2, and do 2023 discoveries transfer
 to 2024? This is exploratory association analysis, not causal analysis or a
 deployable forecasting model. Technical deliverables are in English.
+
+## Connected-area data
+
+[Multi-area inputs and coverage](data/multiarea/README.md) document 2019–2025
+data for DK1–DE-LU, DK1–NL and DK2–SE4, including temporal splits, sample sizes,
+source definitions and reproduction. SE4 eSett data are kept locally and
+Git-ignored while redistribution terms are unresolved; a clone requires fetching
+them separately. The prepared data are exploratory and are not a forecast.
+
+The [multi-area model evaluation](results/multiarea_models/findings.md) compares
+local, pooled and transfer models with calendar and constant baselines. It shows
+no clear overall pooled advantage in 2025 and worse transfer for DK1–NL.
+
+The [forecast-input experiment](results/forecast_models/findings.md) instead
+classifies every hour using archived weather forecasts, lagged electricity
+prices and Brent, with price-history and calendar ablations. Forecast issue times
+and historical oil publication vintages are not yet fully audited.
+
+The [latest-year experiment](results/latest_forecast/findings.md) fits through
+9 November 2025 and evaluates the following 365 complete local days through
+9 November 2026. It selects model families on earlier data and reports model
+calibration, paired-block uncertainty, and the limits of archived data vintages.
+
+The [hourly price regression](results/price_forecast/findings.md) compares
+price-history, weather, oil and European-gas proxies across five bidding zones.
+It reports errors in EUR/MWh, ±3% accuracy away from zero, rare-price failures,
+and exploratory K-means/Apriori error diagnostics.
+
+## Research redesign and current status
+
+The original headline associations are already well known. The
+[literature review and redesigned spatial question](docs/RESEARCH_REDESIGN.md)
+document a closer comparison with prior work and an exploratory model of whether
+negative prices are shared across DK1 and DK2. The prototype does **not** beat
+the training-prevalence baseline in 2025 and is not a validated forecast or a
+claimed novel discovery. Reproduce its tables with:
+
+```powershell
+.venv/Scripts/python scripts/run_spatial_model.py
+```
+
+## Follow-up: stability of negative-price associations
+
+The [follow-up findings](results/followup/findings.md) prioritize negative-price
+rule stability. An expanding window refits preprocessing, K-means and Apriori
+for each test year 2020–2025, using only earlier years beginning in 2016.
+It also compares the highest-solar training cluster with other clusters inside
+each test year, area, season and time-of-day cell, and reports Brier scores,
+three block lengths and a high-price threshold sensitivity. These are exploratory
+historical comparisons, not independent confirmation or causal estimates.
+
+Reproduce from the bundled decade processed table (run the decade pipeline first
+if it is missing):
+
+```powershell
+.venv/Scripts/python scripts/run_followup.py
+```
 
 ## Latest experiment: eight training years and two test years
 

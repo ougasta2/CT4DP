@@ -22,3 +22,26 @@ results/smoke_*
 results/last_failure.json
 results/sensitivity_exclusions.json
 results/**/failure.json
+
+# eSett redistribution terms are not yet confirmed; retain locally for analysis.
+data/multiarea/esett/
+data/multiarea/paired_DK2_SE4_2019_2025.csv.gz
+results/multiarea_models/predictions.csv.gz
+results/multiarea_models/models.joblib
+
+# FRED Brent series and derivatives: local use pending redistribution review.
+data/external/fred/
+results/forecast_models/predictions.csv.gz
+results/forecast_models/models.joblib
+results/latest_forecast/models.joblib
+results/latest_forecast/predictions.csv.gz
+data/external/latest_features.csv.gz
+results/price_forecast/models.joblib
+results/price_forecast/predictions.csv.gz
+
+# Models and row-level predictions using FRED Brent: local pending redistribution review.
+results/dk1_rolling_benchmark/*.joblib
+results/dk1_rolling_benchmark/*predictions.csv.gz
+results/dk1_rolling_benchmark/distribution_*.csv.gz
+results/dk1_renewable_ablation/*.joblib
+results/dk1_renewable_ablation/predictions.csv.gz

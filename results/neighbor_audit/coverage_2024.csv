@@ -1,0 +1,13 @@
+endpoint,label,area_scope,country,resolution,unit,rows,expected,unique_in_year,missing_timestamps,duplicates,license,status
+price,DK1,DK1,dk,PT1H,EUR / MWh,8784,8784,8784,0,0,CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de,ok
+price,DK2,DK2,dk,PT1H,EUR / MWh,8784,8784,8784,0,0,CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de,ok
+price,DE-LU,DE-LU,de,PT1H,EUR / MWh,8784,8784,8784,0,0,CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de,ok
+price,NL,NL,nl,PT1H,EUR / MWh,8784,8784,8784,0,0,CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de,ok
+price,SE3,SE3,se,PT1H,EUR / MWh,8784,8784,8784,0,0,"The data provided herein is for private and internal use only. The utilization of any data, whether in its raw or derived form, for external or commercial purposes is expressly prohibited. Should you require licensing for market-related data, please direct your inquiries to the original data providers, including but not limited to EPEX SPOT SE.",ok
+price,SE4,SE4,se,PT1H,EUR / MWh,8784,8784,8784,0,0,CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de,ok
+price,NO2,NO2,no,PT1H,EUR / MWh,8784,8784,8784,0,0,CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de,ok
+public_power,dk,,dk,PT1H,MW,8784,8784,8784,0,0,"CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",ok
+public_power,de,,de,PT15M,MW,35136,35136,35136,0,0,"CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",ok
+public_power,nl,,nl,PT15M,MW,35136,35136,35136,0,0,"CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",ok
+public_power,se,,se,PT1H,MW,8784,8784,8784,0,0,"CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",ok
+public_power,no,,no,PT1H,MW,8784,8784,8784,0,0,"CC BY 4.0 (creativecommons.org/licenses/by/4.0), attribution: energy-charts.info",ok
