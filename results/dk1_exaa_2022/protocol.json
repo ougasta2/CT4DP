@@ -1,0 +1,11 @@
+{
+  "cutoff": "11:00 Copenhagen on D-1, not the previous 10:00 task",
+  "source": "APG archive, explicitly labelled Price EXAA 10:15 Auction, AT; 15m mean to hour",
+  "source_url": "https://markt.apg.at/en/transparency/transmission/day-ahead-prices/",
+  "training": "matched observed 2021 days, monthly refit during 2022",
+  "evaluation": "2022 historical benchmark",
+  "availability": "11:00 availability of early auction is assumed based on normal schedule; per-day publication and revisions not audited",
+  "weather_and_demand": "historical vintages individually unverified",
+  "excluded_candidate": "2023/24/25 Salzburg EXAA-labeled series matched 12:00 market coupling 744/744 hours for January 2024 and is never included",
+  "caveat": "2022 one-year test only, market conditions extreme; not proof of 2023+ performance"
+}

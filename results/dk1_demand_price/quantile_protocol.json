@@ -1,0 +1,9 @@
+{
+  "method": "conditional HGB quantile regressors of prior out-of-fold residuals; sorted quantiles; truncated 10\u201390% grid",
+  "selection": "2024 only; compare fixed candidate to HGB baseline, MAE guardrail",
+  "later_periods": "2025 and 2026 observed in prior research; no independent claim",
+  "limitations": [
+    "quantile grid omits distribution tails; this is not calibrated full predictive distribution",
+    "weather, settlement and fuel vintage not audited"
+  ]
+}

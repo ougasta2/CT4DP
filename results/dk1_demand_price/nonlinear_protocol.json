@@ -1,0 +1,11 @@
+{
+  "development": "2023 and 2024",
+  "evaluation": "2025 previously studied, not pristine",
+  "selection": "best dev mean +/-5% under base lasso mean MAE guardrail",
+  "selected": "hgb_price",
+  "residuals": "only past monthly out-of-fold predictions from demand-price models",
+  "caveats": [
+    "Issue time assumptions of weather, settlement, prices and fuel not individually verified",
+    "hourly average prices, not 15-min predictions"
+  ]
+}

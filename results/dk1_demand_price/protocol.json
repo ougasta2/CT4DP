@@ -1,0 +1,16 @@
+{
+  "benchmark": "2023 and 2024 used for development; 2025 used as held-out year for this selection but viewed in prior studies",
+  "primary_metric": "percentage within 5% among absolute prices >=20 EUR/MWh",
+  "model_selection": "highest equally-weighted 2023/2024 hit rate subject to mean MAE <= ridge_base; exclude revised official demand",
+  "selected": "lasso_own_demand_fuel",
+  "selection_guardrail_mae": 19.927420850782028,
+  "demand": "own rolling-origin forecast from lagged settlement and forecast weather, see results/dk1_demand_forecast/protocol.json",
+  "tso_revised": "ENTSO-E historical backfill is not proven pre-cutoff and explicitly excluded from selection",
+  "causality": "models refit monthly using earlier target days only, own demand forecasts were generated out of fold",
+  "limitations": [
+    "Historic releases/revisions of weather, price, settlement and fuel not audited.",
+    "2025 has been partially viewed in previous experiments.",
+    "2025-10 onwards 15-minute prices averaged hourly.",
+    "No guarantee of 50% or operational vintage."
+  ]
+}

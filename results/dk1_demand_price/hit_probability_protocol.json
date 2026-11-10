@@ -1,0 +1,11 @@
+{
+  "method": "13 fixed candidate shifts -30% to +30%; binary HGB estimates probability of within \u00b15%; maximum per hour",
+  "train": "prior 730 days, only eligible actuals and deterministic one-third of days; underlying price predictions generated OOF",
+  "selection": "2024 development; 2025 and 2026 previously viewed in broader work",
+  "constraints": "evaluate MAE and negative prices as well as \u00b15% hit rate; no target-based filtering at prediction time",
+  "caveats": [
+    "estimated probabilities may be uncalibrated",
+    "weather, settlement, price, fuel vintage unverified",
+    "15-minute prices averaged hourly"
+  ]
+}

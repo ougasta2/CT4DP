@@ -1,0 +1,11 @@
+{
+  "model": "HGB on 14/21/28-day settlement generation, calendar and 48h nominal weather forecast",
+  "cutoff": "D-1 10:00 Copenhagen",
+  "training": "2y rolling, refit monthly; last training target older than first day of month minus 10 days",
+  "caveats": [
+    "not official TSO forecast",
+    "publication and revision histories of weather and settlement not audited",
+    "no target-day realized generation used as model input"
+  ],
+  "output": "hourly mean wind and solar generation forecasts, two zones"
+}

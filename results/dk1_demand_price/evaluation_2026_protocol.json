@@ -1,0 +1,10 @@
+{
+  "evaluation": "2026-01-01 to 2026-10-31, 304 local days",
+  "selected": "hgb_price selected using 2023 and 2024; design improvements evaluated on 2025 before this run",
+  "selection_warning": "2026 calendar period was examined in earlier project experiments and is not pristine",
+  "demand": "realized settlement is only modelled using 10-day training cutoff and 14+ day input lags",
+  "caveats": [
+    "Weather, settlement, fuel and price revisions/publication times individually unverified.",
+    "Hourly means, not 15-minute prices."
+  ]
+}

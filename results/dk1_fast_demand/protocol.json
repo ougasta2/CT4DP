@@ -1,0 +1,11 @@
+{
+  "target": "ENTSO-E 6.1.A DK1/DK2 actual load",
+  "model": "24-output ridge using past load day-2, day-7, day-14 plus nominal 48h weather and calendar",
+  "cutoff": "D-1 10:00 Copenhagen; last prior full day D-2 ends by D-1 midnight and is due at H+1",
+  "source": "https://transparencyplatform.zendesk.com/hc/en-us/articles/16647979768084-Actual-Total-Load-Day-ahead-Per-Bidding-Zone-6-1-A-6-1-B",
+  "limitations": [
+    "H+1 and no later updates are documented at source but individual historic publication timestamps absent",
+    "weather forecast issue/revision timestamps unverified",
+    "Third-party archive ends in August 2026"
+  ]
+}

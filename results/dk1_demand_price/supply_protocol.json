@@ -1,0 +1,10 @@
+{
+  "selected": "without_supply",
+  "selection": "2023\u20132024 mean hit rate, MAE no worse than without-supply baseline",
+  "evaluation": "2025, partly seen in prior work",
+  "actual_generation_used": "only to train past out-of-fold supply forecasting models; never target-day price-model features",
+  "limitations": [
+    "publication and revision timestamps of underlying settlement and forecast weather unverified",
+    "2025-10 onwards hourly averages from 15-minute prices"
+  ]
+}

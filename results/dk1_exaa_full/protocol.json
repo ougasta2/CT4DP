@@ -1,0 +1,14 @@
+{
+  "cutoff": "11:00 D-1 Copenhagen; scheduled 10:15 EXAA price assumed known by cutoff, exact vintages not audited",
+  "market": "Austria EXAA early auction (not market coupling); APG 2023\u20132025, ENTSO-E 2026 with EUR labels only",
+  "sampling": "2023\u20132025 all calendar days; 2026 available EUR-labelled data May\u2013Oct",
+  "selection": "highest 2024 full-year \u00b15% rate subject to MAE <= 10am HGB baseline; 2025/2026 excluded from selection",
+  "selected": "stack_with_exaa",
+  "caveats": [
+    "2026 conditional on source coverage",
+    "historical EXAA availability and revisions not individually audited",
+    "weather, fuel and load publication not individually verified",
+    "2025\u20132026 examined in earlier project work",
+    "15-minute DK1 prices averaged hourly"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "selection": "2023/2024 mean hit rate subject to base-lasso mean MAE guardrail",
+  "selected": "lasso_own_demand_fuel",
+  "test": "2025 (already partly viewed in previous work)",
+  "method": "same-hour neighbors chosen from earlier out-of-fold errors; empirical conditional distribution; maximum estimated +/-5% probability",
+  "warning": "Not guaranteed calibrated; historical input publication and revision times unverified."
+}

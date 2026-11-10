@@ -45,3 +45,28 @@ results/dk1_rolling_benchmark/*predictions.csv.gz
 results/dk1_rolling_benchmark/distribution_*.csv.gz
 results/dk1_renewable_ablation/*.joblib
 results/dk1_renewable_ablation/predictions.csv.gz
+
+# Demand-price fits and row-level outputs include FRED-derived covariates.
+results/dk1_demand_price/*.joblib
+results/dk1_demand_price/*predictions.csv.gz
+
+# Third-party APG/EXAA source and row-level results: retain locally pending reuse review.
+data/external/apg_exaa_sample/
+data/external/apg_day_ahead_history.zip
+data/external/apg_exaa_2024_download.bin
+data/external/exaa_at_*.csv
+data/external/exaa_entsoe/
+data/external/entsoe_ntc_backfill/
+data/external/entsoe_actual_load_archive/
+data/external/entsoe_load_archive/
+data/external/energinet_settlement_2026.json.gz
+results/dk1_demand_forecast/*forecasts.csv.gz
+results/dk1_fast_demand/forecasts.csv.gz
+results/dk1_supply_forecast/forecasts.csv.gz
+results/dk1_fast_demand/price_predictions.csv.gz
+results/dk1_exaa_2022/predictions.csv.gz
+results/dk1_exaa_2026/predictions.csv.gz
+results/dk1_exaa_sample/predictions.csv.gz
+results/dk1_exaa_full/predictions.csv.gz
+results/dk1_exaa_full/*.joblib
+results/dk1_exaa_de/predictions.csv.gz

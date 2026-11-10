@@ -1,0 +1,17 @@
+{
+  "selection": "August 2026; max hit rate with MAE no worse than raw DE EXAA",
+  "selected": "exaa_de",
+  "test": "September\u2013October 2026, exploratory since aggregate period already examined",
+  "sampling": "only hours with all four EUR-labelled early-auction quarter prices for AT and DE",
+  "training": "prior 2026 hours only; monthly refit; no same-day results used",
+  "cutoff": "11:00 D-1 Copenhagen; normal 10:15 early auction assumed published by 11:00; no per-record release vintage",
+  "caveats": [
+    "2026 is model development due to prior examination",
+    "original publication and revisions not verified",
+    "hourly averages"
+  ],
+  "sources": [
+    "https://entsoemcp.com/licensing",
+    "https://www.exaa.at/en/energytrading/handel-mit-exaa/"
+  ]
+}

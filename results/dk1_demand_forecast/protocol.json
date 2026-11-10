@@ -1,0 +1,11 @@
+{
+  "target": "DK1/DK2 hourly gross consumption from settlement, MWh/h equivalent MW",
+  "model": "24-output Ridge over three 14/21/28-day lagged consumption curves, 48h nominal weather forecasts and calendar; refit monthly",
+  "issue": "D-1 10:00 Europe/Copenhagen",
+  "training_label_cutoff": "before first day of forecast month minus 10 days",
+  "settlement": "Energinet first publishes DataHub settlement after 8 days; 14-day lag is conservative, actual historical revisions/release timestamps unverified",
+  "weather": "JMA previous_day2 nominal 48h lead; publication/revision not individually audited",
+  "official_backfill": "ENTSO-E A65 retrieved via third-party 2026 historical backfill; current/revised values, not individual pre-auction vintages",
+  "price_use": "only generated out-of-fold demand forecasts are candidates for price model; never use contemporaneous realized consumption",
+  "citation": "https://doi.org/10.1016/j.ijforecast.2013.07.001; model is an adaptation, not exact paper reproduction"
+}

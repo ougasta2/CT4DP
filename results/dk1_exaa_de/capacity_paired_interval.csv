@@ -1,0 +1,2 @@
+period,model,baseline,mae_improvement_low,mae_improvement_high,hit_improvement_low,hit_improvement_high,block_days
+2026-09-to-10,with_ntc,without_ntc,-0.07050470836978966,0.15358603576910101,-0.009909050121086317,-0.001430615164520744,7

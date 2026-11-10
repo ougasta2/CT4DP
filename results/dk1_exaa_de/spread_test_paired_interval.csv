@@ -1,0 +1,2 @@
+period,model,baseline,mae_improvement_low,mae_improvement_high,hit_improvement_low,hit_improvement_high,block_days
+2026-09-to-10,lag_spread_0.1,lag_spread_0,0.1715631361496756,0.7063849129747742,0.004501040927398266,0.02437303939659546,7

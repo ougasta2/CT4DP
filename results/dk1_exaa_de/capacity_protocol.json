@@ -1,0 +1,12 @@
+{
+  "issue": "11:00 D-1 Europe/Copenhagen; EXAA and NTC publication assumed, not audited",
+  "source": "https://entsoemcp.com/api/series; ENTSO-E revised NTC backfill",
+  "method": "monthly residual HGB, same rows and configuration with/without two directional capacities",
+  "training": "previous 2026 hours only",
+  "caveats": [
+    "source may include revisions made after bidding",
+    "2026 already examined; exploratory",
+    "7-day block bootstrap does not adjust for model searches",
+    "EXAA availability is not verified for each day"
+  ]
+}

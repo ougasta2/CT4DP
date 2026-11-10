@@ -1,0 +1,10 @@
+{
+  "selection": "slow_only vs slow_plus_fast on 2023/2024; evaluate 2025 and 2026 Jan\u2013Jul on identical available hours",
+  "demand": "fast out-of-fold forecasts using 2/7/14-day prior ENTSO-E load",
+  "caveats": [
+    "missing fast-demand hours are excluded from both comparisons",
+    "individual publication times absent despite documented H+1/no revision policy",
+    "weather and fuel vintage unverified",
+    "2025/2026 previously examined in broader project"
+  ]
+}

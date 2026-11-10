@@ -1,0 +1,16 @@
+{
+  "selection": "August 2026, +/-5% accuracy subject to MAE no worse than raw EXAA DE",
+  "selected": "lag_spread_0.1",
+  "test": "Sep\u2013Oct 2026, exploratory since full period already viewed",
+  "cutoff": "11:00 D-1, normal EXAA 10:15 publication assumed by 11:00 but per-record timestamps missing",
+  "formula": "price = EXAA_DE + coefficient * (DK1_previous_day - DE_previous_day)",
+  "candidates": [
+    0,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "interval": "paired seven-day block bootstrap; exploratory and not adjusted for model searches"
+}

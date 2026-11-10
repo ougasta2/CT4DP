@@ -1,0 +1,12 @@
+{
+  "cutoff": "11:00 Copenhagen on D-1, before 12:00 market gate; not comparable to 10:00 without matching cutoff",
+  "product": "AT early 10:15 EXAA auction only: APG for 2022 and ENTSO-E via entsoemcp for 2026",
+  "training": "2022 plus available earlier 2026 months; no 2023\u20132025 EXAA early price present",
+  "evaluation": "2026 May to Oct where all 4 EXAA quarter-hour values explicitly have EUR currency; same evaluation hours for all variants",
+  "availability": "scheduled early auction results by 11:00 are assumed, historical exact release/revision timestamps not audited; live usage requires timestamp validation",
+  "other_limits": [
+    "2026 partly studied before, not independent",
+    "weather, demand and fuel vintages unverified",
+    "15-minute DK1 prices aggregated hourly"
+  ]
+}

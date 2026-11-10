@@ -1,0 +1,11 @@
+{
+  "cutoff": "11:00 D-1 Copenhagen; publication and revisions not individually audited",
+  "inputs": "APG EXAA Austria plus both directional ENTSO-E NTC backfills",
+  "training": "monthly, previous dates only; matched rows across models",
+  "caveats": [
+    "2024 and 2025 previously examined; exploratory",
+    "2026 German EXAA experiment informed trying capacity",
+    "capacity backfills may include post-auction revisions",
+    "intervals do not adjust for prior model searches"
+  ]
+}
