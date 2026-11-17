@@ -5,8 +5,7 @@ next day's 24 hourly DK1 prices. The Week 6 experiment groups market days using
 features available at the assumed forecast cutoff and supplies regime labels for
 the team's error analysis.
 
-Create a Python 3.10+ environment, install `requirements.txt`, and place the
-team's approved benchmark files in `data/` as described in the shared protocol.
+Create a Python 3.10+ environment, install `requirements.txt`, and use the included benchmark files in `data/`.
 From this repository's root, run the one-month integration check and then the
 2023–2024 walk-forward benchmark:
 
@@ -44,5 +43,4 @@ running another experiment into the same folder.
 Deliver the runnable code, model settings, dates, scores with denominators, and
 a paragraph interpreting the forest and clustering results. These are
 historical development years and archived inputs have incomplete point-in-time
-verification. Keep benchmark inputs and row-level outputs local until the
-source terms and approved sharing route have been checked.
+verification. Keep row-level outputs in the Git-ignored results directory.

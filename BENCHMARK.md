@@ -1,11 +1,9 @@
 # Shared DK1 benchmark
 
 Install this repository's dependencies in a Python 3.10+ environment and run
-the commands in its README. Use the project lead's prepared snapshot in
-`data/`. If you received code only, obtain that snapshot separately from the
-lead after checking the applicable data sharing terms. Keep `data/` and
-`results/` out of Git. The three compressed CSVs and their manifest contain
-research inputs or derived data.
+the commands in its README. The shared snapshot is included in `data/` and
+requires no API keys or downloads. See the [data sources and licence](DATA_LICENSE.md).
+Keep experiment outputs in the Git-ignored `results/` directory.
 
 The model API is `build_model()`: return a fresh estimator with
 `fit(features, targets)` and `predict(features)`. Each row is one Copenhagen
