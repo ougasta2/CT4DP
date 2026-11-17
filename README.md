@@ -9,8 +9,7 @@ project lead's shared Ridge baseline.
 ## Run the starter
 
 Use Python 3.10 or newer. From this repository's root, create and activate a
-virtual environment, install dependencies, and put the team's frozen input
-files under `data/`:
+virtual environment, install dependencies, and use the included benchmark inputs under `data/`:
 
 ```text
 python -m venv .venv
@@ -72,5 +71,4 @@ separate from rule selection and fit it on earlier prediction errors only.
 - The baseline and chosen run's metrics, timing, metadata and aligned
   `results/predictions.csv.gz`, shared through the team's approved channel.
 - The Apriori output and a short interpretation of both rule groups, including
-  inconclusive or worse results. Keep prepared data and row-level predictions
-  out of version control.
+  inconclusive or worse results. Keep row-level predictions out of version control.

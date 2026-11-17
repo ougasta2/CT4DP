@@ -1,0 +1,17 @@
+{
+  "sha256": {
+    "features.csv.gz": "67449b849f3898e50bad3479ff47fade0941f7f440b273f7a61e6db8d4d0d074",
+    "targets.csv.gz": "7484cc10b069b0116607b3e14d2b8e17afda94ec421557f9d1c341133af269a3",
+    "hourly.csv.gz": "d4e2ac18937835cd479f824191607cf77b8d7bc8356d74db2517f666ef1dae70"
+  },
+  "feature_days": 2185,
+  "first_day": "2019-01-08",
+  "last_day": "2024-12-31",
+  "evaluation": {
+    "start": "2023-01-01",
+    "end_exclusive": "2025-01-01",
+    "status": "historical development"
+  },
+  "cutoff": "intended 10:00 Europe/Copenhagen on D-1",
+  "sources": "Same five-zone lagged price, calendar and archived JMA weather inputs as the main benchmark."
+}
