@@ -23,9 +23,7 @@ python benchmark.py
 The one-month run checks setup. The default run evaluates January 2023 to
 December 2024, with an expanding training window and monthly refits. It reads
 the shared bundle in `data/features.csv.gz`, `data/targets.csv.gz`, and
-`data/hourly.csv.gz`. If the files are missing, obtain the same authorized
-bundle from the project lead. Keep the bundle and row-level predictions out
-of Git. Save the one-month run before running the full benchmark if you need
+`data/hourly.csv.gz`. The bundle is included in this repository. Keep row-level predictions out of Git. Save the one-month run before running the full benchmark if you need
 both outputs, since each run writes the same files under `results/`.
 
 ## What to investigate
