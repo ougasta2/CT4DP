@@ -12,9 +12,8 @@ python -m pip install -r requirements.txt
 python benchmark.py --start 2023-01-01 --end 2023-02-01
 ```
 
-Use the shared benchmark files in `data/`: `features.csv.gz`,
-`targets.csv.gz`, and `hourly.csv.gz`. Request the snapshot from the project
-lead if you do not have it. Run `python benchmark.py` for the full comparison
+The shared benchmark files are included in `data/`: `features.csv.gz`,
+`targets.csv.gz`, and `hourly.csv.gz`. Run `python benchmark.py` for the full comparison
 period. Each run writes `results/predictions.csv.gz`, `metrics.csv`,
 `timing.csv`, and `run.json` under `results/`. Save the starter's full run
 before trying changes, since a rerun replaces the output files.
@@ -35,5 +34,4 @@ before trying changes, since a rerun replaces the output files.
 Send the lead your model revision, settings tried, benchmark outputs through
 the agreed data-sharing channel, and a short explanation of the result.
 The lead will reuse aligned predictions for the shared clustering, Apriori,
-and ensemble analyses. Keep the input snapshot and row-level predictions out
-of public Git history.
+and ensemble analyses. Keep row-level predictions out of Git.
