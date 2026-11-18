@@ -1,0 +1,46 @@
+name: Team branch scope
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  scope:
+    name: Team branch scope
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify member branch changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            const scopes = {
+              'team/a-lasso': 'team/a-lasso/',
+              'team/b-random-forest': 'team/b-random-forest/',
+              'team/c-gradient-boosting': 'team/c-gradient-boosting/',
+              'team/d-mlp': 'team/d-mlp/'
+            };
+            if (!branch.startsWith('team/')) return;
+            const allowed = scopes[branch];
+            if (!allowed) {
+              core.setFailed(`Unknown team branch: ${branch}`);
+              return;
+            }
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100
+            });
+            // GitHub's list-files endpoint caps responses at 3,000 files.
+            if (files.length >= 3000) {
+              core.setFailed('Too many changed files to verify safely.');
+              return;
+            }
+            const outside = files.flatMap(file => [file.filename, file.previous_filename]
+              .filter(path => path && !path.startsWith(allowed)));
+            if (outside.length) core.setFailed(`Changes outside ${allowed}: ${outside.join(', ')}`);
