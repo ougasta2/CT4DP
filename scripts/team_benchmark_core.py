@@ -59,4 +59,3 @@ def run_prepared(name, build, start, end, x, y, hourly, dest, min_train_days=365
         'inputs':'lagged five-zone prices, calendar, archived weather',
         'warning':'Historical source release times and revisions are not fully audited; evaluation years have been inspected.'}, indent=2)+'\n', encoding='utf-8')
     return pred
-

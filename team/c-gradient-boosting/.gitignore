@@ -1,9 +1,0 @@
-data/*
-!data/features.csv.gz
-!data/targets.csv.gz
-!data/hourly.csv.gz
-!data/manifest.json
-results/
-.venv/
-__pycache__/
-*.pyc

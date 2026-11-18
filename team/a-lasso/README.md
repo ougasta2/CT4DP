@@ -4,19 +4,7 @@ Lasso fits a penalized linear forecast for each of the 24 local delivery hours.
 Its L1 penalty can set coefficients to zero. Use it to test whether sparse
 selection of lagged prices and weather features improves the DK1 forecast.
 
-Use Python 3.10 or newer. From this repository, activate your own virtual
-environment, install the dependencies, and run a one-month smoke check:
-
-```sh
-python -m pip install -r requirements.txt
-python benchmark.py --start 2023-01-01 --end 2023-02-01
-```
-
-The shared benchmark files are included in `data/`: `features.csv.gz`,
-`targets.csv.gz`, and `hourly.csv.gz`. Run `python benchmark.py` for the full comparison
-period. Each run writes `results/predictions.csv.gz`, `metrics.csv`,
-`timing.csv`, and `run.json` under `results/`. Save the starter's full run
-before trying changes, since a rerun replaces the output files.
+Run the [shared benchmark](../BENCHMARK.md) with `--model lasso`. Outputs are in `results/team/lasso/`.
 
 1. Compare the unchanged starter (`alpha=0.03`) with the project lead's fixed
    Ridge results over the same delivery hours. Report MAE, the ±5% hit rate

@@ -21,8 +21,7 @@ The project lead maintains the existing data and shared experimental design, sup
 Use the shared CT4DP repository. The member branches and permitted folders are
 listed in [team/README.md](../team/README.md). Submit changes to `main` by pull
 request; shared protocol or cross-team changes require lead coordination. The
-automated scope check is effective only after GitHub branch protection requires
-it and blocks direct pushes to `main`.
+automated scope check is required on `main`, and `ougasta2` merges pull requests.
 
 1. Run the unchanged model and preserve its outputs and version identifier before changing it. `results/team/` is local and ignored; do not commit restricted derivatives.
 2. Make one documented hypothesis per experiment, use training-only preprocessing inside `build_model`, and avoid tuning on future or final evaluation observations. Keep the common input rows, forecast horizon and output interface unchanged for the main comparison.

@@ -70,3 +70,9 @@ results/dk1_exaa_sample/predictions.csv.gz
 results/dk1_exaa_full/predictions.csv.gz
 results/dk1_exaa_full/*.joblib
 results/dk1_exaa_de/predictions.csv.gz
+
+# Local team predictions may include restricted-source derivatives.
+results/team/
+team/*/results/
+team_repos/
+/Report_Final/
