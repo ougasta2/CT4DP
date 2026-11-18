@@ -1,9 +1,16 @@
 # Shared DK1 benchmark
 
-Install this repository's dependencies in a Python 3.10+ environment and run
-the commands in its README. The shared snapshot is included in `data/` and
-requires no API keys or downloads. See the [data sources and licence](DATA_LICENSE.md).
-Keep experiment outputs in the Git-ignored `results/` directory.
+From the repository root, with a Python 3.10+ virtual environment active:
+
+```sh
+python -m pip install -r requirements.txt
+python scripts/run_team_benchmark.py --model lasso --data --start 2023-01-01 --end 2023-02-01
+```
+
+Choose `lasso`, `random_forest`, `gradient_boosting`, `mlp` or `ridge`.
+Remove the dates for a full run. The snapshot is in `team/data/` and needs
+no API keys or downloads. See the [data sources and licence](DATA_LICENSE.md).
+By default outputs go to the ignored `results/team/<model>/` directory.
 
 The model API is `build_model()`: return a fresh estimator with
 `fit(features, targets)` and `predict(features)`. Each row is one Copenhagen

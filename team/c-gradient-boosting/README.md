@@ -6,24 +6,7 @@ predictions through the shared expanding-window benchmark. The Apriori analysis
 starts with your forecasts or any aligned full-period forecast, such as the
 project lead's shared Ridge baseline.
 
-## Run the starter
-
-Use Python 3.10 or newer. From this repository's root, create and activate a
-virtual environment, install dependencies, and use the included benchmark inputs under `data/`:
-
-```text
-python -m venv .venv
-python -m pip install -r requirements.txt
-python benchmark.py --start 2023-01-01 --end 2023-02-01
-python benchmark.py
-```
-
-Activate with `.venv\Scripts\Activate.ps1` on Windows PowerShell or
-`source .venv/bin/activate` on macOS/Linux before installing. See
-[`BENCHMARK.md`](BENCHMARK.md) for input files, prediction schema and metrics.
-The first run checks that the pipeline works; the second covers 2023–2024
-and overwrites the run outputs. Preserve a copy of the full baseline before
-changing the estimator.
+Run the [shared benchmark](../BENCHMARK.md) with `--model gradient_boosting`. Outputs are in `results/team/gradient_boosting/`.
 
 ## Forecast experiment
 
@@ -41,8 +24,8 @@ the evaluator's inputs, dates and metric definitions fixed.
 ## Apriori experiment
 
 ```text
-python analyze_apriori.py
-python analyze_apriori.py --predictions results/predictions.csv.gz --regimes results/regimes.csv --output results/apriori_with_clusters.csv
+python team/c-gradient-boosting/analyze_apriori.py
+python team/c-gradient-boosting/analyze_apriori.py --regimes results/team/random_forest/regimes.csv --output results/team/gradient_boosting/apriori_with_clusters.csv
 ```
 
 The first command can run before B delivers cluster labels. Use
@@ -69,6 +52,6 @@ separate from rule selection and fit it on earlier prediction errors only.
 
 - Your estimator, experiment settings and a brief explanation of the changes.
 - The baseline and chosen run's metrics, timing, metadata and aligned
-  `results/predictions.csv.gz`, shared through the team's approved channel.
+  `results/team/gradient_boosting/predictions.csv.gz`, shared through the team's approved channel.
 - The Apriori output and a short interpretation of both rule groups, including
   inconclusive or worse results. Keep row-level predictions out of version control.

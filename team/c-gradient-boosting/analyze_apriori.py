@@ -2,11 +2,14 @@
 
 import argparse
 from pathlib import Path
+import sys
 
 import numpy as np
 import pandas as pd
 
-from mining import apriori, mask_for
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "src"))
+from energy_pilot.mining import apriori, mask_for
 
 
 ZONE = "Europe/Copenhagen"
@@ -120,9 +123,10 @@ def analyze(frame):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--predictions", type=Path, default=Path("results/predictions.csv.gz"))
+    output = ROOT / "results/team/gradient_boosting"
+    parser.add_argument("--predictions", type=Path, default=output / "predictions.csv.gz")
     parser.add_argument("--regimes", type=Path, help="Optional CSV from B with day and cluster columns.")
-    parser.add_argument("--output", type=Path, default=Path("results/apriori_rules.csv"))
+    parser.add_argument("--output", type=Path, default=output / "apriori_rules.csv")
     args = parser.parse_args()
     rows = analyze(load_hours(args.predictions, args.regimes))
     args.output.parent.mkdir(parents=True, exist_ok=True)

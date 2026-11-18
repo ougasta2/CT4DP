@@ -93,9 +93,10 @@ def run(features_path, output_dir, clusters):
 
 
 def main():
+    root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--features", type=Path, default=Path("data/features.csv.gz"))
-    parser.add_argument("--output-dir", type=Path, default=Path("results"))
+    parser.add_argument("--features", type=Path, default=root / "team/data/features.csv.gz")
+    parser.add_argument("--output-dir", type=Path, default=root / "results/team/random_forest")
     parser.add_argument("--clusters", type=int, default=4)
     args = parser.parse_args()
     with threadpool_limits(limits=2):

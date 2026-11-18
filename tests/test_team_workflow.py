@@ -1,5 +1,4 @@
 """Interface and alignment checks for the team benchmark."""
-import importlib
 from pathlib import Path
 import sys
 import numpy as np
@@ -10,13 +9,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'scripts'))
 from ensemble_team import combine
+from run_team_benchmark import NAMES, build_model
 
-@pytest.mark.parametrize('name', ['ridge', 'lasso', 'random_forest', 'mlp'])
+@pytest.mark.parametrize('name', NAMES)
 def test_model_interface(name):
     rng = np.random.default_rng(42)
     x = rng.normal(size=(40, 5))
     y = rng.normal(size=(40, 24))
-    model = importlib.import_module(f'models.{name}.model').build_model()
+    model = build_model(name)
     model.fit(x, y)
     result = model.predict(x[:3])
     assert result.shape == (3, 24)

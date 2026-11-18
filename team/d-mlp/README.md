@@ -6,25 +6,7 @@ lead's frozen Ridge baseline on the same delivery hours. This model is the
 supervised learning extension. Its aligned predictions can also be used in the
 team's clustering and Apriori analyses.
 
-## Run the starter
-
-Use Python 3.10 or newer. From this repository's root, create and activate a
-virtual environment, then run:
-
-```sh
-python -m venv .venv
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-# macOS or Linux: source .venv/bin/activate
-python -m pip install -r requirements.txt
-python benchmark.py --start 2023-01-01 --end 2023-02-01
-python benchmark.py
-```
-
-The one-month run checks setup. The default run evaluates January 2023 to
-December 2024, with an expanding training window and monthly refits. It reads
-the shared bundle in `data/features.csv.gz`, `data/targets.csv.gz`, and
-`data/hourly.csv.gz`. The bundle is included in this repository. Keep row-level predictions out of Git. Save the one-month run before running the full benchmark if you need
-both outputs, since each run writes the same files under `results/`.
+Run the [shared benchmark](../BENCHMARK.md) with `--model mlp`. Outputs are in `results/team/mlp/`.
 
 ## What to investigate
 
@@ -44,8 +26,8 @@ both outputs, since each run writes the same files under `results/`.
    The two benchmark years are historical development data.
 4. Send the project lead your model code, settings and a short account of
    the hypothesis, results, limitations and your individual contribution.
-   Include `results/metrics.csv`, `results/timing.csv`, and
-   `results/run.json`, and transfer `results/predictions.csv.gz` through an
+   Include `results/team/mlp/metrics.csv`, `results/team/mlp/timing.csv`, and
+   `results/team/mlp/run.json`, and transfer `results/team/mlp/predictions.csv.gz` through an
    approved private channel when its use is authorized.
 
 Edit `model.py` while preserving `build_model()`: it must return an unfitted

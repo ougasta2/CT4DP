@@ -23,15 +23,15 @@ From the repository root, with Python 3.10+:
 ```powershell
 python -m venv .venv
 .venv/Scripts/python -m pip install -r requirements.txt
-.venv/Scripts/python scripts/run_team_benchmark.py --model ridge --start 2023-01-01 --end 2023-02-01
+.venv/Scripts/python scripts/run_team_benchmark.py --model ridge --data --start 2023-01-01 --end 2023-02-01
 ```
 
-Replace `ridge` with `lasso`, `random_forest`, or `mlp`. The default period is January 2023 through December 2024; `--end` is exclusive and dates must be month starts. The example runs one month as a setup check. The full benchmark takes much longer, particularly for the neural network and forest. Each run overwrites that model's files under `results/team/<model>/`; save your comparison elsewhere before rerunning. This directory is Git-ignored because row-level forecasts may embed third-party data. A run needs the inputs described in the catalog; installing dependencies alone is not sufficient.
+Replace `ridge` with `lasso`, `random_forest`, `gradient_boosting`, or `mlp`. The default period is January 2023 through December 2024; `--end` is exclusive and dates must be month starts. The example runs one month as a setup check. Use `--data` for the bundled snapshot or omit it to rebuild inputs from the sources in the [data catalog](docs/DATA_CATALOG.md). Each run overwrites files under the ignored `results/team/<model>/` directory unless you pass `--output`.
 
-After all four models have been run for exactly the same period, create an equal-weight baseline:
+After running the models for exactly the same period, combine selected forecasts into an equal-weight baseline:
 
 ```powershell
-.venv/Scripts/python scripts/ensemble_team.py results/team/ridge/predictions.csv.gz results/team/lasso/predictions.csv.gz results/team/random_forest/predictions.csv.gz results/team/mlp/predictions.csv.gz
+.venv/Scripts/python scripts/ensemble_team.py results/team/ridge/predictions.csv.gz results/team/lasso/predictions.csv.gz results/team/random_forest/predictions.csv.gz results/team/gradient_boosting/predictions.csv.gz results/team/mlp/predictions.csv.gz
 ```
 
 The ensemble script checks that timestamps, actual prices and local day/hour agree exactly. It writes `results/team/ensemble/predictions.csv.gz`. It also writes annual metrics using the common definitions. It does not choose weights. Any learned weights must be selected on earlier out-of-fold forecasts only.
@@ -45,7 +45,7 @@ The ensemble script checks that timestamps, actual prices and local day/hour agr
 | Location | Purpose |
 | --- | --- |
 | [team/](team/README.md) | A–D model workspaces, assigned branches, and pull request workflow |
-| [models/](models/README.md) | Original model implementations used by the root benchmark runner |
+| [models/ridge/](models/ridge/README.md) | Project lead's fixed Ridge baseline |
 | [scripts/run_team_benchmark.py](scripts/run_team_benchmark.py) | Shared data preparation, monthly evaluation, metrics and timing |
 | [scripts/ensemble_team.py](scripts/ensemble_team.py) | Alignment-checked equal-weight ensemble |
 | [data/](docs/DATA_CATALOG.md) | Source-specific inputs, caches and data provenance |
