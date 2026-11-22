@@ -1,0 +1,9 @@
+{
+  "model": "gradient_boosting",
+  "start": "2023-01-01",
+  "end_exclusive": "2025-01-01",
+  "training": "expanding, monthly refit",
+  "cutoff": "10:00 Europe/Copenhagen on D-1",
+  "inputs": "lagged five-zone prices, calendar, archived weather",
+  "warning": "Historical source release times and revisions are not fully audited; evaluation years have been inspected."
+}
