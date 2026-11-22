@@ -1,30 +1,46 @@
-# C · Gradient boosting and Apriori: results (first pass)
+# C · Gradient boosting and Apriori: results
 
 Exploratory historical analysis. Both 2023 and 2024 are development years
 already inspected in earlier work; nothing here is an independent test.
 Settings were chosen on 2023 only, and 2024 is reported as a check.
 
-## Pipeline
+## Reproducing
+
+All numbers below come from the pinned environment:
 
 ```text
+python -m pip install -r requirements-lock.txt     # scikit-learn 1.7.2, numpy 2.2.6, pandas 2.3.3
 # 1. Unchanged starter (preserved baseline)
 python scripts/run_team_benchmark.py --model gradient_boosting --data --output results/team/gradient_boosting_baseline
 # 2. One-change variants (same evaluator, inputs, dates and metrics)
 python team/c-gradient-boosting/run_experiments.py smaller_leaves   # also: strong_l2, absolute_loss
 # 3. Reference model for cross-model error patterns
 python scripts/run_team_benchmark.py --model ridge --data
-# 4. Shipped Apriori analysis (strongest rule per group)
-python team/c-gradient-boosting/analyze_apriori.py --predictions results/team/gradient_boosting_baseline/predictions.csv.gz
-# 5. Comparison table + every rule with 2023 and 2024 scores, for all runs
-python team/c-gradient-boosting/summarize.py
-# 6. With B's cluster labels
+# 4. Shipped Apriori analysis (strongest rule per group), with B's cluster labels
 python team/c-gradient-boosting/analyze_apriori.py --predictions results/team/gradient_boosting_baseline/predictions.csv.gz --regimes team/b-random-forest/temporaryresults/regimes.csv --output results/team/gradient_boosting_baseline/apriori_with_clusters.csv
+# 5. Comparison table + every rule with 2023 and 2024 scores
 python team/c-gradient-boosting/summarize.py --regimes team/b-random-forest/temporaryresults/regimes.csv
 ```
 
-Environment: Python 3.13, scikit-learn 1.9.1, pandas 2.3.3, numpy 2.5.5;
-2 vCPU Intel Xeon 2.30 GHz (Linux), thread pools limited to 2 by the runner.
-Repository revision `bc6bd20` (main after B's merge) plus this folder's scripts, bundled snapshot `team/data/`.
+`summarize.py` summarizes the starter, the three variants and Ridge by default;
+`--runs` takes other run names or folders. Before writing anything it checks
+that every selected run covers all 17,544 hours of 2023–2024, and if one does
+not, it names the run and prints the command to rerun it. A variant run over a
+shorter period (for example `--end 2023-02-01`) is written to its own folder,
+`gradient_boosting_<variant>_<start>_<end>`, so it no longer overwrites the
+full-period result. `gradient_boosting_apriori.ipynb` runs steps 1–5 and draws
+the figures.
+
+Environment: Python 3.13, packages from `requirements-lock.txt`; 2 vCPU Intel
+Xeon 2.30 GHz (Linux), thread pools limited to 2 by the runner. Repository
+revision `fd588ef` (main after the Lasso merge) plus this folder's scripts,
+bundled snapshot `team/data/`. The January 2023 check matches the lead's
+integration table (744 hours, MAE 22.68, 145 / 664 hits).
+
+**Earlier numbers.** The first version of this file used scikit-learn 1.9.1,
+which gave a 2023 starter MAE of 18.52 and hit rate of 22.1%, and 44 rules
+with cluster labels. With the pinned 1.7.2 the same code gives 18.39, 22.9%
+and 46 rules. The model choice and the conclusions below did not change.
 
 ## Forecast experiment
 
@@ -34,104 +50,94 @@ Each variant changes exactly one setting.
 
 | Run | Change | Year | MAE | RMSE | ±5% hits / eligible | Neg. MAE (n) | Fit s / year |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| Ridge (lead) | — | 2023 | 18.78 | 26.65 | 1,575 / 7,738 (20.4%) | 31.56 (281) | 0.9 |
-| | | 2024 | 18.34 | 29.52 | 1,356 / 7,620 (17.8%) | 19.43 (375) | 1.1 |
-| **GB starter** | — | 2023 | **18.52** | 27.02 | 1,709 / 7,738 (22.1%) | 36.06 (281) | 183 |
-| | | 2024 | **16.57** | 27.52 | 1,462 / 7,620 (19.2%) | 20.54 (375) | 189 |
-| GB smaller_leaves | `max_leaf_nodes` 15→7 | 2023 | 19.02 | 27.50 | 1,659 (21.4%) | 39.28 | 130 |
-| | | 2024 | 17.73 | 28.88 | 1,341 (17.6%) | 25.18 | 132 |
-| GB strong_l2 | `l2_regularization` 1→10 | 2023 | 18.74 | 27.37 | 1,703 (22.0%) | 37.49 | 175 |
-| | | 2024 | 16.59 | 27.62 | 1,405 (18.4%) | 20.98 | 187 |
-| GB absolute_loss | `loss` squared→absolute | 2023 | 19.24 | 27.91 | 1,652 (21.3%) | 39.45 | 187 |
-| | | 2024 | 17.32 | 29.10 | 1,532 (20.1%) | 26.39 | 195 |
+| Ridge (lead) | — | 2023 | 18.78 | 26.65 | 1,575 / 7,738 (20.4%) | 31.56 (281) | 1.2 |
+| | | 2024 | 18.34 | 29.52 | 1,356 / 7,620 (17.8%) | 19.43 (375) | 1.2 |
+| **GB starter** | — | 2023 | **18.39** | 26.87 | 1,770 / 7,738 (22.9%) | 35.30 (281) | 206 |
+| | | 2024 | **16.58** | 27.47 | 1,455 / 7,620 (19.1%) | 20.69 (375) | 208 |
+| GB smaller_leaves | `max_leaf_nodes` 15→7 | 2023 | 18.95 | 27.43 | 1,680 (21.7%) | 38.90 | 159 |
+| | | 2024 | 17.72 | 28.81 | 1,342 (17.6%) | 25.27 | 159 |
+| GB strong_l2 | `l2_regularization` 1→10 | 2023 | 18.66 | 27.24 | 1,734 (22.4%) | 36.87 | 205 |
+| | | 2024 | 16.65 | 27.60 | 1,425 (18.7%) | 21.17 | 210 |
+| GB absolute_loss | `loss` squared→absolute | 2023 | 19.11 | 27.86 | 1,692 (21.9%) | 39.43 | 226 |
+| | | 2024 | 17.32 | 28.97 | 1,577 (20.7%) | 26.20 | 238 |
 
 Hours: 8,760 (2023) and 8,784 (2024) for every run. Fit time is the summed
-monthly fit wall time; full-run wall time was about 4.5–6.5 minutes per GB run.
+monthly fit wall time; full-run wall time was 5.4–7.8 minutes per GB run and
+4 seconds for Ridge.
 
 **Decision (on 2023): keep the starter settings.** None of the three changes
 improved 2023 MAE or the 2023 hit rate. Gradient boosting beats Ridge on MAE
-in both years (−0.26 and −1.77 EUR/MWh) and on the hit rate, but is worse on
-negative-price hours in both years and costs ~180× more fit time.
-Smaller trees cut fit time by ~29% at a cost of 0.5 (2023) to 1.2 (2024) EUR/MWh MAE.
-Absolute-error loss gave the best 2024 hit rate, but it was worse on 2023 and
-it cannot be chosen from 2024, so this is reported only as an observation.
+in both years (−0.39 and −1.76 EUR/MWh) and on the hit rate, but is worse on
+negative-price hours in both years and costs about 175× more fit time.
+Smaller trees cut fit time by 23% at a cost of 0.6 (2023) to 1.1 (2024)
+EUR/MWh MAE. Absolute-error loss gave the best 2024 hit rate, but it was
+worse on 2023 and cannot be chosen from 2024, so this is reported only as an
+observation.
 
 ## Apriori experiment
 
 Large error = |error| above the 2023 90th percentile of that model's errors
-(~41 EUR/MWh). Baskets: season × time of day. Minimum support 5%, at least 20
-large errors in 2023.
+(41.26 EUR/MWh for the GB starter, 40.54 for Ridge). Baskets: season × time
+of day × B's K-means cluster. Minimum support 5%, at least 20 large errors in
+2023. The large-error rate is 10.0% in 2023 for both models and 6.3% (GB) and
+9.0% (Ridge) in 2024; lift is measured against the same year's rate.
 
-Shipped strongest-rule output for the GB starter:
-
-| Rule | 2023 support / confidence / lift | 2024 support / confidence / lift |
-| --- | --- | --- |
-| spring & afternoon | 6.3% / 21.6% / 2.16 | 6.3% / 4.5% / 0.72 |
-
-The strongest 2023 rule **does not hold in 2024**. Looking at every rule
-(`summarize.py`) shows a more useful picture:
-
-| Rule | Lift 2023 → 2024, GB starter | Ridge | Holds in all 5 runs? |
-| --- | --- | --- | --- |
-| autumn & evening | 1.98 → 2.07 | 2.18 → 1.88 | yes (2024 lift 1.88–2.07) |
-| autumn & morning | 1.58 → 1.37 | 1.70 → 1.57 | yes |
-| afternoon (any season) | 1.46 → 1.33 | 1.31 → 1.17 | yes |
-| spring & afternoon | 2.16 → 0.72 | 1.99 → 0.63 | no in 4 of 5 (abs. loss: 1.10) |
-
-Interpretation: autumn evenings and mornings are a **stable failure regime for
-both model families**, possibly linked to the evening demand ramp after solar output
-drops (not tested here). Spring afternoons were a 2023-specific
-problem (the solar/negative-price hours), which every model handled better in
-2024. Selecting a rule by highest 2023 lift alone picks the unstable one, so
-lift should be read together with year-to-year stability. Because the error
-threshold is fixed from 2023 and the GB model improved, the 2024 base rate is
-6.3% rather than 10%; lift accounts for this.
-
-### Adding B's cluster labels
-
-Labels: `team/b-random-forest/temporaryresults/regimes.csv` (k = 4, fitted on
-days before 2023 from the previous day's price shape and DK1 weather
-forecasts). From B's centres: cluster 0 = windy and cloudy, cluster 1 = calm
-and clear, cluster 2 = mild and calm, cluster 3 = the day after a very
-expensive day (mean previous-day price ~293 EUR/MWh vs ~60–66 for the others).
+Cluster labels: `team/b-random-forest/temporaryresults/regimes.csv` (k = 4,
+fitted on days before 2023). Cluster 0 = windy and cloudy, 1 = calm and
+clear, 2 = mild and calm, 3 = the day after a very expensive day.
 
 Shipped strongest-rule output for the GB starter:
 
 | Group | Rule | 2023 support / confidence / lift | 2024 support / confidence / lift |
 | --- | --- | --- | --- |
-| calendar | spring & afternoon | 6.3% / 21.6% / 2.16 | 6.3% / 4.5% / 0.72 |
-| cluster | cluster 1 & afternoon | 5.5% / 17.5% / 1.75 | 4.1% / 6.1% / 0.97 |
+| calendar | spring & afternoon | 6.3% / 20.7% / 2.07 | 6.3% / 4.7% / 0.75 |
+| cluster | cluster 1 & afternoon | 5.5% / 16.7% / 1.67 | 4.1% / 6.1% / 0.97 |
 
-Neither selected rule holds in 2024. Among all 44 rules for the GB starter,
-the cluster rules have lower 2023 lift than the best calendar rules, and the
-only one that clearly holds is cluster 2 & autumn (lift 1.46 → 1.34). For
-Ridge it falls to 0.96 in 2024, while cluster 0 & evening holds
-(1.59 → 1.34). Cluster items therefore add little stable information beyond
-season and time of day.
+Neither selected rule holds in 2024. All 46 rules (21 calendar, 25 with a
+cluster), from `summarize.py`:
+
+| Rule | GB lift 2023 → 2024 | Ridge lift 2023 → 2024 |
+| --- | --- | --- |
+| autumn & evening | 2.02 → 2.19 | 2.18 → 1.88 |
+| autumn & morning | 1.52 → 1.29 | 1.70 → 1.57 |
+| spring & afternoon | 2.07 → 0.75 | 1.99 → 0.63 |
+| cluster 1 & afternoon | 1.67 → 0.97 | 0.83 → 0.96 |
+| cluster 0 & afternoon | 1.43 → 0.91 | 1.62 → 1.02 |
+| cluster 0 & evening | 1.30 → 1.22 | 1.59 → 1.33 |
+
+24 of the 46 GB rules still have lift above 1 in 2024. Four rules have lift
+above 1.2 for both models in both years: autumn & evening, autumn & morning,
+autumn as a whole, and cluster 0 & evening. Ranking by 2023 lift alone picks
+the spring-afternoon rule, which fails in 2024 for both models, and each
+model's top cluster rule (cluster 1 & afternoon for GB, cluster 0 & afternoon
+for Ridge) also drops to about 1.
 
 **Cluster 3 is invisible to Apriori.** It covers 11 days in 2023 and 18 in
 2024 (under 5% of hours), so no itemset containing it reaches the minimum
-support. A direct check outside the rule search shows it is the one cluster
-with a consistently high large-error rate:
+support. A direct check after the rule search shows it is the one cluster
+with a high large-error rate in both years:
 
-| Cluster | Days 2023 / 2024 | GB large-error rate 2023 / 2024 | GB MAE 2023 / 2024 | Ridge large-error rate 2023 / 2024 |
-| --- | --- | --- | --- | --- |
-| 0 | 129 / 131 | 10.7% / 4.5% | 19.3 / 14.8 | 12.1% / 8.0% |
-| 1 | 80 / 60 | 9.2% / 5.2% | 17.5 / 14.6 | 5.0% / 6.0% |
-| 2 | 145 / 157 | 9.3% / 7.0% | 18.0 / 17.0 | 10.3% / 8.9% |
-| 3 | 11 / 18 | 17.4% / 16.7% | 23.7 / 32.5 | 18.6% / 25.9% |
-| all | 365 / 366 | 10.0% / 6.3% | 18.5 / 16.6 | 10.0% / 9.0% |
+| Cluster | Days 2023 / 2024 | GB large errors / hours, 2023 | GB, 2024 | GB MAE 2023 / 2024 | Ridge rate 2023 / 2024 |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 129 / 131 | 326 / 3,097 (10.5%) | 140 / 3,144 (4.5%) | 19.0 / 14.8 | 12.1% / 8.0% |
+| 1 | 80 / 60 | 178 / 1,919 (9.3%) | 73 / 1,440 (5.1%) | 17.4 / 14.8 | 5.0% / 6.0% |
+| 2 | 145 / 157 | 326 / 3,480 (9.4%) | 269 / 3,768 (7.1%) | 18.0 / 16.9 | 10.3% / 8.9% |
+| 3 | 11 / 18 | 46 / 264 (17.4%) | 69 / 432 (16.0%) | 23.2 / 32.4 | 18.6% / 25.9% |
 
-For GB that is lift ~1.7 in 2023 and ~2.6 in 2024; for Ridge ~1.9 and ~2.9.
-Both models miss most after price spikes, but this is based on very few days
-and was found by inspection, not by the pre-set rule search. The support
-threshold is a real limitation: rare regimes are often the costly ones.
-Lowering it would be a new, separate experiment.
+For GB that is lift 1.74 in 2023 and 2.55 in 2024; for Ridge 1.86 and 2.89.
+The Random Forest shows the same pattern (team B). It rests on very few days
+and was found by inspection, not by the pre-set rule search.
 
 Caveats: many rules were searched, neighbouring hours are dependent, and
-calendar items are coarse (each two-item rule covers ~6% of hours). No error
-correction was attempted.
+calendar items are coarse (each two-item rule covers 5–11% of hours). No
+error correction was attempted.
 
-## Next
+## Hand-off files
 
-- Deliver `results/team/gradient_boosting_baseline/predictions.csv.gz` (the chosen run) to the lead; row-level files stay out of Git.
+`temporaryresults/` holds the chosen run (the starter) for the lead:
+`predictions.csv.gz` (17,544 aligned hourly forecasts), `metrics.csv`,
+`timing.csv` and `run.json`, produced with `requirements-lock.txt`. The
+predictions file is temporary and can be removed when merging, as for team A.
+`summary/` holds the aggregate tables: `comparison.csv` (all five runs),
+`all_rules_<run>.csv` (every rule, 2023 and 2024) and
+`apriori_with_clusters.csv` (shipped strongest-rule output).

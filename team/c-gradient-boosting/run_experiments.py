@@ -56,13 +56,21 @@ def main():
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--start", default="2023-01-01")
     parser.add_argument("--end", default="2025-01-01")
+    parser.add_argument("--output", type=Path,
+                        help="run folder (default: results/team/gradient_boosting_<variant>, "
+                             "with the dates appended for a shorter period)")
     args = parser.parse_args()
     if args.list or not args.variant:
         for name, change in VARIANTS.items():
             print(f"{name}: {change}")
         return
     inputs = load_snapshot(SNAPSHOT)
-    output = ROOT / "results" / "team" / f"gradient_boosting_{args.variant}"
+    name = f"gradient_boosting_{args.variant}"
+    if (args.start, args.end) != ("2023-01-01", "2025-01-01"):
+        # Keep short test runs out of the folder that holds the full-period result.
+        name += f"_{args.start}_{args.end}"
+    output = args.output or ROOT / "results" / "team" / name
+    print(f"Writing {output}")
     with threadpool_limits(limits=2):
         run_prepared("gradient_boosting", make_builder(VARIANTS[args.variant]),
                      args.start, args.end, *inputs, output, 365)

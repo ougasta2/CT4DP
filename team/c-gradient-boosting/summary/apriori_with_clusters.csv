@@ -1,0 +1,3 @@
+group,antecedent,threshold_eur_mwh,status,development_hours,development_large_errors,development_support,development_confidence,development_base_rate,development_lift,evaluation_hours,evaluation_large_errors,evaluation_support,evaluation_confidence,evaluation_base_rate,evaluation_lift
+calendar,season=spring & time_of_day=afternoon,41.25617833725302,scored,552,114,0.06301369863013699,0.20652173913043478,0.1,2.0652173913043477,552,26,0.06284153005464481,0.04710144927536232,0.06272768670309654,0.7508877140377179
+cluster,cluster=1 & time_of_day=afternoon,41.25617833725302,scored,480,80,0.0547945205479452,0.16666666666666666,0.1,1.6666666666666665,360,22,0.040983606557377046,0.06111111111111111,0.06272768670309654,0.974228675136116
