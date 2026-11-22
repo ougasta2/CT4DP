@@ -1,8 +1,9 @@
 # C · Gradient boosting and Apriori: results
 
-Exploratory historical analysis. Both 2023 and 2024 are development years
-already inspected in earlier work; nothing here is an independent test.
-Settings were chosen on 2023 only, and 2024 is reported as a check.
+2023 is the validation year: the gradient-boosting settings, the Apriori
+error threshold and the rules are all chosen on 2023 results. These choices are
+then held fixed and scored on 2024, which is an exploratory evaluation (both
+years were inspected in earlier project work, so it is not an untouched test).
 
 ## Reproducing
 
@@ -65,7 +66,7 @@ Hours: 8,760 (2023) and 8,784 (2024) for every run. Fit time is the summed
 monthly fit wall time; full-run wall time was 5.4–7.8 minutes per GB run and
 4 seconds for Ridge.
 
-**Decision (on 2023): keep the starter settings.** None of the three changes
+**Decision (on the 2023 validation year): keep the starter settings.** None of the three changes
 improved 2023 MAE or the 2023 hit rate. Gradient boosting beats Ridge on MAE
 in both years (−0.39 and −1.76 EUR/MWh) and on the hit rate, but is worse on
 negative-price hours in both years and costs about 175× more fit time.
@@ -132,6 +133,26 @@ Caveats: many rules were searched, neighbouring hours are dependent, and
 calendar items are coarse (each two-item rule covers 5–11% of hours). No
 error correction was attempted.
 
+## Frozen Ridge rules on the boosting forecasts
+
+`python team/c-gradient-boosting/frozen_rules.py` scores the two rules selected
+on 2023 Ridge errors on any full-period runs (default: Ridge and the GB
+starter), each with its own 2023 90th-percentile threshold, and repeats the
+2024 afternoon comparison (cluster 0 vs other clusters, 12:00–17:59) with a
+95% interval from 5,000 resamples of contiguous seven-day blocks of delivery
+days. On Ridge it reproduces the report's numbers exactly (−2.12 points,
+−8.33 to 3.50). Output: `summary/frozen_rules.csv`, `summary/afternoon_comparison.csv`.
+
+| Rule (2024, GB, threshold 41.26) | Events / hours | Rate | Lift |
+| --- | ---: | ---: | ---: |
+| autumn & evening | 75 / 546 | 13.74% | 2.19 |
+| cluster 0 & afternoon | 45 / 786 | 5.73% | 0.91 |
+
+2024 afternoons, GB: cluster 0 5.73% (45/786), all 8.42% (185/2,196), other
+clusters 9.93% (140/1,410); difference −4.20 points (−8.43 to 0.44). In 2023
+the GB lift of cluster 0 & afternoon (1.43) equals that of afternoon alone
+(1.42), so the cluster adds nothing beyond the time band.
+
 ## Hand-off files
 
 `temporaryresults/` holds the chosen run (the starter) for the lead:
@@ -140,4 +161,5 @@ error correction was attempted.
 predictions file is temporary and can be removed when merging, as for team A.
 `summary/` holds the aggregate tables: `comparison.csv` (all five runs),
 `all_rules_<run>.csv` (every rule, 2023 and 2024) and
-`apriori_with_clusters.csv` (shipped strongest-rule output).
+`apriori_with_clusters.csv` (shipped strongest-rule output),
+`frozen_rules.csv` and `afternoon_comparison.csv`.
