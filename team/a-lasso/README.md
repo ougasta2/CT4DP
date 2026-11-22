@@ -36,22 +36,41 @@ Decision: **alpha = 0.3** with `max_iter` = 10000 in `model.py` (starter: alpha 
 | `model.py` | The chosen Lasso, written by Part 7 of the notebook. |
 
 Run order, from `team/a-lasso/` with the project environment: open `lasso.ipynb` and run
-all cells (about 5 minutes). Part 7 calls the shared benchmark for `ridge` and `lasso`;
+all cells (about 20 minutes; the rolling alpha grid in Part 4 takes most of it). Part 7 calls the shared benchmark for `ridge` and `lasso`;
 outputs are in the Git-ignored `results/team/<model>/`. The unchanged starter was run with
 `python scripts/run_team_benchmark.py --model lasso --data --output results/team/lasso-starter`.
 
-**Alpha choice.** The grid {0.03, 0.1, 0.3, 1, 3, 10, 30, 100} was fixed in advance. Each
-model was fitted on 2019–2022 and scored on 2023; alpha = 0.3 had the lowest validation
-RMSE (26.62, alpha = 1: 26.65). 2024 was not used for any choice. With the same split,
-the unregularized linear regression overfits (training RMSE 18.1, validation 37.8),
-Ridge chooses alpha = 1000 (validation 27.19) and Lasso keeps 1,847 of 14,496 coefficients
-(87% exactly zero).
+**Alpha choice.** The grid {0.03, 0.1, 0.3, 1, 3, 10, 30, 100} was fixed in advance and
+evaluated on rolling validation months only: for each month of 2023 the scaler and the
+Lasso were refitted on all earlier days and predicted that month (Part 4 of the notebook).
+The selection criterion is the validation RMSE, as in the course exercise; 2024 was not
+used for any choice.
 
-**Convergence.** The starter's ConvergenceWarnings come from the iteration limit: on the
-2019–2022 window, coordinate descent needs about 5,800 iterations at alpha = 0.03, more
-than the starter's 3,000. With `max_iter` = 10000 every alpha in the grid converges.
-Small alphas are slow because the 604 standardized inputs are strongly collinear
-(24 hourly values per variable, correlated neighbouring zones).
+| alpha | Validation RMSE | Validation MAE | Zero coefficients (of 14,496, mean of 12 fits) |
+| ---: | ---: | ---: | ---: |
+| 0.03 (starter) | 29.43 | 20.65 | 8,754 (60%) |
+| 0.1 | 27.33 | 18.98 | 11,099 (77%) |
+| **0.3** | **26.14** | 17.91 | 12,655 (87%) |
+| 1 | 26.34 | 17.81 | 13,549 (93%) |
+| 3 | 28.05 | 18.97 | 13,992 (97%) |
+| 10 | 31.19 | 21.38 | 14,229 (98%) |
+| 30 | 35.05 | 24.82 | 14,382 (99%) |
+| 100 | 46.02 | 34.62 | 14,479 (99.9%) |
+
+alpha = 0.3 has the lowest validation RMSE. alpha = 1 is practically tied and has a slightly
+lower validation MAE (17.81 vs 17.91), so the choice between the two depends on the
+criterion; RMSE was fixed beforehand. Parts 2–6 of the notebook also compare unregularized
+linear regression, Ridge and Lasso on a fixed split (fit on 2019–2022): the unregularized
+model overfits (training RMSE 18.1, validation 37.8).
+
+**Convergence.** The starter emits ConvergenceWarnings because of its iteration limit: on the
+2019–2022 window at alpha = 0.03, coordinate descent needs 5,762 iterations, more than the
+starter's 3,000 (21 of the 24 hour models stop early). Raising the limit to 10,000 removes
+all warnings but does not change the result: validation RMSE 31.028 vs 31.030, mean
+prediction difference 0.04 EUR/MWh (max 0.81). The chosen model uses `max_iter` = 10000, and
+no alpha in the grid emits a warning with it. Small alphas are slow because the 604
+standardized inputs are strongly collinear (24 hourly values per variable, correlated
+neighbouring zones).
 
 **Shared benchmark** (monthly expanding-window refits, hourly scores, same hours for all
 models):

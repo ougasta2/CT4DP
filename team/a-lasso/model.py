@@ -1,6 +1,6 @@
 """Sparse linear model for 24-hour DK1 price forecasts.
 
-alpha=0.3 was chosen by the lowest validation RMSE (2023) in lasso.ipynb.
+alpha=0.3 was chosen by the lowest rolling validation RMSE (2023 months) in lasso.ipynb.
 """
 
 from sklearn.linear_model import Lasso
