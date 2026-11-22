@@ -155,11 +155,12 @@ the GB lift of cluster 0 & afternoon (1.43) equals that of afternoon alone
 
 ## Hand-off files
 
-`temporaryresults/` holds the chosen run (the starter) for the lead:
-`predictions.csv.gz` (17,544 aligned hourly forecasts), `metrics.csv`,
-`timing.csv` and `run.json`, produced with `requirements-lock.txt`. The
-predictions file is temporary and can be removed when merging, as for team A.
-`summary/` holds the aggregate tables: `comparison.csv` (all five runs),
-`all_rules_<run>.csv` (every rule, 2023 and 2024) and
-`apriori_with_clusters.csv` (shipped strongest-rule output),
-`frozen_rules.csv` and `afternoon_comparison.csv`.
+Step 1 regenerates the starter's 17,544 aligned hourly forecasts in
+`results/team/gradient_boosting_baseline/predictions.csv.gz`. Share this
+Git-ignored file through the team channel.
+
+`summary/` holds the starter's annual metrics, monthly timings and run
+metadata in `metrics.csv`, `timing.csv` and `run.json`. It also holds
+`comparison.csv` for all five runs, `all_rules_<run>.csv` for each run,
+the strongest rules in `apriori_with_clusters.csv`, and the follow-up
+results in `frozen_rules.csv` and `afternoon_comparison.csv`.
