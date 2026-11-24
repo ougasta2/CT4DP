@@ -1,0 +1,5 @@
+model,year,hours,mae,rmse,hits_5pct,rate_5pct,negative_hours,negative_mae
+RF leaf=5 (chosen),2023,8760,21.002,30.498,1598/7738,0.207,281,48.232
+RF leaf=5 (chosen),2024,8784,18.982,31.555,1395/7620,0.183,375,29.525
+RF leaf=2 (rule-selected),2023,8760,20.86,30.263,1593/7738,0.206,281,46.893
+RF leaf=2 (rule-selected),2024,8784,18.909,31.39,1383/7620,0.181,375,28.634
