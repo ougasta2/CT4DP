@@ -1,8 +1,10 @@
 \begin{abstract}
 We study when day-ahead electricity forecasts incur large errors in
-western Denmark (DK1). Five models forecast the same 17,544 delivery
-hours in 2023--2024. K-means identifies daily price and weather regimes,
-and Apriori selects two error-associated rules from 2023 Ridge forecasts.
+western Denmark (DK1). We fit five models initially on usable
+2019--2022 data, then refit monthly on expanding history to score the
+same 17,544 delivery hours in 2023--2024. K-means identifies daily
+price and weather regimes, and Apriori selects two error-associated
+rules from 2023 Ridge forecasts.
 When applied unchanged in 2024, autumn evenings had lift 1.77--2.54
 across the five models. The cluster-0 afternoon rule had lift 0.86--1.02.
 A moving-block interval for the Ridge afternoon comparison also spanned
@@ -14,6 +16,5 @@ error monitoring and show limited transfer for the selected cluster rule.
 Apriori, association rules, electricity price forecasting, K-means.
 \end{IEEEkeywords}
 
-\noindent Code, data and notebooks:
+\noindent Project files:
 \reportlink{https://github.com/ougasta2/CT4DP}{\texttt{github.com/ougasta2/CT4DP}}.
-MLP notebook: \reportlink{https://github.com/ougasta2/CT4DP/pull/5}{PR~5}.

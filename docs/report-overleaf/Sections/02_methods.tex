@@ -17,7 +17,11 @@ fixed lead. Using a forecast archive avoids substituting realized
 weather for forecasts, while the archive lead leaves the availability
 of particular historical versions at issue time uncertain.
 
-We refit each model monthly using all available earlier days. We report
+We refit each model monthly on available days from 8 January 2019
+through the end of the preceding month. The January 2023 fit used
+1,454 days through December 2022. The January 2024 fit used 1,819 days
+through December 2023. Each scoring month's outcomes can enter the
+training set for later fits. We report
 MAE and RMSE in EUR/MWh and count predictions within \(\pm5\%\) of the
 actual price among hours with \(|\mathrm{actual}|\geq20\) EUR/MWh.
 Ridge uses standardized inputs and fixed \(\alpha=100\).
