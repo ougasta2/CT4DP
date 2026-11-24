@@ -14,8 +14,6 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 import pandas as pd
 from threadpoolctl import threadpool_limits
 from team_benchmark_core import run_prepared
-import train_dk1_preauction as base
-import train_dk1_weather_ablation as weather_source
 
 WORKSPACES = {
     'lasso': 'a-lasso',
@@ -28,6 +26,9 @@ OUT = ROOT / 'results' / 'team'
 SNAPSHOT = ROOT / 'team' / 'data'
 
 def prepare():
+    import train_dk1_preauction as base
+    import train_dk1_weather_ablation as weather_source
+
     prices = base.load_prices()
     x, y, hourly = base.make_daily(prices)
     weather, _ = weather_source.weather_curves(prices)
