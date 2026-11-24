@@ -5,14 +5,23 @@ Reads the aligned prediction files written by the shared benchmark
 with the frozen Ridge baseline hour by hour, so the annual metrics can be
 broken down and the month-to-month stability of any gain can be checked.
 
-Run from the repository root after
-``python scripts/run_team_benchmark.py --model mlp --data``::
+The uncertainty of the MAE difference is estimated three ways, because hourly
+errors are strongly autocorrelated: an i.i.d. bootstrap over delivery days, a
+moving-block bootstrap over 7 and 14 consecutive days, and a Newey-West
+interval on the daily error differences. The block and Newey-West intervals are
+the ones to quote; the i.i.d. one ignores dependence between neighbouring days
+and is kept for comparison only.
 
+Run from the repository root after the three benchmark runs::
+
+    python team/d-mlp/starter.py
+    python scripts/run_team_benchmark.py --model ridge --data
+    python scripts/run_team_benchmark.py --model mlp --data
     python team/d-mlp/analysis.py
 
 Writes ``team/d-mlp/summary/per_month_mae.csv``,
-``team/d-mlp/summary/per_hour_mae.csv`` and
-``team/d-mlp/summary/paired_bootstrap.csv``.
+``team/d-mlp/summary/per_hour_mae.csv``, ``team/d-mlp/summary/paired_bootstrap.csv``
+and ``team/d-mlp/summary/mlp_diagnostics.png``.
 """
 
 import sys
@@ -28,6 +37,8 @@ BASELINE = 'ridge'
 MODELS = ('mlp', 'mlp-starter')
 REPLICATES = 2000
 SEED = 42
+BLOCKS = (7, 14)
+NW_LAGS = 7
 
 
 def load(model):
@@ -39,28 +50,64 @@ def load(model):
     return frame[['day', 'hour', 'actual', 'prediction', 'abs_error', 'month']]
 
 
-def paired_bootstrap(reference, candidate, year, replicates=REPLICATES, seed=SEED):
-    """95% interval for MAE(candidate) - MAE(reference), resampling days."""
+def day_sums(reference, candidate, year):
+    """Absolute-error totals per delivery day, so days stay the resampling unit."""
     ref = reference[reference.day.dt.year == year]
     cand = candidate[candidate.day.dt.year == year]
     joined = ref[['day', 'abs_error']].join(cand[['abs_error']], lsuffix='_ref', rsuffix='_cand', how='inner')
     if len(joined) != len(ref) or len(joined) != len(cand):
         raise ValueError(f'misaligned hours in {year}: {len(joined)}, {len(ref)}, {len(cand)}')
-    days = joined.day.unique()
-    by_day = joined.groupby('day')[['abs_error_ref', 'abs_error_cand']].sum()
-    counts = joined.groupby('day').size()
-    to_ref, to_cand = by_day['abs_error_ref'].to_numpy(), by_day['abs_error_cand'].to_numpy()
-    hours = counts.to_numpy()
+    totals = joined.groupby('day')[['abs_error_ref', 'abs_error_cand']].sum().to_numpy()
+    return totals, joined.groupby('day').size().to_numpy()
+
+
+def iid_bootstrap(totals, hours, replicates=REPLICATES, seed=SEED):
+    """Resample delivery days independently (ignores dependence between days)."""
     rng = np.random.default_rng(seed)
-    draws = rng.integers(0, len(days), size=(replicates, len(days)))
-    diff = ((to_cand[draws] - to_ref[draws]).sum(axis=1) / hours[draws].sum(axis=1))
-    observed = (to_cand.sum() - to_ref.sum()) / hours.sum()
-    return {'year': year, 'hours': int(hours.sum()), 'days': int(len(days)),
-            'mae_reference': float(to_ref.sum() / hours.sum()),
-            'mae_candidate': float(to_cand.sum() / hours.sum()),
-            'mae_difference': float(observed),
-            'ci_low': float(np.percentile(diff, 2.5)), 'ci_high': float(np.percentile(diff, 97.5)),
-            'share_of_draws_positive': float((diff > 0).mean())}
+    draws = rng.integers(0, len(hours), size=(replicates, len(hours)))
+    return (totals[draws, 1] - totals[draws, 0]).sum(axis=1) / hours[draws].sum(axis=1)
+
+
+def block_bootstrap(totals, hours, block, replicates=REPLICATES, seed=SEED):
+    """Moving-block bootstrap: resample runs of ``block`` consecutive delivery days."""
+    days = len(hours)
+    rng = np.random.default_rng(seed + block)
+    starts = rng.integers(0, days, size=(replicates, int(np.ceil(days / block))))
+    index = (starts[:, :, None] + np.arange(block)[None, None, :]) % days
+    index = index.reshape(replicates, -1)[:, :days]
+    return (totals[index, 1] - totals[index, 0]).sum(axis=1) / hours[index].sum(axis=1)
+
+
+def newey_west_interval(totals, hours, observed, lags=NW_LAGS):
+    """Newey-West standard error of the daily MAE difference (Bartlett weights)."""
+    daily = (totals[:, 1] - totals[:, 0]) / hours
+    centred = daily - daily.mean()
+    n = len(daily)
+    variance = centred @ centred / n
+    for lag in range(1, lags + 1):
+        variance += 2 * (1 - lag / (lags + 1)) * (centred[lag:] @ centred[:-lag]) / n
+    se = np.sqrt(max(variance, 0) / n)
+    return observed - 1.96 * se, observed + 1.96 * se, se
+
+
+def compare(reference, candidate, year, replicates=REPLICATES, seed=SEED):
+    """MAE difference (candidate - reference) with dependence-aware intervals."""
+    totals, hours = day_sums(reference, candidate, year)
+    observed = (totals[:, 1].sum() - totals[:, 0].sum()) / hours.sum()
+    iid = iid_bootstrap(totals, hours, replicates, seed)
+    row = {'year': year, 'hours': int(hours.sum()), 'days': int(len(hours)),
+           'mae_reference': float(totals[:, 0].sum() / hours.sum()),
+           'mae_candidate': float(totals[:, 1].sum() / hours.sum()),
+           'mae_difference': float(observed),
+           'ci_low_iid': float(np.percentile(iid, 2.5)), 'ci_high_iid': float(np.percentile(iid, 97.5)),
+           'share_of_draws_positive': float((iid > 0).mean())}
+    for block in BLOCKS:
+        draws = block_bootstrap(totals, hours, block, replicates, seed)
+        row[f'ci_low_block{block}'] = float(np.percentile(draws, 2.5))
+        row[f'ci_high_block{block}'] = float(np.percentile(draws, 97.5))
+    low, high, se = newey_west_interval(totals, hours, observed)
+    row.update({'ci_low_nw': float(low), 'ci_high_nw': float(high), 'nw_standard_error': float(se)})
+    return row
 
 
 def plot(months, hours, dest):
@@ -109,7 +156,7 @@ def main():
     hours.to_csv(SUMMARY / 'per_hour_mae.csv', index_label='hour')
     plot(months, hours, SUMMARY / 'mlp_diagnostics.png')
 
-    rows = [paired_bootstrap(frames[BASELINE], frames[name], year)
+    rows = [compare(frames[BASELINE], frames[name], year)
             for name in MODELS for year in (2023, 2024)]
     bootstrap = pd.DataFrame(rows).assign(model=[name for name in MODELS for _ in (2023, 2024)])
     bootstrap['months_candidate_better'] = [
@@ -118,9 +165,12 @@ def main():
         for name in MODELS for year in (2023, 2024)]
     bootstrap.to_csv(SUMMARY / 'paired_bootstrap.csv', index=False)
 
-    pd.set_option('display.width', 120)
+    pd.set_option('display.width', 200)
     print(months.round(3).to_string())
-    print(bootstrap.round(3).to_string(index=False))
+    columns = ['model', 'year', 'mae_reference', 'mae_candidate', 'mae_difference',
+               'ci_low_iid', 'ci_high_iid', 'ci_low_block7', 'ci_high_block7',
+               'ci_low_block14', 'ci_high_block14', 'ci_low_nw', 'ci_high_nw']
+    print(bootstrap[columns].round(3).to_string(index=False))
 
 
 if __name__ == '__main__':
