@@ -1,0 +1,28 @@
+\begin{abstract}
+Day-ahead electricity price forecasts can have large errors under conditions
+that aggregate accuracy measures obscure. We study which conditions are
+associated with large errors in western Denmark (DK1).
+Using price and weather data from 2019--2024, the monthly Ridge benchmark
+produces forecasts for 17,544 delivery hours in 2023--2024, refitting each
+month on an expanding window containing only earlier days.
+K-means defines daily market regimes, and Apriori selects associations
+on 2023 errors for evaluation in 2024. Ridge mean absolute error was
+18.78 and 18.34 EUR/MWh in the two years. In 2024, the autumn-evening
+rule had a lift of 1.88, while the selected cluster-afternoon rule had
+a lift of 1.02. Within afternoon hours, cluster 0 had a large-error rate
+of 9.16\% versus 11.28\% for other clusters. The difference is uncertain
+and applies to the selected rule and period. The autumn-evening rule
+also remained enriched for gradient boosting in 2024, with a lift of
+2.19, whereas the cluster-afternoon rule had a lift of 0.91.
+These results provide partial evidence of cross-model persistence
+for the calendar association, while the selected cluster condition
+did not consistently identify higher error rates.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Apriori, association rules, electricity price forecasting,
+forecast errors, K-means.
+\end{IEEEkeywords}
+
+Code, the data snapshot and executed notebooks are at
+\url{https://github.com/ougasta2/CT4DP}

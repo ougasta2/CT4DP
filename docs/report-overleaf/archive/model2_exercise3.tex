@@ -1,0 +1,77 @@
+\subsection{Comparison and interpretation}
+\label{sec:model2-comparison}
+
+\paragraph{A forecast as a decision or as information.}
+The selected quantiles differ: Model 1 chooses the median
+($\tau^\star=0.5$) as the bid, while Model 2 chooses the 0.7-quantile
+as an extra input. However, Model 2 gains less than EUR~0.001 on
+validation compared with the matched control. We therefore cannot
+conclude that the 0.7-quantile provides more useful information.
+
+The quantiles serve different purposes. In Model 1, choosing a quantile
+directly sets the bid. In Model 2, DFL learns how to combine the forecast
+with the other inputs. Its weight can be positive, negative, or close to
+zero, so choosing a higher quantile does not necessarily increase the
+bid. Different quantiles can therefore perform best in the two settings.
+Here, the selected forecast receives a weight close to zero, consistent
+with its negligible effect on revenue.
+
+There is also a reason to expect limited improvement in this experiment:
+the quantile forecast is calculated from the same nine inputs already
+available to DFL. Before clipping, a fixed linear quantile forecast is
+just a weighted sum of those inputs plus an intercept. Adding it gives
+DFL another way to express a rule it could already learn. Clipping the
+forecasts and fitting them on different training blocks can change this,
+but the matched comparison shows no meaningful benefit here
+(Figure~\ref{fig:dfl-quantile-selection}). This result applies to our
+chosen inputs and bidding rule; it does not show that quantile forecasts
+are generally unhelpful.
+
+\paragraph{Economic comparison.}
+Table~\ref{tab:model2-overall} compares the main strategies. Using the
+same nine inputs, DFL earns EUR~11.12 more than OLS B on test, although
+its bids have a higher RMSE (1.464 versus 1.155 kW). Closer agreement
+with actual production therefore does not always mean higher revenue
+(Figure~\ref{fig:dfl-performance}). DFL does not outperform every
+regression model: OLS C earns EUR~105.91 on test, compared with
+EUR~105.47 for the original DFL model.
+
+\begin{table}[htbp]
+ \centering
+ \caption{Trading revenue of the main strategies. Quantile choices and
+ the overall recommendation use validation revenue, not test results.}
+ \label{tab:model2-overall}
+ \begin{tabular}{lrr}
+ \hline
+ Strategy & Validation (EUR) & Test (EUR)\\
+ \hline
+ Model 1: OLS B & 232.28 & 94.36\\
+ Model 1: direct quantile $0.5$ & 231.62 & 105.18\\
+ Model 2: DFL B & 227.93 & 105.47\\
+ Model 2: DFL with quantile $0.7$ & 227.58 & 106.00\\
+ \hline
+ \end{tabular}
+\end{table}
+
+\paragraph{Recommendation.}
+We recommend OLS B based on its validation performance. It earns
+EUR~232.28, the highest validation revenue among the compared strategies.
+The direct median strategy earns EUR~231.62, while the DFL strategies
+earn less than EUR~228. We use validation results to choose a strategy
+and test results to evaluate that choice. Selecting a different strategy
+because of its test revenue would no longer give an independent test
+of the selection.
+The cluster-based models of the optional extension (Section~\ref{sec:extension}) reach slightly higher validation revenues (up to EUR~234.6), but the variant with the highest validation revenue earns only EUR~104.4 on test, which confirms that validation differences of a few euros are not a reliable basis for ranking strategies.
+The recommendation remains uncertain as OLS B beats the median by only
+EUR~0.66 on validation, and performs worse on test. Market conditions
+also change between the periods. The average shortage penalty
+($\lambda^{\uparrow}-\lambda^{\mathrm{DA}}$) rises from EUR~17.35/MWh
+on validation to EUR~33.55/MWh on test. This may help explain why DFL's
+lower bids perform better relative to OLS B on test, although average
+prices alone cannot explain the full difference.
+
+The results also depend on the historical weather inputs used in both
+models. For practical day-ahead bidding, these must be replaced by
+weather forecasts available when bids are submitted. Evaluation over
+more periods using those forecasts is needed to assess whether the
+recommended strategy remains profitable under different conditions.

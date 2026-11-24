@@ -1,0 +1,18 @@
+\section{Introduction}
+Day-ahead prices describe the hourly cost of electricity for the next delivery
+day. A forecast can be accurate on average yet miss by a large margin under
+particular price or weather conditions. An annual error score cannot identify
+those conditions or show whether they persist. We address two questions:
+
+\noindent\textbf{RQ1.} Which combinations of calendar conditions and market
+regimes are associated with unusually large errors in DK1 day-ahead forecasts?
+
+\noindent\textbf{RQ2.} Do the associations persist in a later period and across
+different forecast models?
+
+We generate comparable errors from chronological forecasts, fit K-means to
+summarize the market conditions of each day, and use Apriori to find interpretable
+combinations of conditions. Temporal evaluation tests whether the rules persist
+in the following year. Comparing the same rules across a sparse linear model,
+tree ensembles, and a neural network can reveal whether they reflect a weakness
+specific to the Ridge baseline.

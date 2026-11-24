@@ -1,0 +1,45 @@
+\section{Individual Contributions}
+
+Naoto Ogawa designed the DK1 forecasting benchmark and assembled the shared dataset. He
+aligned five market price series and archived weather forecasts to Copenhagen delivery days,
+defined the nominal 10:00 information cutoff, handled daylight-saving transitions, and fixed
+the monthly walk-forward evaluation, metrics, and prediction format. He implemented and ran
+the Ridge baseline across all 24 monthly folds and verified that the distributed snapshot
+reproduced its 17,544 hourly forecasts.
+
+He integrated the K-means labels with the Ridge error series for the comparison of
+calendar-only and cluster-containing Apriori rules. He verified that the rules and error
+threshold selected in 2023 were held fixed for the 2024 evaluation. He defined the four model
+assignments, prepared the independent repositories and English experiment instructions, and
+checked that all four starter models scored the same 744 hours.
+
+% TODO Member A: add full name and completed Lasso implementation, experiments, and writing.
+Xingjie Huang implemented and evaluated Lasso, selecting alpha by RMSE
+on 2023 rolling validation months without using 2024. The work covered
+convergence, sparsity, retained features, and comparison with Ridge,
+including negative-price errors and runtime. Xingjie wrote the executed
+notebook and Lasso report sections, supplied aligned forecasts, and
+reviewed and revised the full report for consistency in methods, results,
+terminology and formatting, contributing to its finalization.
+
+Cheong Shao Hong, Justin ran the Random Forest benchmark and selected \texttt{min\_samples\_leaf} on a 2022 validation year, keeping the starter value of 5 after the 2023--2024 comparison. The K-means analysis covered the choice of \(k\) from pre-2023 data (Davies--Bouldin index, cluster sizes, and interpretability), the description of each regime, and a script that reports forest error by regime for 2023 and 2024. The regime labels were provided for the Apriori analysis. He also wrote the analysis notebook, the Random Forest and clustering methods and results text, and the interpretation of regime stability and small groups.
+
+% TODO Member C: add full name and completed gradient boosting and Apriori work, analysis, and writing.
+Fu Nukunu Philip ran the gradient boosting benchmark, compared the starter
+with three one-setting variants on 2023, kept the starter, and reran all
+boosting results with the pinned package versions. This work also covered the
+Apriori analysis of the boosting errors with the K-means labels, the scoring of
+the frozen Ridge rules on the boosting forecasts, and the afternoon comparison
+with day-block intervals. He also wrote the experiment, summary and
+rule-scoring scripts, the analysis notebook, and the gradient boosting
+methods, results and discussion text.
+
+% TODO Member D: add full name and completed MLP implementation, experiments, and writing.
+Jingruo Xu ran the MLP workspace. She benchmarked the unchanged starter,
+built the rolling-validation harness for that model and ran three
+prespecified grids over width, L2 penalty and iteration budget on 2023
+months only, keeping 2024 untouched. She selected the final setting, showed
+that the starter's convergence warning does not change its predictions, and
+analysed the errors by month and by clock hour against Ridge. She wrote the
+MLP methods and results text, the executed notebook and the scripts in
+\texttt{team/d-mlp/}.

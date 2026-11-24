@@ -1,0 +1,59 @@
+\subsection{Quantile forecasts as contextual information}
+\label{sec:dfl-quantile-context}
+
+We now test whether a quantile forecast from Model 1 can help DFL choose
+better bids. We add one quantile forecast at a time to the nine
+inputs used by the original DFL model specified in Section 2.1. The resulting bidding rule is
+\begin{equation}
+ q_t=\beta_0+\boldsymbol{x}_t^{\mathsf T}\boldsymbol{\beta}
+ +\gamma_{\tau}\frac{\hat p_t^{(\tau)}}{\overline P},
+ \qquad \tau\in\{0.2,0.3,0.4,0.5,0.6,0.7,0.8\}.
+\end{equation}
+Here, $\hat{p}^{(\tau)}_t$ denotes the predicted conditional production quantile at level $\tau$.
+We divide it by the bid limit $\overline{P}$ to put it on a scale between
+zero and one. Its weight $\gamma_{\tau}$ is learned together with the
+other weights by maximising training revenue. DFL can therefore decide
+how much to use the forecast when choosing a bid. We train a separate
+DFL model for each of the seven quantile levels.
+
+To create the extra input for DFL training, we use the same unregularised
+quantile-regression method as Model 1. We first fit it on the earliest
+802 training hours and forecast the next block. We then add that block
+to the fitting data and forecast the following block, repeating this for
+five blocks. Missing-value imputation and scaling are fitted again using
+the earlier data in each step. Each forecast is thus generated without
+fitting the quantile model on the production value it is forecasting.
+
+This gives 4,010 hours with quantile forecasts for training DFL.
+For a fair comparison, we also train a DFL model without the extra
+forecast on these same 4,010 hours. We call this the 'matched control'.
+Comparing the two shows whether adding the forecast helps, without
+confusing its effect with the shorter training period.
+For validation and test, we use Section 1.5's  forecasts, obtained from
+quantile models fitted on all 4,812 training hours.
+
+\begin{table}[htbp]
+ \centering
+ \caption{Validation revenue for each added quantile. Four decimal places
+ show the very small differences near the best candidate.}
+ \label{tab:context-validation}
+ \begin{tabular}{cr}
+ \hline
+ Quantile $\tau$ & Revenue (EUR)\\
+ \hline
+ 0.2 & 226.5916\\
+ 0.3 & 227.5344\\
+ 0.4 & 226.6823\\
+ 0.5 & 226.4988\\
+ 0.6 & 227.5770\\
+ 0.7 & 227.5812\\
+ 0.8 & 227.5659\\
+ \hline
+ Matched control & 227.5810\\
+ \hline
+ \end{tabular}
+\end{table}
+
+Among the augmented DFL models, the highest validation revenue is obtained by adding the $\tau=0.7$ quantile forecast. This differs from Model~1, in which $\tau^\star=0.5$ is selected when the quantile forecast is used directly as the bid. However, the model containing the $0.7$-quantile forecast improves validation revenue by less than EUR~0.001 relative to the matched control. It is therefore the numerical winner among the augmented policies, but it does not provide a meaningful economic improvement. 
+
+The original DFL model specified in Section~2.1, which is trained on all 4,812 training observations, achieves a higher validation revenue of EUR~227.93. Figure~10 in Appendix~B presents this comparison. On the test set, the selected augmented model and the matched control each earn approximately EUR~106.00 over the 1,622 hours with complete price information. Both have an RMSE of approximately $1.486$~kW, and their revenues differ by less than EUR~0.001. Adding the selected quantile forecast therefore produces almost the same decision rule and economic performance as leaving it out. Although both models earn more than the EUR~105.47 achieved by the original DFL model, this increase cannot be attributed to the quantile forecast because the matched control achieves the same result without it. We therefore find no meaningful evidence that adding a quantile forecast improves the DFL model in this experiment.
