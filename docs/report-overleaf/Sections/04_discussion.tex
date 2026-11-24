@@ -1,31 +1,56 @@
 \section{Discussion}
-The autumn-evening association persisted across linear, tree-based,
-and neural forecasts. Lasso and Ridge have closely correlated errors
-(0.98 by hour), so transfer to the other model families broadens the
-evidence. These associations support monitoring autumn evenings.
-Causal effects of season, time, and market regime remain open.
+\subsection{What the model comparison shows}
+The ranking depends on which errors matter. Ridge's lower MAE in
+2024 coincided with higher RMSE and fewer eligible hits, consistent
+with larger misses contributing more to the squared-error metric.
+Boosting led the annual comparison in 2024, yet Ridge was more
+accurate on negative-price hours. Many prices near zero are excluded
+from the relative hit metric, so a higher hit rate offers limited
+evidence about performance there. A user concerned with negative prices
+would need the corresponding subgroup scores when choosing a model.
 
-Annual accuracy measures capture different aspects of forecast error.
-Ridge's MAE fell from 18.78 to 18.34 between years, while its RMSE
-rose from 26.65 to 29.52 and its eligible hit rate fell. Likewise,
-boosting's lower annual MAE in 2024 came with somewhat higher MAE
-on negative prices than Ridge. An error-monitoring rule can therefore
-add information beyond the annual model ranking.
+Lasso retained about 77 of 604 inputs per hour model in the pre-2023
+fit. Its gains came with more training time, about 140 seconds for
+24 refits against 3 seconds for Ridge on the same laptop. Since
+price lags can be correlated, sparse coefficients are useful for
+prediction and give limited evidence about the importance of any
+single lag. MLP tuning improved on its starter in both years, with
+most of the remaining gap to Ridge concentrated overnight and in the
+late evening. Longer iteration budgets barely changed either
+starter's validation errors, suggesting that the observed gaps
+did not mainly result from stopping the optimizer too early.
 
-The selected cluster label added little enrichment within afternoons.
-The Davies--Bouldin index measures separation of inputs, and sparse
-high-price regimes make errors difficult to characterize. The rare
-regime also falls below the 5\% Apriori support threshold. Its high
-forest and boosting error rates warrant cautious interpretation.
-Comparing regimes within the afternoon band holds time of day fixed.
-Seasonal composition can still differ, so the comparison cannot
-isolate the contribution of the cluster label alone.
+\subsection{Transfer of calendar and regime rules}
+Autumn-evening enrichment persisted across linear, tree-based, and
+neural forecasts. Lasso and Ridge had highly correlated hourly
+errors (0.98), so their agreement is closely related. Transfer to
+the other model families broadens the evidence, although all five
+models share the same inputs and delivery hours. Lift compares
+relative enrichment: boosting recorded fewer autumn-evening
+events than Ridge under its own threshold and still had higher lift
+because its annual event rate was lower. The common-threshold
+comparison provides a check on this dependence.
 
-Both years informed earlier work. The 2024 results therefore give a
-chronological development evaluation. Intervals condition on the
-selected rules, and uncertain source release times limit claims
-about the operational 10:00 cutoff.
-The five forecasts share input data and evaluation hours. Transfer
-across model families gives evidence against a pattern tied to one
-model's specification, while a prospective evaluation is needed to
-assess whether it persists under later market conditions.
+The selected cluster rule provided little enrichment within
+afternoons. Holding time of day fixed reduces one source of
+composition differences, while season can still differ between
+groups. The Ridge interval spans both a lower and a higher rate
+for cluster 0, so the data give little basis for using that label
+as a warning flag. The Davies--Bouldin score characterizes
+separation in input space. A well-separated regime can still have
+an imprecise forecast-error estimate when it covers few days.
+The highest prior-price regime illustrates the trade-off: it
+contained difficult hours for forest and boosting, yet its
+frequency fell below the 5\% support requirement. Lowering support
+would admit rarer patterns and increase the need for separate
+validation.
+
+\subsection{What a later evaluation would test}
+Both years informed earlier work, and the block interval is
+conditional on the rules and thresholds selected. Uncertain
+historical release times also limit claims about the operational
+10:00 cutoff. A prospective evaluation could freeze the rules,
+archive the inputs available at issue time, and measure how many
+errors the autumn-evening flag catches at a given alert volume.
+This would test usefulness under later market conditions and
+show whether calendar enrichment persists across another cycle.
