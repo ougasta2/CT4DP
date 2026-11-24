@@ -1,287 +1,85 @@
 \section{Results}
-\subsection{Shared benchmark}
-The 24 Ridge fits produced 17,544 aligned hourly predictions. Rerunning the
-benchmark from the shared snapshot reproduced them to numerical tolerance.
-Table~\ref{tab:ridge} gives annual scores. All five models produced aligned
-predictions for the same 744 hours in January 2023
-(Table~\ref{tab:smoke}). This run verifies integration of the starter
-configurations; the annual results below assess full-period performance.
-
-\begin{table}[!ht]
-\centering
-\caption{Ridge performance. MAE and RMSE are in EUR/MWh.}
-\label{tab:ridge}
-\begin{tabular}{lrrrr}
-\hline
-Year & Hours & MAE & RMSE & \(\pm5\%\) hits \\
-\hline
-2023 & 8,760 & 18.78 & 26.65 & 1,575/7,738 \\
-2024 & 8,784 & 18.34 & 29.52 & 1,356/7,620 \\
-\hline
-\end{tabular}
-\end{table}
-
-\begin{table}[!ht]
-\centering
-\caption{January 2023 integration check on the same 744 hours.}
-\label{tab:smoke}
-\begin{tabular}{lrr}
-\hline
-Model & MAE (EUR/MWh) & \(\pm5\%\) hits / 664 \\
-\hline
-Ridge & 22.57 & 137 \\
-Lasso & 25.01 & 125 \\
-Random Forest & 26.88 & 128 \\
-Gradient Boosting & 22.68 & 145 \\
-MLP & 29.66 & 89 \\
-\hline
-\end{tabular}
-\end{table}
-
-\subsection{Market regimes and error-associated rules}
-The Davies--Bouldin index was 1.29 on the training descriptors. The frozen
-centroids labelled all 731 days in 2023--2024. The regime with the highest
-mean prior-day price centroid covered only 11 days in 2023 and 18 in 2024.
-
-The large-error threshold was 40.54 EUR/MWh and the overall 2024 event rate
-was 8.96\%. The autumn-evening rule remained enriched in 2024. The selected
-cluster-afternoon rule was close to the overall rate
-(Table~\ref{tab:rules}).
-
-\begin{table}[!ht]
-\centering
-\caption{Rules selected on 2023 Ridge errors and scored on 2024 hours.}
-\label{tab:rules}
-\begin{tabular}{lrrr}
-\hline
-Rule & Events / hours & Rate & Lift \\
-\hline
-Autumn + evening & 92 / 546 & 16.85\% & 1.88 \\
-Cluster 0 + afternoon & 72 / 786 & 9.16\% & 1.02 \\
-\hline
-\end{tabular}
-\end{table}
-
-Among afternoon hours, cluster 0 had a large-error rate of 9.16\%, versus
-10.52\% over all afternoons and 11.28\% among other clusters
-(Fig.~\ref{fig:afternoon}). The cluster-0 minus other-cluster difference
-was \(-2.12\) percentage points (95\% day-block interval:
-\(-8.33\) to \(3.50\)).
-The selected condition did not identify an elevated rate within this
-time band.
-
-\input{Figures/afternoon_comparison}
-
-\subsection{Cross-model evaluation}
-
-\paragraph{Lasso}
-The selected Lasso improved on the starter and the frozen Ridge
-baseline in both years (Table~\ref{tab:lasso}). Its MAE was 17.91
-and 17.84 EUR/MWh, against Ridge's 18.78 and 18.34, with lower
-RMSE and higher \(\pm5\%\) hit rates. The 2019--2022 fit retained
-1,847 of 14,496 coefficients, about 77 inputs per clock-hour model.
-Negative-price errors remained large: in 2024, Lasso's MAE was
-19.79 EUR/MWh over 375 negative-price hours, versus Ridge's 19.43.
-Across all 24 monthly refits, fitting took about 140 seconds versus 3 seconds for Ridge on the same laptop with two BLAS threads.
-Increasing the starter's iteration limit changed its fixed-window
-validation RMSE only from 31.028 to 31.030 EUR/MWh.
-
-Frozen rules: with Lasso's own 2023 90th percentile as the threshold
-(39.93 EUR/MWh), the overall large-error rate was 10.00\% in 2023 and 9.20\%
-in 2024. Scored unchanged, the autumn-evening rule kept a high rate in 2024
-(95/546, 17.40\%, lift 1.89), while the cluster-afternoon rule fell slightly
-below the overall rate (69/786, 8.78\%, lift 0.95). Within 2024 afternoons,
-the cluster-0 minus other-cluster difference was \(-3.21\) percentage points
-(95\% day-block interval: \(-9.40\) to \(2.59\)).
-
-\begin{table}[!ht]
-\centering
-\caption{Lasso performance. Starter: \(\alpha=0.03\);
-selected: \(\alpha=0.3\). MAE and RMSE are in EUR/MWh.}
-\label{tab:lasso}
-\begin{tabular}{llrrr}
-\hline
-Year & Model & MAE & RMSE & \(\pm5\%\) hits \\
-\hline
-2023 & Starter  & 20.65 & 29.43 & 1,500/7,738 \\
-2023 & Selected & 17.91 & 26.14 & 1,691/7,738 \\
-2024 & Starter  & 19.14 & 30.31 & 1,270/7,620 \\
-2024 & Selected & 17.84 & 29.35 & 1,429/7,620 \\
-\hline
-\end{tabular}
-\end{table}
-
-\paragraph{Random Forest}
-The forest (100 trees, \texttt{min\_samples\_leaf} \(=5\)) had MAE
-21.00 and 18.98 EUR/MWh in 2023 and 2024 (Table~\ref{tab:rf}).
-Its \(\pm5\%\) hit rate was slightly higher than Ridge's in both years
-(20.65\% versus 20.35\% in 2023 and 18.31\% versus 17.80\% in 2024),
-but its MAE and RMSE were higher. The rule-selected value
-\texttt{min\_samples\_leaf} \(=2\) gave MAE 20.86 and 18.91,
-a change below 1\% in both years.
-
-\begin{table}[!ht]
-\centering
-\caption{Random Forest performance. MAE and RMSE are in EUR/MWh.}
-\label{tab:rf}
-\begin{tabular}{lrrrr}
-\hline
-Year & Hours & MAE & RMSE & \(\pm5\%\) hits \\
-\hline
-2023 & 8,760 & 21.00 & 30.50 & 1,598/7,738 \\
-2024 & 8,784 & 18.98 & 31.56 & 1,395/7,620 \\
-\hline
-\end{tabular}
-\end{table}
-
-Error by regime:
-A large error is an absolute error above the forest's own 2023
-90th percentile (47.17 EUR/MWh), which differs from the Ridge threshold
-of 40.54, so the rates below are not comparable with
-Table~\ref{tab:rules}. The overall large-error rate was 10.00\% in 2023
-and 6.63\% in 2024. Regimes 0--2 had similar errors
-(large-error rates 5.1--10.3\%). Regime 3, the days with the highest
-prior-day price, was the hardest, with rates of 16.67\% and 13.43\%
-(Table~\ref{tab:rfregime}), but it covers only 11 and 18 days.
-With \(k=5\), the spike group splits into an evening-peak regime
-(10 and 17 days; rates 18.33\% and 13.24\%) and a windy morning-peak
-regime (8 and 9 days; 11.98\% and 8.33\%), so the finding that the
-spike days are hardest does not depend on \(k\).
-
-\begin{table}[!ht]
-\centering
-\caption{Random Forest large errors by regime (\(k=4\)).}
-\label{tab:rfregime}
-\begin{tabular}{llrrrr}
-\hline
-Year & Regime & Days & MAE & Large / hours & Rate \\
-\hline
-2023 & 0 & 129 & 21.59 & 289 / 3,097 & 9.33\% \\
-2023 & 1 &  80 & 19.96 & 183 / 1,919 & 9.54\% \\
-2023 & 2 & 145 & 20.73 & 360 / 3,480 & 10.34\% \\
-2023 & 3 &  11 & 25.33 &  44 / 264   & 16.67\% \\
-2024 & 0 & 131 & 17.89 & 173 / 3,144 & 5.50\% \\
-2024 & 1 &  60 & 15.86 &  74 / 1,440 & 5.14\% \\
-2024 & 2 & 157 & 19.18 & 277 / 3,768 & 7.35\% \\
-2024 & 3 &  18 & 35.61 &  58 / 432   & 13.43\% \\
-\hline
-\end{tabular}
-\end{table}
-
-% TODO C: add annual boosting metrics and score frozen rules on aligned forecasts;
-% repeat the afternoon comparison across models, report sample counts, and use
-% thresholds derived exclusively from 2023 errors (state whether common or model-specific); RQ2.
-
-\paragraph{Gradient boosting}
-The starter had MAE 18.39 EUR/MWh in the 2023 validation year and 16.58 in
-the 2024 evaluation (Table~\ref{tab:gb}), lower than Ridge and the forest in
-both years, and \(\pm5\%\) hit rates of 22.87\% and 19.09\%. The three
-variants were worse in the validation year (MAE 18.95 with 7 leaves,
-18.66 with an \(L_2\) penalty of 10 and 19.11 with absolute-error loss;
-1,680, 1,734 and 1,692 hits), so we kept the starter. Absolute-error loss
-had the highest 2024 hit rate (20.70\%), but selecting it would have
-required 2024 results. The starter was worse than Ridge in
-negative-price hours (MAE 35.30 versus 31.56 in 2023 and 20.69 versus
-19.43 in 2024), and its 24 monthly fits took 414 seconds in total, against about 3 seconds for Ridge.
-
-\begin{table}[!ht]
-\centering
-\caption{Gradient boosting performance. MAE and RMSE are in EUR/MWh.}
-\label{tab:gb}
-\begin{tabular}{lrrrr}
-\hline
-Year & Hours & MAE & RMSE & \(\pm5\%\) hits \\
-\hline
-2023 & 8,760 & 18.39 & 26.87 & 1,770/7,738 \\
-2024 & 8,784 & 16.58 & 27.47 & 1,455/7,620 \\
-\hline
-\end{tabular}
-\end{table}
-
-Frozen rules: a large error is an absolute error above the boosting
-model's own 2023 90th percentile (41.26 EUR/MWh), a model-specific
-threshold derived from 2023 errors only. The overall large-error rate
-was 10.00\% in 2023 and 6.27\% in 2024. Scored unchanged on the boosting
-forecasts, the autumn-evening rule selected on Ridge errors kept a high
-rate in 2024, while the cluster-afternoon rule fell below the overall
-rate (Table~\ref{tab:gbrules}). Within 2024 afternoon hours, cluster 0
-had a large-error rate of 5.73\% (45/786), versus 8.42\% (185/2,196)
-over all afternoons and 9.93\% (140/1,410) among other clusters.
-The cluster-0 minus other-cluster difference was \(-4.20\)
-percentage points (95\% day-block interval: \(-8.43\) to \(0.44\)).
-
-\begin{table}[!ht]
-\centering
-\caption{Rules selected on 2023 Ridge errors and scored on 2024 gradient
-boosting hours (model-specific threshold).}
-\label{tab:gbrules}
-\begin{tabular}{lrrr}
-\hline
-Rule & Events / hours & Rate & Lift \\
-\hline
-Autumn + evening & 75 / 546 & 13.74\% & 2.19 \\
-Cluster 0 + afternoon & 45 / 786 & 5.73\% & 0.91 \\
-\hline
-\end{tabular}
-\end{table}
-
-Running Apriori on the 2023 boosting errors gave 46 candidate rules,
-of which 24 kept a lift above 1 in the 2024 evaluation. The highest-lift
-calendar rule (spring + afternoon, lift 2.07) fell to 0.75 in 2024 and
-the highest-lift cluster rule (cluster 1 + afternoon, 1.67) fell to 0.97.
-Regime 3 again had the highest large-error rate, 17.42\% (46/264)
-in 2023 and 15.97\% (69/432) in 2024, but it covers less than 5\%
-of hours, so no rule containing it reaches the minimum support.
-
-%------------MLP-----------
-% TODO D: add annual MLP metrics, fit times, convergence and seed variation; RQ2.
-
-\paragraph{Multilayer perceptron}
-The tuned network reached MAE 20.22 and 19.19 EUR/MWh
-(RMSE 27.79 and 30.07; Table~\ref{tab:mlp}), against 22.46 and 20.37
-for the unchanged starter and 18.78 and 18.34 for Ridge. Tuning
-therefore removed 2.24 and 1.18 EUR/MWh and raised the
-\(\pm5\%\) hit rate from 15.4\% to 16.8\% in 2023.
-The starter's convergence warning does not explain its error:
-an 800-iteration rerun changes MAE by 0.005 EUR/MWh.
-The tuned MLP had lower MAE than the forest in 2023
-(20.22 versus 21.00) but higher MAE in 2024
-(19.19 versus 18.98).
-It is worse than Ridge at every clock hour
-(Fig.~\ref{fig:mlp_hour}), by 2.0 EUR/MWh on average over
-00:00--05:59 and 21:00--23:59 but only 0.6 over 07:00--19:59,
-where prices and errors are large. Month by month it beats
-Ridge in 2 of 12 months in 2023 and 6 of 12 in 2024, so the
-comparison is not uniformly negative but is not a reliable gain either.
+\subsection{Forecast accuracy}
+The models score the same 8,760 hours in 2023 and 8,784 in 2024.
+Lasso had the lowest 2023 MAE and RMSE, while boosting led on the
+eligible hit rate. Boosting had the lowest 2024 MAE and RMSE and the
+highest eligible hit rate among the five reported configurations
+(Table~\ref{tab:forecast}).
 
 \begin{table}[!t]
-\caption{Multilayer perceptron performance. MAE and RMSE are in EUR/MWh.
-The MLP row of Table~\ref{tab:smoke} is the unchanged starter.}
-\label{tab:mlp}
 \centering
-\begin{tabular}{llrrr}
+\caption{Annual MAE and RMSE (EUR/MWh), and \(\pm5\%\) hits (\%).
+Eligible hours: 7,738 in 2023 and 7,620 in 2024.}
+\label{tab:forecast}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrr}
 \hline
-Year & Model & MAE & RMSE & \(\pm5\%\) hits \\
+& \multicolumn{3}{c}{2023} & \multicolumn{3}{c}{2024}\\
+Model & MAE & RMSE & Hit & MAE & RMSE & Hit\\
 \hline
-2023 & Starter \((80,40)\), \(\alpha=1\)
-     & 22.46 & 30.58 & 1,192/7,738 \\
-2023 & Tuned \((40)\), \(\alpha=10\)
-     & 20.22 & 27.79 & 1,301/7,738 \\
-2024 & Starter \((80,40)\), \(\alpha=1\)
-     & 20.37 & 31.43 & 1,055/7,620 \\
-2024 & Tuned \((40)\), \(\alpha=10\)
-     & 19.19 & 30.07 & 1,225/7,620 \\
+Ridge & 18.78 & 26.65 & 20.35 & 18.34 & 29.52 & 17.80\\
+Lasso & 17.91 & 26.14 & 21.85 & 17.84 & 29.35 & 18.75\\
+Forest & 21.00 & 30.50 & 20.65 & 18.98 & 31.56 & 18.31\\
+Boosting & 18.39 & 26.87 & 22.87 & 16.58 & 27.47 & 19.09\\
+MLP & 20.22 & 27.79 & 16.81 & 19.19 & 30.07 & 16.08\\
 \hline
 \end{tabular}
 \end{table}
+
+\textbf{Lasso.} Tuning reduced MAE from 20.65 to 17.91 in 2023
+and from 19.14 to 17.84 in 2024. The pre-2023 fit retained about
+77 of 604 inputs per hour model. At negative prices in 2024, Lasso
+scored 19.79 MAE and Ridge 19.43.
+The chosen Lasso took about 140 seconds to fit over 24 refits,
+compared with about 3 seconds for Ridge on the same laptop. Raising
+the starter's iteration limit changed its fixed-window validation
+RMSE only from 31.028 to 31.030 EUR/MWh.
+
+\textbf{Random Forest.} Using the validation-selected leaf size of two
+gave MAE 20.86 and 18.91, each within 1\% of the reported leaf-five
+setting. The forest's large-error rate was highest in the high-price
+regime in both years (16.67\% and 13.43\%), across only 11 and 18 days.
+The evening-peak group produced by splitting that regime at \(k=5\)
+also had the highest large-error rate in both years.
+
+\textbf{Gradient Boosting.} The absolute-loss variant reached a
+20.70\% hit rate in 2024, after losing on 2023 MAE and hit count.
+Boosting's 2024 MAE on negative prices was 20.69, above Ridge's 19.43.
+
+\textbf{MLP.} Tuning lowered MAE from 22.46 to 20.22 in 2023
+and from 20.37 to 19.19 in 2024. The remaining gap to Ridge
+averaged about 2.0 EUR/MWh in the overnight and late-evening bands
+and 0.6 during 07:00--19:59.
+The tuned MLP beat Ridge in two months of 2023 and six of 2024,
+even though its annual MAE was higher in both years. Increasing
+the starter's iteration budget changed its MAE by only 0.005 EUR/MWh.
+
+\subsection{Regimes and rule transfer}
+The four-cluster fit had a training Davies--Bouldin index of 1.29.
+In 2024, large Ridge errors exceeded 40.54 EUR/MWh and occurred
+in 8.96\% of hours. Autumn evenings had 92 events in 546 hours.
+Cluster-0 afternoons had 72 in 786 hours. Within the afternoon
+band, the Ridge event rate was 9.16\% for cluster 0 and 11.28\%
+for other clusters, a difference of \(-2.12\) percentage points
+(95\% block interval \([-8.33,3.50]\)).
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{Figures/fig_hourly_mae.png}
-\caption{MAE by clock hour of the delivery day for Ridge and the tuned MLP,
-2023--2024. The network is worse at every hour, but the gap is about
-2.0 EUR/MWh overnight and 0.6 during the day.}
-\label{fig:mlp_hour}
+\includegraphics[width=\columnwidth]{Figures/rule_transfer.pdf}
+\caption{2024 lift for two antecedents selected on 2023 Ridge errors.
+Each model uses its own frozen 2023 large-error threshold. Lift 1
+denotes the model's annual large-error rate.}
+\label{fig:rule-transfer}
 \end{figure}
 
-
+Across all five models, autumn-evening lift was 1.77--2.54 and
+cluster-0 afternoon lift was 0.86--1.02 (Fig.~\ref{fig:rule-transfer}).
+The same qualitative pattern held using the common Ridge threshold.
+Under model-specific thresholds, the annual large-error rate for
+boosting was 6.27\%, and its autumn-evening rate was 13.74\%
+(75 of 546 hours). Ridge's autumn-evening rate was 16.85\%, against
+its higher annual rate of 8.96\%. Lift therefore compares enrichment
+relative to each model's reference rate.
+For boosting, autumn-evening lift (2.19) exceeded autumn alone
+(1.55) and evening alone (1.40). Its highest-lift rules mined
+separately on 2023 boosting errors fell to 0.75 and 0.97 in 2024.

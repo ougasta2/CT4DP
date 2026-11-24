@@ -6,17 +6,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\usepackage{cite}          
-\usepackage{url}           % \url{}
-% ---------- optional, keep only if used ----------
-\usepackage{placeins}
-\usepackage{textcomp}
-\usepackage{xcolor}
-\usepackage{microtype}
-\usepackage[hidelinks]{hyperref}
+
+\newcommand{\reportlink}[2]{%
+  \leavevmode\pdfstartlink attr{/Border [0 0 0]}%
+  user{/Subtype /Link /A << /S /URI /URI (#1) >>}%
+  #2\pdfendlink}
 
 \title{Market Regimes and Large Errors in DK1 Day-Ahead Electricity Price Forecasts}
-% TODO Team: replace the group label with the full author list before submission.
 \author{\IEEEauthorblockN{Naoto Ogawa (s261788), Xingjie Huang (s263812),
 Cheong Shao Hong Justin (s261534),\\ Fu Nukunu Philip (s260114), Jingruo Xu (s252635)}
 \IEEEauthorblockA{Computational Tools for Data Science, Technical University of Denmark}}

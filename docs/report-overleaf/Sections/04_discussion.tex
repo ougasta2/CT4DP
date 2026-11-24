@@ -1,63 +1,31 @@
 \section{Discussion}
-Ridge's lower 2024 MAE coincided with a higher RMSE and a lower eligible hit
-rate (17.80\% versus 20.35\%). A typical reduction in absolute error does not
-guarantee fewer extreme misses or more forecasts within a tight band. This
-motivates a separate analysis of where large errors occur.
+The autumn-evening association persisted across linear, tree-based,
+and neural forecasts. Lasso and Ridge have closely correlated errors
+(0.98 by hour), so transfer to the other model families broadens the
+evidence. These associations support monitoring autumn evenings.
+Causal effects of season, time, and market regime remain open.
 
-The autumn-evening association persisted into 2024. Its lift cannot be compared
-directly with the cluster rule to measure the contribution of a cluster label:
-the rules describe different calendar conditions. The afternoon comparison
-holds time of day fixed and shows no enrichment for the selected cluster in
-2024, with substantial uncertainty. Seasons and other conditions may still
-differ between the two sets of days. The comparison concerns a single selected
-rule, and the Davies--Bouldin index does not measure whether regimes explain
-forecast error. Sparse regimes and temporal dependence further limit inference.
+Annual accuracy measures capture different aspects of forecast error.
+Ridge's MAE fell from 18.78 to 18.34 between years, while its RMSE
+rose from 26.65 to 29.52 and its eligible hit rate fell. Likewise,
+boosting's lower annual MAE in 2024 came with somewhat higher MAE
+on negative prices than Ridge. An error-monitoring rule can therefore
+add information beyond the annual model ranking.
 
-Both years informed earlier work, so 2024 is a chronological evaluation rather
-than an untouched test. The bootstrap interval is conditional on the rule and
-threshold; it does not account for candidate selection or establish causality.
-Unverified source publication or revision times may affect how closely the
-benchmarked inputs reproduce those available at the intended forecasting cutoff.
+The selected cluster label added little enrichment within afternoons.
+The Davies--Bouldin index measures separation of inputs, and sparse
+high-price regimes make errors difficult to characterize. The rare
+regime also falls below the 5\% Apriori support threshold. Its high
+forest and boosting error rates warrant cautious interpretation.
+Comparing regimes within the afternoon band holds time of day fixed.
+Seasonal composition can still differ, so the comparison cannot
+isolate the contribution of the cluster label alone.
 
-Lasso reduced MAE relative to Ridge by 4.6\% in 2023 and 2.7\% in
-2024, while RMSE fell by 1.9\% and 0.6\%, respectively. The smaller
-RMSE improvement in 2024 indicates that the aggregate gain was limited.
-Both models use the same inputs and a linear specification; Lasso
-additionally selects predictors through its sparsity-inducing penalty. Its errors closely track Ridge's (hourly correlation 0.98), and it beat Ridge
-in 11 of 12 months in each year, so the gain is consistent but small. For the
-same reason, the transfer of the autumn-evening rule to Lasso is weaker evidence
-of model independence than its transfer to gradient boosting.
-
-Lasso achieved the lowest MAE and RMSE among the five models in 2023.
-In 2024, however, its MAE and RMSE exceeded gradient boosting's by
-1.26 and 1.88 EUR/MWh, respectively. Unlike the linear models,
-gradient boosting can represent nonlinear relationships and interactions.
-Its advantage was not uniform: Lasso had lower negative-price MAE
-in 2024 (19.79 versus 20.69 EUR/MWh).
-
-% TODO B: interpret regime stability and the effect of small groups; RQ2.
-
-For the Random Forest, the highest prior-day price regime (regime 3) had
-the largest large-error rates in both years (16.67\% and 13.43\%).
-This held when the spike regime was split at \(k=5\). However, regime 3
-covers only 11 and 18 days and we computed no interval, so this is a
-suggestive association in development years, not evidence that the
-regime explains forecast error.
-
-% TODO C: interpret rule transfer failures and any contribution beyond seasonal
-% or time-band composition; distinguish association from forecast improvement.
-
-For gradient boosting, the autumn-evening rule transferred: its 2024 lift
-(2.19) was higher than for autumn alone (1.55) or evening alone (1.40), so the
-combination adds to its two parts, and the pattern is not specific to Ridge.
-The cluster rule did not transfer. In 2023 its boosting lift (1.43) matched
-that of afternoon hours alone (1.42), so the cluster label added nothing beyond
-the time band, and in 2024 cluster-0 afternoons had fewer large errors than
-other afternoons, although the interval includes zero. The highest-lift rules
-selected on the 2023 boosting errors also failed in 2024, so a high lift in
-the validation year was a poor guide to which rules persist. These are
-associations between conditions and large errors: they show where the
-forecasts miss, not that adding regime labels as inputs would reduce
-errors, which we did not test.
-
-% TODO D: interpret robustness, convergence, and training cost; RQ2.
+Both years informed earlier work. The 2024 results therefore give a
+chronological development evaluation. Intervals condition on the
+selected rules, and uncertain source release times limit claims
+about the operational 10:00 cutoff.
+The five forecasts share input data and evaluation hours. Transfer
+across model families gives evidence against a pattern tied to one
+model's specification, while a prospective evaluation is needed to
+assess whether it persists under later market conditions.

@@ -1,101 +1,77 @@
 \section{Data and Methods}
-\subsection{Data and information cutoff}
-The prepared dataset contains 2,185 usable Copenhagen delivery days from January
-2019 through December 2024. Predictors include one- and seven-day hourly price lags
-for DK1, DK2, DE-LU, NL, and SE4, and cyclical calendar features
-\cite{energinet,energycharts}. Temperature, wind speed, and cloud cover come from
-Japan Meteorological Agency GSM forecasts archived by Open-Meteo
-(\texttt{previous\_day2}, a fixed 48-hour lead) \cite{openmeteo}. The design targets
-a 10:00 Copenhagen issue time on the preceding day. The archive's lead time
-does not independently verify every historical release or revision.
+\subsection{Data and benchmark}
+The shared snapshot contains 2,185 usable Copenhagen delivery days from
+2019--2024. Inputs include one- and seven-day price lags for DK1, DK2,
+DE-LU, NL, and SE4 \cite{energinet,energycharts}, calendar features, and
+archived JMA forecasts of temperature, wind, and cloud cover
+\cite{openmeteo}. The intended issue time is 10:00 Copenhagen time on the
+preceding day. Historical release times and revisions are partly audited.
+Daily training curves interpolate the missing spring hour and average the
+repeated autumn hour. Scoring matches UTC timestamps, retaining the 23
+or 25 actual hours on transition days.
 
-Each forecast has 24 local clock-hour outputs. Daily training curves average
-the repeated autumn hour and interpolate the missing spring hour. Scoring
-retains the 25 or 23 actual hourly observations on those transition days.
-The same clock-hour prediction scores both repeated observations, and forecasts
-from different models are joined on UTC timestamps.
+The calendar and price-lag features represent daily and weekly
+seasonality and link DK1 to neighbouring markets. For weather, the
+Open-Meteo \texttt{previous\_day2} archive provides forecasts for a
+fixed lead. Using a forecast archive avoids substituting realized
+weather for forecasts, while the archive lead leaves the availability
+of particular historical versions at issue time uncertain.
 
-\subsection{Forecasting benchmark}
-The shared benchmark refits the models monthly on days strictly before the
-scoring month. Ridge fits a linear model with fixed \(L_2\) penalty
-\(\alpha=100\) after standardizing the training predictors. It shrinks unstable
-coefficients when price lags and weather measurements are correlated, providing
-a reproducible reference. We report mean absolute error (MAE), root mean squared
-error (RMSE), and the share of errors within \(\pm5\%\) of the realized price
-among hours with absolute realized prices of at least 20 EUR/MWh.
+We refit each model monthly using all available earlier days. We report
+MAE and RMSE in EUR/MWh and count predictions within \(\pm5\%\) of the
+actual price among hours with \(|\mathrm{actual}|\geq20\) EUR/MWh.
+Ridge uses standardized inputs and fixed \(\alpha=100\).
 
-The out-of-course forecasting extension compares Lasso (\(L_1\) regularization),
-Random Forest, histogram gradient boosting, and a multilayer perceptron (MLP).
-The forest and MLP produce 24 outputs jointly, while the boosting starter fits
-one estimator per clock hour. Matching timestamps, targets, inputs, and splits
-allows differences in errors to be tested under a common protocol.
-% TODO A: give the Lasso regularization/convergence settings and the German-lag ablation protocol; RQ2.
-% TODO B: give forest settings and cluster sensitivity protocol; RQ2.
-The forest uses 100 trees with bootstrap resampling, \texttt{min\_samples\_leaf} \(=5\), and every one of the 604 input columns considered at each split (\texttt{max\_features} \(=1.0\)); it predicts all 24 hours jointly and uses random seed 42. It is refit monthly on days strictly before the scoring month. We searched \texttt{min\_samples\_leaf} \(\in\{1,2,3,5,10,20\}\) on 2022 as a validation year (trained on 2019--2021, refit monthly). The pre-specified rule, lowest 2022 MAE, selected 2. For cluster sensitivity, we fit K-means with \(k=2,\dots,8\) on pre-2023 days only and compared Davies--Bouldin index and smallest-cluster size, then compared error by regime at \(k=4\) and \(k=5\). 
+\subsection{Forecast models}
+Lasso selects \(\alpha=0.3\) by RMSE over 2023 rolling validation months,
+with training-window scaling and a 10,000-iteration limit. The reported
+Random Forest uses 100 trees and a minimum leaf size of five. The
+2022 MAE search selected two, which we report as a sensitivity check.
+Histogram Gradient Boosting fits one estimator per clock hour
+\cite{friedman2001,pedregosa2011}. The 60-tree starter
+(learning rate 0.08, 15 leaves, \(L_2=1\)) led the three tested variants
+on 2023 MAE and hit count. The MLP predicts all 24 hours jointly
+\cite{lago2021,goodfellow2016}. Rolling 2023 validation selected a
+40-unit tanh layer with \(L_2\) penalty \(\alpha=10\). Its input and
+target scalers are fitted within each training window.
 
-% TODO C: give boosting model and tuning settings selected using earlier data; RQ2.
-\paragraph{Lasso}
-Lasso fits one linear model per clock hour; its \(L_1\) penalty can
-set coefficients to zero. Predictors are standardized within each
-training window. We selected \(\alpha=0.3\) from the prespecified grid
-\(\{0.03,0.1,0.3,1,3,10,30,100\}\) by the lowest RMSE across monthly
-expanding-window validation folds in 2023, without using 2024.
-The iteration limit was increased from 3,000 to 10,000 after checking
-convergence of the starter.
+The model families span different ways to use the same information.
+Ridge shrinks coefficients when lagged prices and weather inputs are
+correlated, while Lasso can set coefficients to zero. The tree models
+can represent nonlinear interactions, and the forest and MLP predict
+the 24-hour curve jointly. We disabled automatic early stopping for
+the MLP to avoid a random validation split, and compared layer width,
+penalty, and iteration budget in chronological folds.
 
-\paragraph{Gradient boosting}
-Gradient boosting adds shallow regression trees one at a time, fitting each tree
-to the errors of the trees before it and scaling it by a learning rate
-\cite{friedman2001}. The histogram version in scikit-learn \cite{ke2017} first
-sorts each predictor into at most 63 bins, which keeps the 24 monthly refits
-fast. The starter fits one model per clock hour with 60 trees, learning rate
-0.08, 15 leaves per tree, at least 30 samples per leaf and an \(L_2\) penalty
-of 1. Three variants each change one setting: 7 leaves, an \(L_2\) penalty of
-10, or absolute-error loss. For gradient boosting, 2023 is the validation year:
-we chose the setting on 2023 MAE and \(\pm5\%\) hits, and derived the Apriori
-error threshold and rules from 2023 errors. These choices were then held fixed
-for an exploratory evaluation on 2024. All boosting results use the pinned
-package versions (scikit-learn 1.7.2).
+\subsection{K-means regimes}
+Each day is described by the previous DK1 price mean, standard deviation,
+and evening-minus-morning spread, plus the mean forecast temperature,
+wind speed, and cloud cover. Scaling balances units in Euclidean distance.
+We fit the scaler and K-means on 1,454 pre-2023 days and freeze them for
+2023--2024 \cite{clustering}. Across \(k=2,\ldots,8\), we considered the
+Davies--Bouldin index, smallest cluster size, and interpretability.
+We kept \(k=4\), whose smallest training cluster was 12.9\% of days,
+compared with 6.2\% for \(k=5\).
 
-%------------ MLP------------
-% TODO D: give MLP architecture, scaling, stopping criterion, and seed plan; RQ2.
-\paragraph{Multilayer perceptron}
-Neural networks that predict the whole next-day curve are a standard family in
-open day-ahead benchmarks \cite{lago2021}. Ours is a single-hidden-layer
-perceptron with weight decay \cite{goodfellow2016}: 40 tanh units,
-\(L_2\) penalty \(\alpha=10\), one output per clock hour, and a fixed seed,
-fitted with scikit-learn \cite{pedregosa2011}. Inputs and targets are
-standardized inside each training window, so no scaling is fitted on evaluation
-days, and automatic early stopping is disabled because its internal validation
-split is random. Width, penalty and iteration budget were compared on rolling
-validation months of 2023 only, refitting on all earlier days each month; the
-selected setting was applied once to 2024.
+\subsection{Apriori and rule transfer}
+An hourly basket contains season, six-hour time band, and market regime.
+We use Apriori \cite{apriori} to mine antecedents supported by at least
+5\% of 2023 hours and matching at least 20 large Ridge errors.
+A large error exceeds the 2023 absolute-error 90th percentile.
+Confidence is the large-error rate among matching hours. Lift divides
+confidence by the annual large-error rate. We retain the highest-lift
+calendar-only and cluster-containing antecedents, breaking ties by
+support and item order. We apply both antecedents unchanged in 2024,
+using each model's fixed 2023 threshold. We also check a common Ridge
+threshold for all models.
 
-\subsection{K-means market regimes}
-The six daily descriptors capture the level and shape of the previous DK1 price
-curve (mean, standard deviation, and evening-minus-morning spread) and mean
-forecast temperature, wind speed, and cloud cover. Standardization prevents
-measurement units from dominating Euclidean distances. The four-cluster K-means
-fit \cite{clustering} groups days with similar price and weather profiles,
-which can differ even within the same season. The scaler and centroids were
-fitted on 1,454 days before 2023 and held fixed for 2023--2024. Cluster quality is
-summarized by the Davies--Bouldin index, which measures compactness and separation. We kept \(k=4\) because the Davies--Bouldin index changes little across \(k\),
-the smallest regime holds 12.9\% of training days (versus 6.2\% at \(k=5\)), and the four regimes are interpretable.
-
-\subsection{Apriori rule discovery and evaluation}
-An event occurs when absolute forecast error exceeds the 2023 Ridge 90th
-percentile. An hourly transaction contains a season, a six-hour time band, and
-the assigned daily regime when enabled. Apriori \cite{apriori} generates
-antecedents with at least 5\% support (the share of 2023 hours matching the
-antecedent). An antecedent must match at least 20 large errors. Confidence is
-the event rate among matching hours, and lift divides confidence by the overall
-event rate in the same period. We retain the highest-lift candidate in each
-group, calendar-only and cluster-containing, breaking ties by support and
-then by item order. The rules and threshold are frozen before scoring 2024.
-
-For the selected cluster rule, we compare rates for cluster 0 and other
-clusters within the same 12:00--17:59 band. A percentile interval for the
-difference resamples contiguous seven-day blocks of 2024 delivery days
-(5,000 draws). This preserves all six hourly outcomes within each afternoon
-and allows short-range dependence across days. This follow-up conditions on
-the selected rule and does not adjust for the search over candidates.
+For the cluster rule, we compare cluster 0 with other regimes within
+12:00--17:59. As an out-of-course method, a moving-block bootstrap
+resamples contiguous seven-day blocks of 2024 delivery days
+(5,000 draws). Keeping all hours in each day together preserves
+short-range dependence. The percentile interval describes uncertainty
+conditional on the selected rule and threshold.
+The resampling computes the rate difference for the two afternoon
+groups in each draw, using the same sampled days for both. This keeps
+dependence among hours on the same day and among neighbouring days
+within a block, which would be lost with independent hourly draws.
